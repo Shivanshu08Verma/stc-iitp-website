@@ -2,7 +2,7 @@ import React from 'react'
 
 const HeroSection = () => {
   return (
-    <section className="py-16">
+    <section className="pt-8 pb-16">
         <h1 className="text-[104px] font-extrabold uppercase leading-[110px] tracking-tight">
             Building the <br /> Future of <br /> Technology
         </h1>

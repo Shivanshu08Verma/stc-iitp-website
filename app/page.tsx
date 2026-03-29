@@ -1,9 +1,11 @@
 import Image from "next/image";
-import HeroSection from "../components/HeroSection"
+import HeroSection from "@/components/HeroSection"
+import AboutSection from "@/components/AboutSection";
 export default function Home() {
   return (
-    <main className="max-w-6x1 mx-auto px-6">
+    <main className="px-16">
       <HeroSection/>
+      <AboutSection/>
     </main>
   );
 }

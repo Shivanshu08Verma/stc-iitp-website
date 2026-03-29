@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Manrope } from "next/font/google";
 import "./globals.css";
 
 const roboto = Roboto({
   weight: ["400", "700", "900"],
   subsets: ["latin"],
   variable: "--font-roboto",
+});
+
+const manrope = Manrope({
+  weight: ["600"],
+  subsets: ["latin"],
+  variable: "--font-manrope",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto.variable}>
+    <html lang="en" className={`${roboto.variable} ${manrope.variable}`}>
       <body>{children}</body>
     </html>
   );
