@@ -86,11 +86,11 @@ export default function Header() {
               </li>
 
               <li className="relative group">
-                <Link href="/team" className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/teams" ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
+                <Link href="/team" className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/team" ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
                   <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                     TEAM
                   </span>
-                  <span className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 group-hover:w-full ${pathname === "/teams" ? 'w-full' : ''}`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 group-hover:w-full ${pathname === "/team" ? 'w-full' : ''}`}></span>
                 </Link>
               </li>
             </ul>
