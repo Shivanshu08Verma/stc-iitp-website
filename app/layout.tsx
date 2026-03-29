@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import {Inter, Roboto} from "next/font/google";
+import { Inter, Roboto, Space_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  weight: ["400", "700", "900"],
+  weight: ["400", "300", "700", "900"],
   subsets: ["latin"],
   variable: "--font-inter",
 });
@@ -12,6 +12,12 @@ const roboto = Roboto({
   weight: ["400", "700", "900"],
   subsets: ["latin"],
   variable: "--font-roboto",
+});
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-space-mono",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} ${inter.variable}`}>
+    <html lang="en" className={`${roboto.variable} ${inter.variable} ${spaceMono.variable}`}>
       <body>{children}</body>
     </html>
   );
