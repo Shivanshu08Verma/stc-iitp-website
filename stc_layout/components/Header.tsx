@@ -16,22 +16,22 @@ export default function Header() {
       {/* w-full and justify-between guarantee STC is on the far left 
         and the tabs are on the far right. 
       */}
-      <div className="flex w-full h-[60px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="flex w-full h-[80px] items-center justify-between px-4 sm:px-6 lg:px-8">
 
         {/* LEFT: Logo / Title */}
         <div className="flex items-center">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-md">
+            <div className="relative h-14 w-14 overflow-hidden rounded-md">
               <Image 
                 src="/stclogo.png" 
                 alt="STC IITP Logo" 
                 fill 
                 className="object-contain"
-                sizes="40px"
+                sizes="56px"
                 priority
               />
             </div>
-            <span className="text-2xl font-bold tracking-tight text-white w-max">
+            <span className="text-5xl font-bold tracking-tight text-white w-max">
               STC
             </span>
           </Link>
@@ -86,9 +86,9 @@ export default function Header() {
               </li>
 
               <li className="relative group">
-                <Link href="/teams" className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/teams" ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
+                <Link href="/team" className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/teams" ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
                   <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
-                    TEAMS
+                    TEAM
                   </span>
                   <span className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 group-hover:w-full ${pathname === "/teams" ? 'w-full' : ''}`}></span>
                 </Link>
@@ -175,9 +175,9 @@ export default function Header() {
             </li>
 
             <li className="relative group w-max">
-              <Link href="/teams" onClick={() => setIsMobileMenuOpen(false)} className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/teams" ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
+              <Link href="/team" onClick={() => setIsMobileMenuOpen(false)} className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/teams" ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
                 <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
-                  TEAMS
+                  TEAM
                 </span>
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 group-hover:w-full ${pathname === "/teams" ? 'w-full' : ''}`}></span>
               </Link>
