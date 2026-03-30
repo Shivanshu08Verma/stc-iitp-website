@@ -1,0 +1,42 @@
+import Slideshow from "@/components/Slideshow";
+import ExploreButton from "@/components/ExploreButton";
+
+const ONEITTP_IMAGES = [
+  "/ONEIITP/IMG_7960.jpeg",
+  "/ONEIITP/IMG_7961.jpeg",
+  "/ONEIITP/IMG_7962.jpeg",
+  "/ONEIITP/IMG_7963.jpeg",
+  "/ONEIITP/IMG_7964.jpeg",
+];
+
+const OneIITP = () => {
+  return (
+    <section className="w-full min-h-screen bg-[#0a0f2c] flex items-center">
+      <div className="w-full grid grid-cols-2">
+
+        <div className="relative h-screen p-10">
+          <Slideshow images={ONEITTP_IMAGES} />
+        </div>
+
+        <div className="flex flex-col justify-center px-16 py-20 gap-8">
+          <h1 className="text-white font-extrabold text-[80px] leading-none tracking-tight">
+            OneIITP
+          </h1>
+          <p className="text-gray-300 text-[18px] leading-relaxed max-w-[520px]">
+            A unified platform connecting all IIT Patna students, faculty, and
+            alumni. Access everything from course materials to campus news,
+            event registrations to club activities - all in one place. OneIITP
+            streamlines campus life and enhances communication across the entire
+            IIT Patna community.
+          </p>
+          <div className="mt-4">
+            <ExploreButton href="https://drive.google.com/file/d/1WLDixObzK1T63QQgLZD5nBvWfGHOGA7u/view?pli=1" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default OneIITP;

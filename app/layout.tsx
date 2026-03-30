@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto, Space_Mono } from "next/font/google";
+import { Inter, Roboto, Space_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,6 +12,12 @@ const roboto = Roboto({
   weight: ["400", "500", "700", "900"],
   subsets: ["latin"],
   variable: "--font-roboto",
+});
+
+const manrope = Manrope({
+  weight: ["400","600"],
+  subsets: ["latin"],
+  variable: "--font-manrope",
 });
 
 const spaceMono = Space_Mono({
@@ -31,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} ${inter.variable} ${spaceMono.variable}`}>
+    <html lang="en" className={`${roboto.variable} ${inter.variable} ${spaceMono.variable} ${manrope.variable}`}>
       <body>{children}</body>
     </html>
   );

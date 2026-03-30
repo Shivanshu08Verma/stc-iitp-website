@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-roboto);
   --font-inter: var(--font-inter);
+  --font-manrope: var(--font-manrope);
+  --font-space-mono: var(--font-space-mono);
 }
 
 body {
