@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react";
+import Image from "next/image";
 
 interface SlideshowProps {
   images: string[];
@@ -12,10 +13,11 @@ const Slideshow = ({ images }: SlideshowProps) => {
   const goPrev = () => setCurrentIdx((prev) => (prev - 1 + images.length) % images.length);
   return (
     <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-white/60 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)]">
-      <img
+      <Image
         src={images[currentIdx]}
         alt={`Slide ${currentIdx + 1}`}
-        className="w-full h-full object-cover transition-opacity duration-700"
+        fill
+        className="object-cover transition-opacity duration-700"
       />
       <button
         onClick={goPrev}
@@ -40,6 +42,7 @@ const Slideshow = ({ images }: SlideshowProps) => {
           />
         ))}
       </div>
+
     </div>
   );
 };

@@ -30,7 +30,7 @@ const OneIITP = () => {
             IIT Patna community.
           </p>
           <div className="mt-4">
-            <ExploreButton href="https://drive.google.com/file/d/1WLDixObzK1T63QQgLZD5nBvWfGHOGA7u/view?pli=1" />
+            <ExploreButton href="https://www.instagram.com/reel/DBZUMwEJQPi/?igsh=MW40aXBmdThzcDRydA==" />
           </div>
         </div>
 
