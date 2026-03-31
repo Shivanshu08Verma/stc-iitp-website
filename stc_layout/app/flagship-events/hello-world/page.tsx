@@ -97,21 +97,21 @@ const fadeUpVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const textContainerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+const heroHeadingVariants: Variants = {
+  hidden: { 
+    opacity: 0, 
+    scale: 0.85, 
+    filter: "blur(12px)" 
   },
-};
-
-const letterVariants: Variants = {
-  hidden: { opacity: 0, y: -60, rotateX: 90 },
   visible: {
     opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: { type: "spring", damping: 12, stiffness: 200 },
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { 
+      delay: 0.08, // The 80ms animation delay
+      duration: 2.5, 
+      ease: [0.22, 1, 0.36, 1] // Your cubic-bezier values
+    },
   },
 };
 
@@ -142,24 +142,15 @@ export default function HelloWorldPage() {
       <div className="font-manrope text-white w-full overflow-hidden">
         <section className="relative flex items-center justify-center pt-10 sm:pt-14 md:pt-16 pb-20 sm:pb-32 px-4">
           <m.h1
-            variants={textContainerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase text-white text-center flex justify-center"
-            style={{
-              letterSpacing: "0.02em",
-            }}
-          >
-            {"HELLO WORLD".split("").map((char, index) => (
-              <m.span
-                key={index}
-                variants={letterVariants}
-                className={`inline-block ${char === " " ? "w-3 sm:w-6" : ""}`}
-              >
-                {char}
-              </m.span>
-            ))}
-          </m.h1>
+  variants={heroHeadingVariants}
+  initial="hidden"
+  animate="visible"
+  className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase tracking-widest"
+>
+  <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-blue-500">
+    HELLO WORLD
+  </span>
+</m.h1>
         </section>
 
         <m.section
