@@ -1,3 +1,5 @@
+"use client";
+
 import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
 import EventsSection from "@/components/EventsSection";
@@ -6,6 +8,9 @@ import CollabNest from "@/components/CollabNest";
 import Celesta from "@/components/Celesta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AboutSection from "@/components/AboutSection";
+import PhotosSection from "@/components/PhotosSection";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -13,11 +18,13 @@ export default function Home() {
       <Header />
       <div>
         <HeroSection />
-        <MissionSection />
-        <EventsSection />
-        <OneIITP />
-        <CollabNest />
-        <Celesta />
+        <ScrollReveal><div className="px-16"><AboutSection /></div></ScrollReveal>
+        <ScrollReveal><MissionSection /></ScrollReveal>
+        <ScrollReveal><EventsSection /></ScrollReveal>
+        <ScrollReveal><OneIITP /></ScrollReveal>
+        <ScrollReveal><CollabNest /></ScrollReveal>
+        <ScrollReveal><Celesta /></ScrollReveal>
+        <ScrollReveal><PhotosSection /></ScrollReveal>
       </div>
       <Footer />
     </main>

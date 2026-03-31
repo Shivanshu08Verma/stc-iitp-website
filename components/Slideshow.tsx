@@ -1,24 +1,34 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Image from "next/image";
 
 interface SlideshowProps {
   images: string[];
-  overlay?: boolean;
 }
 
 const Slideshow = ({ images }: SlideshowProps) => {
   const [currentIdx, setCurrentIdx] = useState(0);
   const goNext = () => setCurrentIdx((prev) => (prev + 1) % images.length);
   const goPrev = () => setCurrentIdx((prev) => (prev - 1 + images.length) % images.length);
+
   return (
     <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-white/60 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8)]">
-      <Image
-        src={images[currentIdx]}
-        alt={`Slide ${currentIdx + 1}`}
-        fill
-        className="object-cover transition-opacity duration-700"
-      />
+      <div className="absolute inset-0 z-0">
+        {images.map((src, idx) => (
+          <Image
+            key={src}
+            src={src}
+            alt={`Slide ${idx + 1}`}
+            fill
+            sizes="65vw"
+            priority={idx === 0}
+            loading={idx === 0 ? undefined : "eager"}
+            className={`object-cover transition-opacity duration-700 ${
+              idx === currentIdx ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
       <button
         onClick={goPrev}
         className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/50 text-white text-xl flex items-center justify-center hover:bg-[#2448E3] hover:border-[#2448E3] transition-all duration-300"
@@ -31,6 +41,7 @@ const Slideshow = ({ images }: SlideshowProps) => {
       >
         ›
       </button>
+
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {images.map((_, idx) => (
           <button
@@ -42,7 +53,6 @@ const Slideshow = ({ images }: SlideshowProps) => {
           />
         ))}
       </div>
-
     </div>
   );
 };
