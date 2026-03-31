@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import AboutSection from "@/components/AboutSection";
 import PhotosSection from "@/components/PhotosSection";
 import ScrollReveal from "@/components/ScrollReveal";
+import StudentClubsSection from "@/components/StudentClubsSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
         <ScrollReveal><EventsSection /></ScrollReveal>
         <ScrollReveal><OneIITP /></ScrollReveal>
         <ScrollReveal><CollabNest /></ScrollReveal>
+        <ScrollReveal><StudentClubsSection /></ScrollReveal>
         <ScrollReveal><Celesta /></ScrollReveal>
         <ScrollReveal><PhotosSection /></ScrollReveal>
       </div>
