@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+
 const CLUBS: { id: number; name: string }[] = [
   { id: 1,  name: "E-Cell" },
   { id: 2,  name: "NJack" },
@@ -29,6 +30,7 @@ export default function StudentClubsSection() {
   const prev = () => { if (canPrev) setStart((s) => s - 1); };
   const next = () => { if (canNext) setStart((s) => s + 1); };
   const visible = CLUBS.slice(start, start + VISIBLE);
+
   return (
     <section
       className="
@@ -39,6 +41,7 @@ export default function StudentClubsSection() {
         overflow-hidden
       "
     >
+      {/* Grid overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
@@ -47,22 +50,18 @@ export default function StudentClubsSection() {
           backgroundSize: "60px 60px",
         }}
       />
-      <div className="relative flex items-start justify-between mb-8">
 
+      {/* Header row */}
+      <div className="relative flex items-start justify-between mb-8">
         <div>
           <p
-            className="
-              text-xs font-semibold tracking-[0.35em] text-slate-400 mb-3
-            "
+            className="text-xs font-semibold tracking-[0.35em] text-slate-400 mb-3"
             style={{ fontFamily: "'Space Mono', monospace" }}
           >
             COLLECTIVE&nbsp;&nbsp;//&nbsp;&nbsp;04
           </p>
           <h2
-            className="
-              text-6xl font-black uppercase text-white leading-none
-              tracking-tight
-            "
+            className="text-6xl font-black uppercase text-white leading-none tracking-tight"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
             STUDENT CLUBS
@@ -110,28 +109,14 @@ export default function StudentClubsSection() {
 
       <div className="relative w-full h-px bg-slate-700 mb-16" />
 
+      {/* Club cards */}
       <div className="relative flex items-start justify-between gap-8">
         {visible.map((club, i) => (
           <ClubCard key={club.id} club={club} index={i} />
         ))}
       </div>
 
-
-      <div className="relative flex gap-2 mt-14 justify-center">
-        {Array.from({ length: CLUBS.length - VISIBLE + 1 }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setStart(i)}
-            className={`
-              transition-all duration-300 rounded-full
-              ${i === start
-                ? "w-6 h-1.5 bg-white"
-                : "w-1.5 h-1.5 bg-slate-600 hover:bg-slate-400"}
-            `}
-            aria-label={`Go to position ${i + 1}`}
-          />
-        ))}
-      </div>
+      {/* Progress dots removed */}
     </section>
   );
 }
@@ -147,11 +132,6 @@ function ClubCard({ club, index }: ClubCardProps) {
   return (
     <div
       className="flex flex-col items-center gap-5 flex-1 cursor-pointer group"
-      style={{
-        animation: `fadeUp 0.4s ease forwards`,
-        animationDelay: `${index * 60}ms`,
-        opacity: 0,
-      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -187,12 +167,12 @@ function ClubCard({ club, index }: ClubCardProps) {
         )}
       </div>
 
-      {/* Club name label */}
       <p
         className="
           text-xs font-semibold tracking-[0.3em] text-slate-300
           transition-colors duration-200
           group-hover:text-white
+          text-center
         "
         style={{ fontFamily: "'Space Mono', monospace" }}
       >
