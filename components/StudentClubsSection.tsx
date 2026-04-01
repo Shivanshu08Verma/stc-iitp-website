@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const CLUBS: { id: number; name: string }[] = [
   { id: 1,  name: "E-Cell" },
@@ -21,137 +21,94 @@ const CLUBS: { id: number; name: string }[] = [
   { id: 17, name: "Optimatx" },
 ];
 
-const VISIBLE = 5;
+const DOUBLED = [...CLUBS, ...CLUBS];
 
 export default function StudentClubsSection() {
-  const [start, setStart] = useState(0);
-  const canPrev = start > 0;
-  const canNext = start + VISIBLE < CLUBS.length;
-  const prev = () => { if (canPrev) setStart((s) => s - 1); };
-  const next = () => { if (canNext) setStart((s) => s + 1); };
-  const visible = CLUBS.slice(start, start + VISIBLE);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const posRef = useRef(0);
+  const rafRef = useRef<number>(0);
+  const SPEED = 0.5;
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const animate = () => {
+      if (!pausedRef.current) {
+        const totalWidth = track.scrollWidth / 2;
+        posRef.current += SPEED;
+        if (posRef.current >= totalWidth) {
+          posRef.current = 0;
+        }
+        track.style.transform = `translateX(-${posRef.current}px)`;
+      }
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
 
   return (
-    <section
-      className="
-        relative w-full min-h-screen
-        bg-[#070d1a]
-        flex flex-col justify-center
-        px-16 py-20
-        overflow-hidden
-      "
-    >
-      {/* Grid overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#4a6fa5 1px, transparent 1px), linear-gradient(90deg, #4a6fa5 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    <section className="relative w-full min-h-screen flex flex-col justify-center px-16 py-20 overflow-hidden">
+      <div className="relative flex items-end justify-between mb-8">
+        <h2
+          className="text-6xl font-black uppercase text-white leading-none tracking-tight"
+          style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+        >
+          STUDENT CLUBS
+        </h2>
 
-      {/* Header row */}
-      <div className="relative flex items-start justify-between mb-8">
-        <div>
-          <p
-            className="text-xs font-semibold tracking-[0.35em] text-slate-400 mb-3"
-            style={{ fontFamily: "'Space Mono', monospace" }}
-          >
-            COLLECTIVE&nbsp;&nbsp;//&nbsp;&nbsp;04
-          </p>
-          <h2
-            className="text-6xl font-black uppercase text-white leading-none tracking-tight"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            STUDENT CLUBS
-          </h2>
-        </div>
-
-        <div className="flex gap-3 mt-auto pt-4 self-end">
-          <button
-            onClick={prev}
-            disabled={!canPrev}
-            aria-label="Previous clubs"
-            className="
-              w-11 h-11 border flex items-center justify-center
-              transition-all duration-200
-              border-slate-600 text-slate-400
-              hover:border-slate-300 hover:text-white
-              disabled:opacity-25 disabled:cursor-not-allowed
-              active:scale-95
-            "
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
-            </svg>
-          </button>
-
-          <button
-            onClick={next}
-            disabled={!canNext}
-            aria-label="Next clubs"
-            className="
-              w-11 h-11 border flex items-center justify-center
-              transition-all duration-200
-              border-slate-600 text-slate-400
-              hover:border-slate-300 hover:text-white
-              disabled:opacity-25 disabled:cursor-not-allowed
-              active:scale-95
-            "
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"/>
-            </svg>
-          </button>
-        </div>
+        <a
+          href="/clubs"
+          className="inline-flex items-center gap-3 border border-slate-500 px-6 py-3 text-xs font-semibold tracking-[0.25em] text-slate-300 transition-all duration-200 hover:border-slate-300 hover:text-white active:scale-95"
+          style={{ fontFamily: "'Space Mono', monospace" }}
+        >
+          ENTER ARCHIVE →
+        </a>
       </div>
 
       <div className="relative w-full h-px bg-slate-700 mb-16" />
 
-      {/* Club cards */}
-      <div className="relative flex items-start justify-between gap-8">
-        {visible.map((club, i) => (
-          <ClubCard key={club.id} club={club} index={i} />
-        ))}
-      </div>
+      <div
+        className="relative w-full overflow-hidden"
+        onMouseEnter={() => { pausedRef.current = true; }}
+        onMouseLeave={() => { pausedRef.current = false; }}
+      >
 
-      {/* Progress dots removed */}
+
+        <div
+          ref={trackRef}
+          className="flex items-start gap-10 will-change-transform"
+          style={{ width: "max-content" }}
+        >
+          {DOUBLED.map((club, i) => (
+            <ClubCard key={`${club.id}-${i}`} club={club} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
 
 interface ClubCardProps {
   club: { id: number; name: string };
-  index: number;
 }
 
-function ClubCard({ club, index }: ClubCardProps) {
+function ClubCard({ club }: ClubCardProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
-      className="flex flex-col items-center gap-5 flex-1 cursor-pointer group"
+      className="flex flex-col items-center gap-5 cursor-pointer group"
+      style={{ width: "160px", flexShrink: 0 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div
-        className="
-          relative w-40 h-40 rounded-full
-          bg-[#111827]
-          border border-slate-700
-          flex items-center justify-center
-          overflow-hidden
-          transition-all duration-300
-          group-hover:border-slate-400
-          group-hover:shadow-[0_0_30px_rgba(148,163,184,0.12)]
-        "
-      >
+      <div className="relative w-40 h-40 rounded-full border border-slate-700 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-slate-400 group-hover:shadow-[0_0_30px_rgba(148,163,184,0.12)]">
         <svg
-          className={`
-            w-8 h-8 transition-opacity duration-300
-            ${hovered ? "opacity-40" : "opacity-20"}
-          `}
+          className={`w-8 h-8 transition-opacity duration-300 ${hovered ? "opacity-40" : "opacity-20"}`}
           viewBox="0 0 24 24"
           fill="none"
           stroke="#94a3b8"
@@ -168,12 +125,7 @@ function ClubCard({ club, index }: ClubCardProps) {
       </div>
 
       <p
-        className="
-          text-xs font-semibold tracking-[0.3em] text-slate-300
-          transition-colors duration-200
-          group-hover:text-white
-          text-center
-        "
+        className="text-xs font-semibold tracking-[0.3em] text-slate-300 transition-colors duration-200 group-hover:text-white text-center"
         style={{ fontFamily: "'Space Mono', monospace" }}
       >
         {club.name}
