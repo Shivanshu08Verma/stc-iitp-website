@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 
 export default function ICTCPage() {
 	return (
-		<main className="min-h-screen flex flex-col items-center pt-12 pb-24">
+		<main className="min-h-screen flex flex-col items-center">
 			<Header />
 			<div className="w-full max-w-6xl px-6 md:px-12">
 				<HeroAbout />

@@ -14,22 +14,23 @@ export default function Header() {
 	const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
 	return (
-		<header className="sticky top-0 z-50 w-full bg-[#050914]/90 backdrop-blur-md">
-			<div className="flex w-full h-[80px] items-center justify-between px-4 sm:px-6 lg:px-8">
+		<header className="sticky top-0 z-50 w-full bg-[#1A2238] shadow-md">
+			<div className="flex w-full h-[80px] items-center justify-between px-4 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
 				{/* LEFT: Logo / Title */}
 				<div className="flex items-center">
 					<Link href="/" className="flex items-center gap-3">
-						<div className="relative h-14 w-14 overflow-hidden rounded-md">
+						<div className="relative h-10 w-10 overflow-hidden rounded-md">
 							<Image
 								src="/stclogo.png"
 								alt="STC IITP Logo"
 								fill
 								className="object-contain"
-								sizes="56px"
+								sizes="40px"
 								priority
 							/>
 						</div>
-						<span className="text-5xl font-bold tracking-tight text-white w-max">
+						{/* CORRECTED: Text size reduced from 5xl to 3xl for better proportions */}
+						<span className="text-3xl font-bold tracking-tight text-white w-max">
 							STC
 						</span>
 					</Link>
@@ -38,52 +39,45 @@ export default function Header() {
 				{/* RIGHT: Navigation Links and Button */}
 				<div className="flex items-center gap-8">
 					<nav className="hidden md:flex items-center gap-8">
-						<ul
-							className="flex items-center justify-end gap-6 text-[21px] font-normal font-['Space Grotesk'] leading-[12px] tracking-[-0.7px] align-middle uppercase"
-							style={{ leadingTrim: "none" } as any}
-						>
+						{/* CORRECTED: Cleaned up font sizing, tracking, and spacing */}
+						<ul className="flex items-center justify-end gap-8 text-sm font-medium tracking-wide uppercase">
 							<li className="relative group">
 								<Link
 									href="/"
 									className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 								>
-									<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
+									<span className="inline-block transition-transform duration-300 ease-in-out relative z-10">
 										HOME
 									</span>
-									<span
-										className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/" ? "" : "group-hover:w-full"}`}
-									></span>
 								</Link>
 							</li>
 
 							<li className="relative group">
 								<button
+									onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
 									className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 								>
-									<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
+									<span className="inline-block transition-transform duration-300 ease-in-out relative z-10">
 										FLAGSHIP EVENTS
 									</span>
-									<span
-										className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${isFlagshipActive ? "" : "group-hover:w-full"}`}
-									></span>
 								</button>
-								{/* CHANGED: Dropdown background to match cards (#0d1424) */}
-								<div className="absolute top-full left-0 mt-2 bg-[#0d1424] border border-gray-800 shadow-lg rounded-md py-3 px-6 z-60 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+								{/* Dropdown Menu */}
+								<div className="absolute top-full left-0 mt-4 bg-[#1A2238] border border-gray-700 shadow-lg rounded-md py-3 px-6 z-60 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
 									<Link
 										href="/summer-sprint"
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]"
+										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[13px]"
 									>
 										SUMMER SPRINT
 									</Link>
 									<Link
 										href="/hello-world"
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]"
+										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[13px]"
 									>
 										HELLO WORLD
 									</Link>
 									<Link
 										href="/ictc"
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]"
+										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[13px]"
 									>
 										ICTC
 									</Link>
@@ -95,12 +89,9 @@ export default function Header() {
 									href="/inter-iit"
 									className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/inter-iit" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 								>
-									<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
+									<span className="inline-block transition-transform duration-300 ease-in-out relative z-10">
 										INTER IIT
 									</span>
-									<span
-										className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/inter-iit" ? "" : "group-hover:w-full"}`}
-									></span>
 								</Link>
 							</li>
 
@@ -109,12 +100,9 @@ export default function Header() {
 									href="/clubs"
 									className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/clubs" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 								>
-									<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
+									<span className="inline-block transition-transform duration-300 ease-in-out relative z-10">
 										CLUBS
 									</span>
-									<span
-										className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/clubs" ? "" : "group-hover:w-full"}`}
-									></span>
 								</Link>
 							</li>
 
@@ -123,18 +111,15 @@ export default function Header() {
 									href="/team"
 									className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/team" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 								>
-									<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
+									<span className="inline-block transition-transform duration-300 ease-in-out relative z-10">
 										TEAM
 									</span>
-									<span
-										className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/team" ? "" : "group-hover:w-full"}`}
-									></span>
 								</Link>
 							</li>
 						</ul>
 					</nav>
 
-					{/* Mobile Menu Button (Hamburger) */}
+					{/* Mobile Menu Button */}
 					<button
 						className="block md:hidden text-gray-200 hover:text-white transition-colors p-2"
 						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -176,126 +161,91 @@ export default function Header() {
 
 			{/* Mobile Navigation Menu */}
 			{isMobileMenuOpen && (
-				<div className="md:hidden border-t border-gray-800 bg-[#050914] px-6 py-6 shadow-xl">
-					<ul
-						className="flex flex-col gap-6 text-[21px] font-normal font-['Space Grotesk'] leading-[12px] tracking-[-0.7px] uppercase"
-						style={{ leadingTrim: "none" } as any}
-					>
-						<li className="relative group w-max">
+				<div className="md:hidden border-t border-gray-700 bg-[#1A2238] px-6 py-6 shadow-xl">
+					<ul className="flex flex-col gap-6 text-sm font-medium tracking-wide uppercase">
+						<li>
 							<Link
 								href="/"
 								onClick={() => setIsMobileMenuOpen(false)}
-								className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+								className={`block transition-colors ${pathname === "/" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 							>
-								<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
-									HOME
-								</span>
-								<span
-									className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/" ? "" : "group-hover:w-full"}`}
-								></span>
+								HOME
 							</Link>
 						</li>
-
-						<li className="relative group w-full">
-							<div className="w-max">
-								<button
-									onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
-									className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+						<li>
+							<button
+								onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
+								className={`flex items-center gap-2 transition-colors ${isFlagshipActive ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+							>
+								FLAGSHIP EVENTS
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									strokeWidth={2}
+									stroke="currentColor"
+									className={`w-4 h-4 transition-transform duration-300 ${isMobileDropdownOpen ? "rotate-180" : ""}`}
 								>
-									<span className="inline-flex items-center gap-2 transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
-										FLAGSHIP EVENTS
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											strokeWidth={2}
-											stroke="currentColor"
-											className={`w-4 h-4 transition-transform duration-300 ${isMobileDropdownOpen ? "rotate-180" : ""}`}
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-											/>
-										</svg>
-									</span>
-									<span
-										className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${isFlagshipActive ? "" : "group-hover:w-full"}`}
-									></span>
-								</button>
-							</div>
-
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+									/>
+								</svg>
+							</button>
 							<div
 								className={`overflow-hidden transition-all duration-300 ease-in-out ${isMobileDropdownOpen ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"}`}
 							>
-								<div className="flex flex-col pl-4 space-y-4 border-l-2 border-gray-800 pb-2">
+								<div className="flex flex-col pl-4 space-y-4 border-l-2 border-gray-700 pb-2">
 									<Link
 										href="/summer-sprint"
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
+										className="text-[#94A3B8] hover:text-[#6BFB9A]"
 									>
 										SUMMER SPRINT
 									</Link>
 									<Link
 										href="/hello-world"
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
+										className="text-[#94A3B8] hover:text-[#6BFB9A]"
 									>
 										HELLO WORLD
 									</Link>
 									<Link
 										href="/ictc"
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
+										className="text-[#94A3B8] hover:text-[#6BFB9A]"
 									>
 										ICTC
 									</Link>
 								</div>
 							</div>
 						</li>
-
-						<li className="relative group w-max">
+						<li>
 							<Link
 								href="/inter-iit"
 								onClick={() => setIsMobileMenuOpen(false)}
-								className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/inter-iit" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+								className={`block transition-colors ${pathname === "/inter-iit" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 							>
-								<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
-									INTER IIT
-								</span>
-								<span
-									className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/inter-iit" ? "" : "group-hover:w-full"}`}
-								></span>
+								INTER IIT
 							</Link>
 						</li>
-
-						<li className="relative group w-max">
+						<li>
 							<Link
 								href="/clubs"
 								onClick={() => setIsMobileMenuOpen(false)}
-								className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/clubs" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+								className={`block transition-colors ${pathname === "/clubs" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 							>
-								<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
-									CLUBS
-								</span>
-								<span
-									className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/clubs" ? "" : "group-hover:w-full"}`}
-								></span>
+								CLUBS
 							</Link>
 						</li>
-
-						<li className="relative group w-max">
+						<li>
 							<Link
 								href="/team"
 								onClick={() => setIsMobileMenuOpen(false)}
-								className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/team" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+								className={`block transition-colors ${pathname === "/team" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
 							>
-								<span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
-									TEAM
-								</span>
-								<span
-									className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${pathname === "/team" ? "" : "group-hover:w-full"}`}
-								></span>
+								TEAM
 							</Link>
 						</li>
 					</ul>

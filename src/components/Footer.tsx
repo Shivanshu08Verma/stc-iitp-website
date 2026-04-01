@@ -17,24 +17,24 @@ export default function Footer() {
 
 	return (
 		<footer
-			className={`w-full bg-[#050914] border-t border-gray-800 text-[#94A3B8] pt-12 lg:pt-16 pb-8 ${josefin.className}`}
+			className={`w-full bg-[#0F172A] border-t border-gray-800 text-[#94A3B8] pt-12 lg:pt-16 pb-8 ${josefin.className}`}
 		>
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
 					{/* Brand/About Section */}
 					<div className="col-span-1 md:col-span-2 lg:col-span-2 flex items-center">
 						<Link href="/" className="flex items-center gap-6 w-fit">
-							<div className="relative h-32 w-32 overflow-hidden shrink-0">
+							<div className="relative h-24 w-24 overflow-hidden shrink-0">
 								<Image
 									src="/stclogo.png"
 									alt="STC IITP Logo"
 									fill
 									className="object-contain"
-									sizes="128px"
+									sizes="96px"
 								/>
 							</div>
 							<span
-								className={`text-[5rem] md:text-[7rem] font-bold tracking-tight text-white uppercase translate-y-1 ${spaceGrotesk.className}`}
+								className={`text-[4rem] font-bold tracking-tight text-white uppercase translate-y-1 ${spaceGrotesk.className}`}
 							>
 								STC
 							</span>
@@ -43,10 +43,10 @@ export default function Footer() {
 
 					{/* Quick Links */}
 					<div className="col-span-1 lg:col-span-2 lg:pl-8">
-						<h3 className="text-[#86D898] font-bold uppercase tracking-wider mb-6 text-lg">
+						<h3 className="text-[#86D898] font-bold uppercase tracking-wider mb-6 text-sm">
 							QUICK LINKS
 						</h3>
-						<ul className="grid grid-cols-2 grid-rows-4 grid-flow-col gap-y-3 gap-x-12 w-fit">
+						<ul className="grid grid-cols-2 grid-rows-4 grid-flow-col gap-y-3 gap-x-12 w-fit text-sm">
 							<li>
 								<Link
 									href="/"
@@ -118,8 +118,8 @@ export default function Footer() {
 					<div className="col-span-1">
 						<div className="flex items-start gap-4 mb-10">
 							<svg
-								width={32}
-								height={32}
+								width={24}
+								height={24}
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
 								viewBox="0 0 24 24"
@@ -141,13 +141,11 @@ export default function Footer() {
 							<span className="text-sm leading-relaxed">
 								STC Office, Admin Building,
 								<br />
-								<span className="whitespace-nowrap">
-									Indian Institute of Technology (IIT) Patna
-								</span>
+								<span className="whitespace-nowrap">IIT Patna</span>
 							</span>
 						</div>
 
-						<h3 className="text-[#86D898] font-bold uppercase tracking-wider mb-6 text-lg">
+						<h3 className="text-[#86D898] font-bold uppercase tracking-wider mb-6 text-sm">
 							SOCIALS
 						</h3>
 
@@ -155,7 +153,7 @@ export default function Footer() {
 							{/* Instagram Icon */}
 							<a
 								href="https://www.instagram.com/stc.iitp"
-								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#1A2238] transition-all duration-300"
+								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"
 							>
 								<svg
 									width={20}
@@ -175,7 +173,7 @@ export default function Footer() {
 							{/* Facebook Icon */}
 							<a
 								href="https://www.facebook.com/stc.iitp"
-								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#1A2238] transition-all duration-300"
+								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"
 							>
 								<svg
 									width={20}
@@ -195,7 +193,7 @@ export default function Footer() {
 							{/* Twitter (X) Icon */}
 							<a
 								href="https://x.com/stc_iitp"
-								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#1A2238] transition-all duration-300"
+								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"
 							>
 								<svg
 									width={20}
@@ -211,7 +209,7 @@ export default function Footer() {
 							{/* Mail Icon */}
 							<a
 								href="mailto:stc@iitp.ac.in"
-								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#1A2238] transition-all duration-300"
+								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"
 							>
 								<svg
 									width={20}
@@ -235,7 +233,7 @@ export default function Footer() {
 				</div>
 
 				{/* Bottom Line */}
-				<div className="mt-8 pt-4 border-t border-gray-800 flex justify-center items-center text-sm w-full">
+				<div className="mt-8 pt-4 border-t border-gray-800 flex justify-center items-center text-xs w-full">
 					<p className="text-center">
 						© {currentYear} Student Technical Council, IIT Patna. All rights
 						reserved.
