@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 import { Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -27,58 +28,221 @@ interface TeamMember {
   objectPosition?: string;
 }
 
-const facultyAdvisor: TeamMember[] = [
-  {
-    name: "Dr. Arpit Jain",
-    role: "PIC Technical Affairs",
-    image: "/team/arpit.jpeg",
-    objectPosition: "top", // Prioritize the top (face)
-  }
-];
-
-const studentHeads: TeamMember[] = [
-  {
-    name: "Akhand Pratap Narayan Singh",
-    role: "General Secretary, Technical Affairs",
-    image: "/team/akhand.jpeg",
+const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMember[] }> = {
+  "2021-22": {
+    faculty: [
+      {
+        name: "Dr. Sujoy Kumar Samanta",
+        role: "PIC Technical Affairs",
+        image: "/team/2021-22/Dr. Sujoy Kumar Samanta - PIC Technical Affairs.jpg",
+        objectPosition: "top",
+      },
+    ],
+    students: [
+      {
+        name: "Satyam Shukla",
+        role: "General Secretary, Technical Affairs",
+        image: "/team/2021-22/Satyam Shukla - General Secretary, Technical Affairs.jpg",
+      },
+      {
+        name: "Anuj Kumar Yadav",
+        role: "Technical Secretary, Senior Year",
+        image: "/team/2021-22/Anuj Kumar Yadav - Technical Secretary, Senior Year.jpg",
+      },
+      {
+        name: "Shubham Kumar",
+        role: "Technical Secretary, Junior Year",
+        image: "/team/2021-22/Shubham Kumar - Technical Secretary, Junior Year.jpg",
+      },
+      {
+        name: "Rishikesh Devanathan",
+        role: "Technical Secretary, Sophomore Year",
+        image: "/team/2021-22/Rishikesh Devanathan - Technical Secretary, Sophomore Year.jpg",
+      },
+      {
+        name: "Kalpana Bishnoi",
+        role: "Technical Secretary, UG Girls",
+        image: "/team/2021-22/Kalpana Bishnoi - Technical Secretary, UG Girls.jpg",
+      },
+    ],
   },
-  {
-    name: "Shivank Goyal",
-    role: "Technical Secretary, Junior Year",
-    image: "/team/shivank.jpeg",
+  "2022-23": {
+    faculty: [
+      {
+        name: "Dr. Anoop Kumar Gupta",
+        role: "PIC Technical Affairs",
+        image: "/team/2022-23/Dr. Anoop Kumar Gupta - PIC Technical Affairs.jpg",
+        objectPosition: "top",
+      },
+    ],
+    students: [
+      {
+        name: "Shivam Sahu",
+        role: "General Secretary, Technical Affairs",
+        image: "/team/2022-23/Shivam Sahu - General Secretary, Technical Affairs.jpg",
+      },
+      {
+        name: "Omkar Deshpande",
+        role: "Technical Secretary, Senior Year",
+        image: "/team/2022-23/Omkar Deshpande - Technical Secretary, Senior Year.jpg",
+      },
+      {
+        name: "Rishikesh Devanathan",
+        role: "Technical Secretary, Junior Year",
+        image: "/team/2022-23/Rishikesh Devanathan - Technical Secretary, Junior Year.jpg",
+      },
+      {
+        name: "Harsh Singh",
+        role: "Technical Secretary, Sophomore Year",
+        image: "/team/2022-23/Harsh Singh - Technical Secretary, Sophomore Year.png",
+      },
+      {
+        name: "Anushka Pandey",
+        role: "Technical Secretary, UG Girls",
+        image: "/team/2022-23/Anushka Pandey - Technical Secretary, UG Girls.jpg",
+      },
+    ],
   },
-  {
-    name: "Manish Kumar",
-    role: "Technical Secretary, Sophomore Year",
-    image: "/team/manish.jpeg",
+  "2023-24": {
+    faculty: [
+      {
+        name: "Dr. Bachu Anilkumar",
+        role: "PIC Technical Affairs",
+        image: "/team/2023-24/Dr. Bachu Anilkumar - PIC Technical Affairs.jpg",
+        objectPosition: "top",
+      },
+    ],
+    students: [
+      {
+        name: "Rishikesh Devanathan",
+        role: "General Secretary, Technical Affairs",
+        image: "/team/2023-24/Rishikesh Devanathan - General Secretary, Technical Affairs.jpg",
+      },
+      {
+        name: "Aryan Sahoo",
+        role: "Technical Secretary, Junior Year",
+        image: "/team/2023-24/Aryan Sahoo - Technical Secretary, Junior Year.png",
+      },
+      {
+        name: "Akhand Singh",
+        role: "Technical Secretary, Sophomore Year",
+        image: "/team/2023-24/Akhand Singh - Technical Secretary, Sophomore Year.png",
+      },
+      {
+        name: "Pragya Harsh",
+        role: "Technical Secretary, UG Girls",
+        image: "/team/2023-24/Pragya Harsh - Technical Secretary, UG Girls.jpeg",
+      },
+    ],
   },
-  {
-    name: "Disha Vishnu Mulchandani",
-    role: "Technical Secretary, UG Girls",
-    image: "/team/disha.jpeg",
+  "2024-25": {
+    faculty: [
+      {
+        name: "Dr. Somanath Pradhan",
+        role: "PIC Technical Affairs",
+        image: "/team/2024-25/Dr. Somanath Pradhan - PIC Technical Affairs.png",
+        objectPosition: "top",
+      },
+    ],
+    students: [
+      {
+        name: "Kirtan Jain",
+        role: "General Secretary, Technical Affairs",
+        image: "/team/2024-25/Kirtan Jain - General Secretary, Technical Affairs.png",
+      },
+      {
+        name: "Harshit Dhankhar",
+        role: "Technical Secretary, Senior Year",
+        image: "/team/2024-25/Harshit Dhankhar - Technical Secretary, Senior Year.png",
+      },
+      {
+        name: "Hemant Chaurasia",
+        role: "Technical Secretary, Junior Year",
+        image: "/team/2024-25/Hemant Chaurasia - Technical Secretary, Junior Year.png",
+      },
+      {
+        name: "Rishu Kumar Singh",
+        role: "Technical Secretary, Sophomore Year",
+        image: "/team/2024-25/Rishu Kumar Singh - Technical Secretary, Sophomore Year.png",
+      },
+      {
+        name: "Pranjal Chamaria",
+        role: "Technical Secretary, UG Girls",
+        image: "/team/2024-25/Pranjal Chamaria - Technical Secretary, UG Girls.png",
+      },
+    ],
   },
-];
+  "2025-26": {
+    faculty: [
+      {
+        name: "Dr. Arpit Jain",
+        role: "PIC Technical Affairs",
+        image: "/team/2025-26/Dr. Arpit Jain - PIC Technical Affairs.jpeg",
+        objectPosition: "top",
+      },
+    ],
+    students: [
+      {
+        name: "Akhand Pratap Narayan Sing",
+        role: "General Secretary, Technical Affairs",
+        image: "/team/2025-26/Akhand Pratap Narayan Sing - General Secretary, Technical Affairs.jpeg",
+      },
+      {
+        name: "Shivank Goyal",
+        role: "Technical Secretary, Junior Year",
+        image: "/team/2025-26/Shivank Goyal - Technical Secretary, Junior Year.jpeg",
+      },
+      {
+        name: "Manish Kumar",
+        role: "Technical Secretary, Sophomore Year",
+        image: "/team/2025-26/Manish Kumar - Technical Secretary, Sophomore Year.jpeg",
+      },
+      {
+        name: "Disha Vishnu Mulchandani",
+        role: "Technical Secretary, UG Girls",
+        image: "/team/2025-26/Disha Vishnu Mulchandani - Technical Secretary, UG Girls.jpeg",
+      },
+    ],
+  },
+};
 
 export default function TeamPage() {
+  const [selectedYear, setSelectedYear] = useState("2025-26");
+  const [isOpen, setIsOpen] = useState(false);
+  const years = Object.keys(ALL_TEAM_DATA).sort().reverse();
+  const currentTeam = ALL_TEAM_DATA[selectedYear];
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div 
-      className={`min-h-screen text-white pb-20 ${spaceGrotesk.className} ${minasans.variable}`}
+    <div
+      className={`min-h-screen text-white pb-12 ${spaceGrotesk.className} ${minasans.variable}`}
       style={{ background: 'linear-gradient(48.65deg, #00072D 8.63%, #353131 103.98%)' }}
     >
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-12 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none">
-           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#6BFB9A] opacity-5 blur-[120px] rounded-full"></div>
-           <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500 opacity-5 blur-[120px] rounded-full"></div>
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#6BFB9A] opacity-5 blur-[120px] rounded-full"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500 opacity-5 blur-[120px] rounded-full"></div>
         </div>
-        
-        <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[50vh]">
-          <h1 
+
+        <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[30vh]">
+          <h1
             className={`uppercase ${minasans.className}`}
-            style={{ 
-              fontWeight: 500, 
-              fontSize: 'min(333px, 20vw)', 
-              lineHeight: '100%', 
+            style={{
+              fontWeight: 500,
+              fontSize: 'min(333px, 20vw)',
+              lineHeight: '100%',
               letterSpacing: '0%',
               textAlign: 'center'
             }}
@@ -88,11 +252,58 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Faculty Section */}
-      <TeamSection title="Faculty Advisor" members={facultyAdvisor} center />
+      {/* Modern Year Dropdown with fixed z-index for header compatibility */}
+      <div className="container mx-auto px-4 flex justify-end items-center mt-1 mb-6 relative z-40">
+        <div className="flex items-center gap-4">
+          <span className="text-white/40 uppercase tracking-[0.2em] text-xs font-bold hidden sm:block">Select Year:</span>
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center gap-3 px-6 py-3.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl min-w-[180px] justify-between group transition-all duration-300 hover:border-[#6BFB9A]/40 hover:bg-white/10"
+            >
+              <span className="text-sm font-bold uppercase tracking-widest text-[#6BFB9A]">{selectedYear}</span>
+              <svg 
+                className={`w-4 h-4 text-white/40 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
 
-      {/* Student Heads Section */}
-      <TeamSection title="Student Heads" members={studentHeads} />
+            {/* Dropdown Menu */}
+            <div 
+              className={`absolute right-0 mt-3 w-full bg-[#0F172A]/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 origin-top shadow-2xl ${
+                isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
+              }`}
+            >
+              {years.map((year) => (
+                <button
+                  key={year}
+                  onClick={() => {
+                    setSelectedYear(year);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full px-6 py-4 text-left text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 border-b border-white/5 last:border-0 ${
+                    selectedYear === year 
+                      ? "bg-[#6BFB9A] text-[#00072D]" 
+                      : "text-white/60 hover:text-[#6BFB9A] hover:bg-white/5"
+                  }`}
+                >
+                  {year}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Team Sections with reduced gap */}
+      <div className="flex flex-col gap-8 relative z-10">
+        <TeamSection title="Faculty Advisor" members={currentTeam.faculty} center />
+        <TeamSection title="Student Team" members={currentTeam.students} />
+      </div>
 
     </div>
   );
@@ -100,15 +311,15 @@ export default function TeamPage() {
 
 function TeamSection({ title, members, center }: { title: string; members: TeamMember[]; center?: boolean }) {
   return (
-    <section className="container mx-auto px-4 py-16">
-      <div className="flex items-center gap-4 mb-12">
+    <section className="container mx-auto px-4 py-6">
+      <div className="flex items-center gap-4 mb-10">
         <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{title}</h2>
         <div className="h-px flex-grow bg-gradient-to-r from-[#6BFB9A] to-transparent opacity-30"></div>
       </div>
-      
+
       <div className={center ? "flex justify-center" : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 sm:gap-8"}>
         {members.map((member, index) => (
-          <div key={index} className="w-full flex justify-center">
+          <div key={`${member.name}-${index}`} className="w-full flex justify-center">
             <TeamCard member={member} />
           </div>
         ))}
@@ -127,17 +338,17 @@ function TeamCard({ member }: { member: TeamMember }) {
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
           </svg>
         </div>
-        
+
         {/* Actual Image */}
-        <Image 
-          src={member.image} 
-          alt={member.name} 
-          fill 
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
           className={`transition-transform duration-700 group-hover:scale-110 ${member.objectFit === "contain" ? "object-contain" : "object-cover"}`}
           style={{ objectPosition: member.objectPosition || "center" }}
           sizes="(max-width: 640px) 280px, 320px"
         />
-        
+
         {/* Overlay subtle gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A2238] via-transparent to-transparent opacity-60"></div>
       </div>
@@ -146,13 +357,13 @@ function TeamCard({ member }: { member: TeamMember }) {
         <h3 className="text-xl font-bold mb-1 group-hover:text-[#6BFB9A] transition-colors duration-300">
           {member.name}
         </h3>
-        <p className="text-xs sm:text-sm text-gray-400 mb-4 font-medium uppercase tracking-widest leading-tight">
+        <div className="text-xs sm:text-sm text-gray-400 mb-4 font-medium uppercase tracking-widest leading-tight">
           {member.role.split(',').map((part, i) => (
             <span key={i} className="block">
               {part.trim()}{i < member.role.split(',').length - 1 ? ',' : ''}
             </span>
           ))}
-        </p>
+        </div>
 
         <div className="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           {member.linkedin && (
