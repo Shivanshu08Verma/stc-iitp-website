@@ -7,17 +7,27 @@ export interface STCEvent {
 export const events: STCEvent[] = [
   {
     id: 1,
-    name: "HackSprint 2024",
-    imagePath: "/event_photo/event1.png",
+    name: "Sparna 2024",
+    imagePath: "/event_photo/sparna1.png",
   },
   {
     id: 2,
-    name: "Robotics Workshop",
-    imagePath: "/event_photo/event2.png",
+    name: "Robotics Event",
+    imagePath: "/event_photo/robo1.png",
   },
   {
     id: 3,
+    name: "Robotics Event",
+    imagePath: "/event_photo/robo2.png",
+  },
+  {
+    id: 4,
     name: "Guest Lecture Series",
-    imagePath: "/event_photo/event3.png",
+    imagePath: "/event_photo/session1.png",
+  },
+  {
+    id: 5,
+    name: "Group Photo",
+    imagePath: "/event_photo/group1.png",
   },
 ];

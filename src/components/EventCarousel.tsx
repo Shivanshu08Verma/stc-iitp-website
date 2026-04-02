@@ -66,7 +66,7 @@ export default function EventCarousel() {
 								alt={event.name}
 								fill
 								sizes="(max-width: 1071px) 100vw, 1071px"
-								className="object-contain"
+								className="object-cover object-center"
 								priority={true}
 							/>
 						</div>

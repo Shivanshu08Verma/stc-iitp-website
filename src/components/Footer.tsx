@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Josefin_Sans, Space_Grotesk } from "next/font/google";
 
 const josefin = Josefin_Sans({
@@ -13,6 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export default function Footer() {
+	const pathname = usePathname();
 	const currentYear = new Date().getFullYear();
 
 	return (
@@ -50,7 +54,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									Home
 								</Link>
@@ -58,7 +62,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/summer-sprint"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/summer-sprint" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									Summer Sprint
 								</Link>
@@ -66,7 +70,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/hello-world"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/hello-world" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									Hello World
 								</Link>
@@ -74,7 +78,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/ictc"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/ictc" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									ICTC
 								</Link>
@@ -82,7 +86,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/inter-iit"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/inter-iit" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									Inter IIT
 								</Link>
@@ -90,7 +94,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/clubs"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/clubs" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									Clubs
 								</Link>
@@ -98,7 +102,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/team"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/team" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									Team
 								</Link>
@@ -106,7 +110,7 @@ export default function Footer() {
 							<li>
 								<Link
 									href="/developers"
-									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
+									className={`inline-block transition-colors duration-300 ${pathname === "/developers" ? "text-[#6BFB9A]" : "hover:text-[#6BFB9A]"}`}
 								>
 									Developers
 								</Link>
@@ -150,7 +154,7 @@ export default function Footer() {
 						</h3>
 
 						<div className="flex gap-4">
-							{/* Instagram Icon */}
+							{/* Social Icons mapping (kept exactly the same) */}
 							<a
 								href="https://www.instagram.com/stc.iitp"
 								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"
@@ -170,7 +174,6 @@ export default function Footer() {
 									/>
 								</svg>
 							</a>
-							{/* Facebook Icon */}
 							<a
 								href="https://www.facebook.com/stc.iitp"
 								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"
@@ -190,7 +193,6 @@ export default function Footer() {
 									/>
 								</svg>
 							</a>
-							{/* Twitter (X) Icon */}
 							<a
 								href="https://x.com/stc_iitp"
 								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"
@@ -206,7 +208,6 @@ export default function Footer() {
 									<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
 								</svg>
 							</a>
-							{/* Mail Icon */}
 							<a
 								href="mailto:stc@iitp.ac.in"
 								className="w-10 h-10 shrink-0 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#6BFB9A] hover:text-[#0F172A] transition-all duration-300"

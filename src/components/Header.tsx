@@ -29,7 +29,6 @@ export default function Header() {
 								priority
 							/>
 						</div>
-						{/* CORRECTED: Text size reduced from 5xl to 3xl for better proportions */}
 						<span className="text-3xl font-bold tracking-tight text-white w-max">
 							STC
 						</span>
@@ -39,7 +38,6 @@ export default function Header() {
 				{/* RIGHT: Navigation Links and Button */}
 				<div className="flex items-center gap-8">
 					<nav className="hidden md:flex items-center gap-8">
-						{/* CORRECTED: Cleaned up font sizing, tracking, and spacing */}
 						<ul className="flex items-center justify-end gap-8 text-sm font-medium tracking-wide uppercase">
 							<li className="relative group">
 								<Link
@@ -61,23 +59,23 @@ export default function Header() {
 										FLAGSHIP EVENTS
 									</span>
 								</button>
-								{/* Dropdown Menu */}
+								{/* Desktop Dropdown Menu (WITH ACTIVE HIGHLIGHTS) */}
 								<div className="absolute top-full left-0 mt-4 bg-[#1A2238] border border-gray-700 shadow-lg rounded-md py-3 px-6 z-60 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
 									<Link
 										href="/summer-sprint"
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[13px]"
+										className={`block transition-colors duration-200 py-2 text-[13px] ${pathname === "/summer-sprint" ? "text-[#6BFB9A]" : "text-[#94A3B8] hover:text-[#6BFB9A]"}`}
 									>
 										SUMMER SPRINT
 									</Link>
 									<Link
 										href="/hello-world"
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[13px]"
+										className={`block transition-colors duration-200 py-2 text-[13px] ${pathname === "/hello-world" ? "text-[#6BFB9A]" : "text-[#94A3B8] hover:text-[#6BFB9A]"}`}
 									>
 										HELLO WORLD
 									</Link>
 									<Link
 										href="/ictc"
-										className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[13px]"
+										className={`block transition-colors duration-200 py-2 text-[13px] ${pathname === "/ictc" ? "text-[#6BFB9A]" : "text-[#94A3B8] hover:text-[#6BFB9A]"}`}
 									>
 										ICTC
 									</Link>
@@ -193,6 +191,7 @@ export default function Header() {
 									/>
 								</svg>
 							</button>
+							{/* Mobile Dropdown Menu (WITH ACTIVE HIGHLIGHTS) */}
 							<div
 								className={`overflow-hidden transition-all duration-300 ease-in-out ${isMobileDropdownOpen ? "max-h-48 opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"}`}
 							>
@@ -200,21 +199,21 @@ export default function Header() {
 									<Link
 										href="/summer-sprint"
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="text-[#94A3B8] hover:text-[#6BFB9A]"
+										className={`transition-colors ${pathname === "/summer-sprint" ? "text-[#6BFB9A]" : "text-[#94A3B8] hover:text-[#6BFB9A]"}`}
 									>
 										SUMMER SPRINT
 									</Link>
 									<Link
 										href="/hello-world"
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="text-[#94A3B8] hover:text-[#6BFB9A]"
+										className={`transition-colors ${pathname === "/hello-world" ? "text-[#6BFB9A]" : "text-[#94A3B8] hover:text-[#6BFB9A]"}`}
 									>
 										HELLO WORLD
 									</Link>
 									<Link
 										href="/ictc"
 										onClick={() => setIsMobileMenuOpen(false)}
-										className="text-[#94A3B8] hover:text-[#6BFB9A]"
+										className={`transition-colors ${pathname === "/ictc" ? "text-[#6BFB9A]" : "text-[#94A3B8] hover:text-[#6BFB9A]"}`}
 									>
 										ICTC
 									</Link>

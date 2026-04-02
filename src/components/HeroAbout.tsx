@@ -18,20 +18,21 @@ export default function HeroAbout() {
 					About
 				</h2>
 				<p className="text-[#94a3b8] text-[16px] md:text-[18px] leading-[1.8] md:leading-[2] text-justify font-light">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in
-					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-					dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-					commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-					velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-					occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-					mollit anim id est laborum.
+					The Intra College Technical Championship (ICTC) is a cornerstone event
+					within our tech community, meticulously designed to emulate the
+					prestigious Inter IIT Tech Meet. This championship serves as a
+					platform for students to engage in rigorous and stimulating technical
+					challenges across various domains, providing an excellent opportunity
+					to both develop and showcase their innovative skills. ICTC is a
+					premier competitive arena where students collaborate under three
+					houses—Draco, Cassiopeia, and Pegasus—to earn points toward the
+					coveted Grand Champion title. Participants test their technical
+					prowess through a mix of rigorous High-Prep projects and fast-paced
+					Low-Prep problem statements, with their solutions evaluated on
+					innovation, accuracy, and feasibility by a panel of esteemed
+					professors and industry experts. Ultimately, the ICTC serves as a
+					dynamic platform for tech enthusiasts to elevate their skills, gain
+					real-world experience, and build invaluable professional networks.
 				</p>
 			</div>
 		</section>
