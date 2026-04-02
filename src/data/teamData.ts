@@ -9,7 +9,7 @@ export interface TeamData {
 export const teams: TeamData[] = [
   {
     id: "draco",
-    name: "House Draco",
+    name: "Draco",
     tagline: "Fierce & Unyielding",
     description:
       "Fueled by ambition and a burning passion for technology, House Draco dominates the competition. They tackle the toughest high-prep challenges with relentless determination.",
@@ -17,7 +17,7 @@ export const teams: TeamData[] = [
   },
   {
     id: "pegasus",
-    name: "House Pegasus",
+    name: "Pegasus",
     tagline: "Swift & Innovative",
     description:
       "Soaring above the rest, House Pegasus thrives on quick thinking and out-of-the-box solutions. They excel in fast-paced, low-prep environments.",
@@ -25,7 +25,7 @@ export const teams: TeamData[] = [
   },
   {
     id: "cassiopeia",
-    name: "House Cassiopeia",
+    name: "Cassiopeia",
     tagline: "Strategic & Brilliant",
     description:
       "Guided by intellect and precision, House Cassiopeia represents the pinnacle of strategic problem-solving. Their meticulous approach ensures every submission is a masterpiece.",
