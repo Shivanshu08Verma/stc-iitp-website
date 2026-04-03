@@ -35,6 +35,7 @@ export default function ClubsPage() {
             width={600}
             height={150}
             className="mx-auto mb-6"
+            loading="eager"
           />  
 
           <p className="mt-4 text-blue-200/70 text-base md:text-lg max-w-xl mx-auto font-light text-center">
