@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
-  const isFlagshipActive = ['/summer-sprint', '/hello-world', '/ictc'].includes(pathname);
+  const isFlagshipActive = ['/flagship-events/summer-sprint', '/flagship-events/hello-world', '/flagship-events/ictc'].includes(pathname);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
@@ -61,9 +61,9 @@ export default function Header() {
                   <span className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${isFlagshipActive ? '' : 'group-hover:w-full'}`}></span>
                 </button>
                 <div className="absolute top-full left-0 mt-2 bg-[#1A2238] shadow-lg rounded-md py-3 px-6 z-60 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                  <Link href="/summer-sprint" className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]">SUMMER SPRINT</Link>
-                  <Link href="/hello-world" className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]">HELLO WORLD</Link>
-                  <Link href="/ictc" className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]">ICTC</Link>
+                  <Link href="/flagship-events/summer-sprint" className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]">SUMMER SPRINT</Link>
+                  <Link href="/flagship-events/hello-world" className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]">HELLO WORLD</Link>
+                  <Link href="/flagship-events/ictc" className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]">ICTC</Link>
                 </div>
               </li>
 
