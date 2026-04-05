@@ -98,19 +98,19 @@ const fadeUpVariants: Variants = {
 };
 
 const heroHeadingVariants: Variants = {
-  hidden: { 
-    opacity: 0, 
-    scale: 0.85, 
-    filter: "blur(12px)" 
+  hidden: {
+    opacity: 0,
+    scale: 0.85,
+    filter: "blur(12px)",
   },
   visible: {
     opacity: 1,
     scale: 1,
     filter: "blur(0px)",
-    transition: { 
+    transition: {
       delay: 0.08, // The 80ms animation delay
-      duration: 2.5, 
-      ease: [0.22, 1, 0.36, 1] // Your cubic-bezier values
+      duration: 2.5,
+      ease: [0.22, 1, 0.36, 1], // Your cubic-bezier values
     },
   },
 };
@@ -142,15 +142,15 @@ export default function HelloWorldPage() {
       <div className="font-manrope text-white w-full overflow-hidden">
         <section className="relative flex items-center justify-center pt-10 sm:pt-14 md:pt-16 pb-20 sm:pb-32 px-4">
           <m.h1
-  variants={heroHeadingVariants}
-  initial="hidden"
-  animate="visible"
-  className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase tracking-widest"
->
-  <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-blue-500">
-    HELLO WORLD
-  </span>
-</m.h1>
+            variants={heroHeadingVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase tracking-widest"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-blue-500">
+              HELLO WORLD
+            </span>
+          </m.h1>
         </section>
 
         <m.section
