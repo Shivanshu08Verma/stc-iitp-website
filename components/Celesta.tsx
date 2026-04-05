@@ -1,0 +1,105 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import ExploreButton from "./ExploreButton";
+
+const celestaImages = [
+  "/CELESTA/img1.png",
+  "/CELESTA/img2.png",
+  "/CELESTA/img3.png",
+  "/CELESTA/img4.png",
+  "/CELESTA/img5.png",
+];
+
+const Celesta = () => {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % celestaImages.length);
+    }, 1000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
+
+  return (
+    <section className="relative w-full min-h-screen overflow-hidden">
+
+      {celestaImages.map((src, idx) => (
+        <Image
+          key={src}
+          src={src}
+          alt={`Celesta background ${idx + 1}`}
+          fill
+          priority={idx === 0}
+          loading={idx === 0 ? "eager" : "lazy"}
+          sizes="100vw"
+          quality={75}
+          className="object-cover"
+          style={{
+            opacity: idx === currentIdx ? 1 : 0,
+            transition: "opacity 0.6s ease-in-out",
+            zIndex: idx === currentIdx ? 1 : 0,
+            willChange: "opacity",
+          }}
+        />
+      ))}
+
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "rgba(0,0,0,0.55)", zIndex: 2 }}
+      />
+
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
+        style={{ zIndex: 3 }}
+      >
+        <p style={{
+  fontFamily: "var(--font-inter)",
+  fontSize: "20px",
+  fontWeight: 400,
+  color: "rgba(255,255,255,0.85)",
+  marginBottom: "1rem",
+  letterSpacing: "1px",
+  textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8)",
+}}>
+  The Annual Techno-Management Fest of IIT Patna
+</p>
+
+<h2 style={{
+  fontFamily: "var(--font-inter)",
+  fontWeight: 900,
+  fontSize: "96px",
+  lineHeight: "1",
+  color: "#FFFFFF",
+  letterSpacing: "-2px",
+  marginBottom: "1.5rem",
+  textShadow: "0 0 60px rgba(255,255,255,0.15), 0 4px 16px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.9)",
+}}>
+  CELESTA
+</h2>
+
+<p style={{
+  fontFamily: "var(--font-inter)",
+  fontWeight: 400,
+  fontSize: "16px",
+  lineHeight: "1.7",
+  color: "rgba(255,255,255,0.75)",
+  maxWidth: "580px",
+  marginBottom: "2.5rem",
+  textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8)",
+}}>
+  Three days of innovation, competitions, workshops, guest lectures,
+  and cultural events that bring together the brightest minds from
+  across the nation.
+</p>
+        <ExploreButton href="https://celesta.iitp.ac.in/" />
+      </div>
+
+    </section>
+  );
+};
+
+export default Celesta;
