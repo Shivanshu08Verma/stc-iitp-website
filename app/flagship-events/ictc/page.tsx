@@ -1,9 +1,7 @@
-import HeroAbout from "../../../components/HeroAbout";
-import TeamCards from "../../../components/TeamCards";
-import Leaderboard from "../../../components/Leaderboard";
-import EventCarousel from "../../../components/EventCarousel";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
+import HeroAbout from "@/components/HeroAbout";
+import TeamCards from "@/components/TeamCards";
+import Leaderboard from "@/components/Leaderboard";
+import EventCarousel from "@/components/EventCarousel";
 
 export default function ICTCPage() {
 	return (
