@@ -85,7 +85,7 @@ function useScrollReveal<T extends HTMLElement>(
 
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
   return [ref, visible];
 }
