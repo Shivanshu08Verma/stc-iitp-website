@@ -17,6 +17,7 @@ const cards = [
 
 const AboutSection = () => {
   return (
+<<<<<<< Updated upstream
     <section className="w-full pt-4 pb-20">
     <h2 style={{
         fontFamily: "var(--font-roboto)",
@@ -31,6 +32,17 @@ const AboutSection = () => {
       </h2>
 
       <div style={{ display: "flex", flexDirection: "row", gap: "24px" }}>
+=======
+    <section className="w-full pt-16 pb-24 md:pt-20 md:pb-32 flex flex-col items-center">
+      <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+        <h2 className="text-white font-black text-5xl md:text-6xl uppercase tracking-tighter font-['Space_Grotesk',sans-serif]">
+          About Us
+        </h2>
+        <div className="w-16 md:w-24 h-1.5 bg-[#6BFB9A] mt-6 rounded-full" />
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full max-w-7xl">
+>>>>>>> Stashed changes
         {cards.map((card, index) => (
           <Card key={index} title={card.title} description={card.description} />
         ))}
