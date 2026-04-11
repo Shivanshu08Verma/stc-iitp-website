@@ -57,7 +57,7 @@ export default function Footer() {
 							</li>
 							<li>
 								<Link
-									href="/summer-sprint"
+									href="/flagship-events/summer-sprint"
 									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
 								>
 									Summer Sprint
@@ -65,7 +65,7 @@ export default function Footer() {
 							</li>
 							<li>
 								<Link
-									href="/hello-world"
+									href="/flagship-events/hello-world"
 									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
 								>
 									Hello World
