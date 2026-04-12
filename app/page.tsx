@@ -1,5 +1,4 @@
 "use client";
-
 import HeroSection from "@/components/HeroSection";
 import MissionSection from "@/components/MissionSection";
 import EventsSection from "@/components/EventsSection";
