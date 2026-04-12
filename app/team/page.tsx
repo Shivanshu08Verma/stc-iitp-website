@@ -183,9 +183,9 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
     ],
     students: [
       {
-        name: "Akhand Pratap Narayan Sing",
+        name: "Akhand Pratap Narayan Singh",
         role: "General Secretary, Technical Affairs",
-        image: "/team/2025-26/Akhand_Pratap_Narayan_Sing_-_General_Secretary_Technical_Affairs.jpeg",
+        image: "/team/2025-26/Akhand_Pratap_Narayan_Singh_-_General_Secretary_Technical_Affairs.jpeg",
       },
       {
         name: "Shivank Goyal",
