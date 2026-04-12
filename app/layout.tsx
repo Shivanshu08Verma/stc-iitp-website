@@ -1,32 +1,41 @@
-import { Space_Grotesk } from 'next/font/google';
-import './globals.css';
-import Header from '@/components/Header'; 
-import Footer from '@/components/Footer'; 
+import { Manrope, Roboto, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-// 1. We just need the basic font initialization now
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'],
-  display: 'swap', 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-manrope",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+  variable: "--font-roboto",
 });
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      {/* 2. Apply the font directly to the body using .className */}
-      <body className={`${spaceGrotesk.className} flex min-h-screen flex-col bg-[#1A2238] text-white`}>
-        
+      <body
+        className={`${manrope.variable} ${roboto.variable} ${spaceGrotesk.className} flex min-h-screen flex-col text-white`}
+      >
         <Header />
-        
-        <main className="flex-grow">
-          {children}
-        </main>
-        
+
+        <main className="flex-grow">{children}</main>
+
         <Footer />
-        
       </body>
     </html>
   );
