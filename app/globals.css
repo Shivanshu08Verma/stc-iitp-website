@@ -21,6 +21,8 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+  --font-manrope: var(--font-manrope);
+  --font-roboto: var(--font-roboto);
 }
 
 body {
@@ -46,6 +48,7 @@ body {
 .font-roboto {
   font-family: var(--font-roboto);
 }
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
