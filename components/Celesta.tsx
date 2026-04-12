@@ -47,50 +47,18 @@ const Celesta = () => {
         />
       ))}
 
-      <div
-        className="absolute inset-0"
-        style={{ backgroundColor: "rgba(0,0,0,0.55)", zIndex: 2 }}
-      />
+      <div className="absolute inset-0 bg-black/55 z-[2]" />
 
-      <div
-        className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
-        style={{ zIndex: 3 }}
-      >
-        <p style={{
-  fontFamily: "var(--font-inter)",
-  fontSize: "20px",
-  fontWeight: 400,
-  color: "rgba(255,255,255,0.85)",
-  marginBottom: "1rem",
-  letterSpacing: "1px",
-  textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8)",
-}}>
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-[3]">
+        <p className="text-white/85 text-base md:text-[20px] mb-4 tracking-[1px] font-[family-name:var(--font-inter)] font-normal [text-shadow:0_2px_8px_rgba(0,0,0,0.9),_0_1px_3px_rgba(0,0,0,0.8)]">
   The Annual Techno-Management Fest of IIT Patna
 </p>
 
-<h2 style={{
-  fontFamily: "var(--font-inter)",
-  fontWeight: 900,
-  fontSize: "96px",
-  lineHeight: "1",
-  color: "#FFFFFF",
-  letterSpacing: "-2px",
-  marginBottom: "1.5rem",
-  textShadow: "0 0 60px rgba(255,255,255,0.15), 0 4px 16px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.9)",
-}}>
+<h2 className="font-black text-white text-6xl md:text-8xl lg:text-[96px] leading-none mb-6 tracking-tighter font-[family-name:var(--font-inter)] [text-shadow:0_0_60px_rgba(255,255,255,0.15),_0_4px_16px_rgba(0,0,0,0.95),_0_2px_4px_rgba(0,0,0,0.9)]">
   CELESTA
 </h2>
 
-<p style={{
-  fontFamily: "var(--font-inter)",
-  fontWeight: 400,
-  fontSize: "16px",
-  lineHeight: "1.7",
-  color: "rgba(255,255,255,0.75)",
-  maxWidth: "580px",
-  marginBottom: "2.5rem",
-  textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8)",
-}}>
+<p className="text-white/75 text-sm md:text-base leading-relaxed max-w-[580px] mb-10 font-[family-name:var(--font-inter)] font-normal [text-shadow:0_2px_8px_rgba(0,0,0,0.9),_0_1px_3px_rgba(0,0,0,0.8)]">
   Three days of innovation, competitions, workshops, guest lectures,
   and cultural events that bring together the brightest minds from
   across the nation.

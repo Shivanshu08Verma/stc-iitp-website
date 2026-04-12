@@ -51,20 +51,13 @@ export default function StudentClubsSection() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center px-16 py-20 overflow-hidden">
-      <div className="relative flex items-end justify-between mb-8">
-        <h2
-          className="text-6xl font-black uppercase text-white leading-none tracking-tight"
-          style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-        >
+    <section className="relative w-full min-h-screen flex flex-col justify-center px-4 md:px-16 py-12 md:py-20 overflow-hidden">
+      <div className="relative flex flex-col sm:flex-row items-center sm:items-end justify-between mb-8 gap-4">
+        <h2 className="text-4xl md:text-6xl font-black uppercase text-white leading-none tracking-tight text-center sm:text-left font-['Barlow_Condensed',sans-serif]">
           STUDENT CLUBS
         </h2>
 
-        <a
-          href="/clubs"
-          className="inline-flex items-center gap-3 border border-slate-500 px-6 py-3 text-xs font-semibold tracking-[0.25em] text-slate-300 transition-all duration-200 hover:border-slate-300 hover:text-white active:scale-95"
-          style={{ fontFamily: "'Space Mono', monospace" }}
-        >
+        <a href="/clubs" className="inline-flex items-center gap-3 border border-slate-500 px-6 py-3 text-xs font-semibold tracking-[0.25em] text-slate-300 transition-all duration-200 hover:border-slate-300 hover:text-white active:scale-95 font-['Space_Mono',monospace]">
           ENTER ARCHIVE →
         </a>
       </div>
@@ -78,11 +71,7 @@ export default function StudentClubsSection() {
       >
 
 
-        <div
-          ref={trackRef}
-          className="flex items-start gap-10 will-change-transform"
-          style={{ width: "max-content" }}
-        >
+        <div ref={trackRef} className="flex items-start gap-10 will-change-transform w-max">
           {DOUBLED.map((club, i) => (
             <ClubCard key={`${club.id}-${i}`} club={club} />
           ))}
@@ -101,8 +90,7 @@ function ClubCard({ club }: ClubCardProps) {
 
   return (
     <div
-      className="flex flex-col items-center gap-5 cursor-pointer group"
-      style={{ width: "160px", flexShrink: 0 }}
+      className="flex flex-col items-center gap-5 cursor-pointer group w-[160px] shrink-0"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -124,10 +112,7 @@ function ClubCard({ club }: ClubCardProps) {
         )}
       </div>
 
-      <p
-        className="text-xs font-semibold tracking-[0.3em] text-slate-300 transition-colors duration-200 group-hover:text-white text-center"
-        style={{ fontFamily: "'Space Mono', monospace" }}
-      >
+      <p className="text-xs font-semibold tracking-[0.3em] text-slate-300 transition-colors duration-200 group-hover:text-white text-center font-['Space_Mono',monospace]">
         {club.name}
       </p>
     </div>

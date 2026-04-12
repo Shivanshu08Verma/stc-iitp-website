@@ -19,13 +19,13 @@ const staticPhotos = [
 
 const PhotosSection = () => {
   return (
-    <section className="bg-[#05071a] px-8 py-12">
-      <h2 className="text-white text-5xl font-black tracking-tight mb-8">
+    <section className="bg-[#05071a] px-4 md:px-8 py-8 md:py-12">
+      <h2 className="text-white text-4xl md:text-5xl font-black tracking-tight mb-6 md:mb-8">
         PHOTOS
       </h2>
 
       {/* Outer grid — align-items stretch so both columns are equal height */}
-      <div className="grid grid-cols-[2fr_1fr] gap-3 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-3 items-stretch">
         
         {/* Left: carousel */}
         <div className="relative aspect-[16/9]">
@@ -33,13 +33,10 @@ const PhotosSection = () => {
         </div>
 
         {/* Right: thumbnail grid — fills exact same height as carousel via CSS grid rows */}
-        <div
-          className="grid grid-cols-2 gap-1.5"
-          style={{ gridTemplateRows: "1fr 1fr" }}
-        >
+        <div className="grid grid-cols-2 gap-1.5 grid-rows-[1fr_1fr]">
           {staticPhotos.map((src, i) => (
             // No aspect ratio — the row height comes from the parent grid
-            <div key={i} className="relative overflow-hidden rounded-sm">
+            <div key={i} className="relative overflow-hidden rounded-sm aspect-[4/3] lg:aspect-auto">
               <Image
                 src={src}
                 alt={`Event photo ${i + 1}`}

@@ -15,7 +15,7 @@ export default function Home() {
     <main>
       <div>
         <HeroSection />
-        <ScrollReveal><div className="px-16"><AboutSection /></div></ScrollReveal>
+        <ScrollReveal><div className="px-4 md:px-16"><AboutSection /></div></ScrollReveal>
         <ScrollReveal><MissionSection /></ScrollReveal>
         <ScrollReveal><EventsSection /></ScrollReveal>
         <ScrollReveal><OneIITP /></ScrollReveal>
