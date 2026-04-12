@@ -105,7 +105,7 @@ export default function Footer() {
 							</li>
 							<li>
 								<Link
-									href="/developers"
+									href="/team/web-dev"
 									className="inline-block hover:text-[#6BFB9A] transition-colors duration-300"
 								>
 									Developers

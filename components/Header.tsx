@@ -8,6 +8,7 @@ import { useState } from "react";
 export default function Header() {
   const pathname = usePathname();
   const isFlagshipActive = ['/flagship-events/summer-sprint', '/flagship-events/hello-world', '/flagship-events/ictc'].includes(pathname);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
 
