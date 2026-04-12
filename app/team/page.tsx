@@ -259,7 +259,7 @@ export default function TeamPage() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center gap-3 px-6 py-3.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl min-w-[180px] justify-between group transition-all duration-300 hover:border-[#6BFB9A]/40 hover:bg-white/10"
+              className="flex items-center gap-3 px-6 py-3.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl min-w-[180px] justify-between group transition-all duration-300 hover:border-[#6BFB9A]/40 hover:bg-white/10 cursor-pointer"
             >
               <span className="text-sm font-bold uppercase tracking-widest text-[#6BFB9A]">{selectedYear}</span>
               <svg 
@@ -285,7 +285,7 @@ export default function TeamPage() {
                     setSelectedYear(year);
                     setIsOpen(false);
                   }}
-                  className={`w-full px-6 py-4 text-left text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 border-b border-white/5 last:border-0 ${
+                  className={`w-full px-6 py-4 text-left text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 border-b border-white/5 last:border-0 cursor-pointer ${
                     selectedYear === year 
                       ? "bg-[#6BFB9A] text-[#00072D]" 
                       : "text-white/60 hover:text-[#6BFB9A] hover:bg-white/5"
