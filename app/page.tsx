@@ -6,8 +6,6 @@ import EventsSection from "@/components/EventsSection";
 import OneIITP from "@/components/OneIITP";
 import CollabNest from "@/components/CollabNest";
 import Celesta from "@/components/Celesta";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import AboutSection from "@/components/AboutSection";
 import PhotosSection from "@/components/PhotosSection";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -16,7 +14,6 @@ import StudentClubsSection from "@/components/StudentClubsSection";
 export default function Home() {
   return (
     <main>
-      <Header />
       <div>
         <HeroSection />
         <ScrollReveal><div className="px-16"><AboutSection /></div></ScrollReveal>
@@ -28,7 +25,6 @@ export default function Home() {
         <ScrollReveal><Celesta /></ScrollReveal>
         <ScrollReveal><PhotosSection /></ScrollReveal>
       </div>
-      <Footer />
     </main>
   );
 }
