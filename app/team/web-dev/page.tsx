@@ -89,10 +89,10 @@ export default function WebDevTeamPage() {
 
         <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[30vh]">
           <h1
-            className={`uppercase ${minasans.className} w-full max-w-full px-4 break-words`}
+            className={`uppercase ${minasans.className} w-full max-w-full px-4 break-normal`}
             style={{
               fontWeight: 500,
-              fontSize: "min(90px, 10vw)",
+              fontSize: "min(90px, 7.5vw)",
               lineHeight: "1.1",
               letterSpacing: "0%",
               textAlign: "center",
