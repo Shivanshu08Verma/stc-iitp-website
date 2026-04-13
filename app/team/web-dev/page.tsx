@@ -69,6 +69,7 @@ const TEAM: TeamMember[] = [
     image: "/team/web-dev/rameshwar.jpeg",
     github: "https://github.com/Rameshwar1302",
     linkedin: "https://www.linkedin.com/in/rameshwar-dudhate-334650315",
+    objectPosition: "center 35%",
   },
   {
     name: "Shivanshu Verma",
