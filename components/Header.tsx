@@ -14,26 +14,28 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#00051A] backdrop-blur-md">
-      <div className="flex w-full h-[60px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="flex w-full h-[80px] items-center justify-between px-4 sm:px-6 lg:px-8">
 
+        {/* LEFT: Logo / Title */}
         <div className="flex items-center">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-7 w-7 overflow-hidden rounded-md">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="relative h-14 w-14 overflow-hidden rounded-md">
               <Image
                 src="/stclogo.png"
                 alt="STC IITP Logo"
                 fill
                 className="object-contain"
-                sizes="28px"
+                sizes="56px"
                 priority
               />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white w-max">
+            <span className="text-5xl font-bold tracking-tight text-white w-max">
               STC
             </span>
           </Link>
         </div>
 
+        {/* RIGHT: Navigation Links and Button */}
         <div className="flex items-center gap-8">
           <nav className="hidden md:flex items-center gap-8">
             <ul className="flex items-center justify-end gap-6 align-middle">
@@ -89,6 +91,7 @@ export default function Header() {
             </ul>
           </nav>
 
+          {/* Mobile Menu Button (Hamburger) */}
           <button
             className="block md:hidden text-gray-200 hover:text-white transition-colors p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -107,6 +110,7 @@ export default function Header() {
 
       </div>
 
+      {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden border-t border-gray-700 bg-[#00051A] px-6 py-6 shadow-xl">
           <ul className="flex flex-col gap-6 uppercase">
