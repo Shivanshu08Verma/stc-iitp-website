@@ -1,24 +1,26 @@
 "use client";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
-const CLUBS: { id: number; name: string }[] = [
-  { id: 1,  name: "E-Cell" },
-  { id: 2,  name: "NJack" },
-  { id: 3,  name: "Finance Club" },
-  { id: 4,  name: "Team Phoenix" },
-  { id: 5,  name: "MoodBoard" },
-  { id: 6,  name: "Trading And Investment Club" },
-  { id: 7,  name: "Tinkerers' Lab" },
-  { id: 8,  name: "Rocketry And Aviation" },
-  { id: 9,  name: "Quantum Technology Club" },
-  { id: 10, name: "Sparkonics" },
-  { id: 11, name: "Astronomy And Particle Physics Club" },
-  { id: 12, name: "ChESSx" },
-  { id: 13, name: "ACE" },
-  { id: 14, name: "MATES" },
-  { id: 15, name: "SCME" },
-  { id: 16, name: "Motorsports Club" },
-  { id: 17, name: "Optimatx" },
+const CLUBS: { id: number; name: string; logo: string }[] = [
+  { id: 1,  name: "E-Cell",                          logo: "/clubs/ecell-logo.png" },
+  { id: 2,  name: "NJack",                           logo: "/clubs/njack-logo.png" },
+  { id: 3,  name: "Finance Club",                    logo: "/clubs/finance-logo.png" },
+  { id: 4,  name: "Team Phoenix",                    logo: "/clubs/phonix-logo.png" },
+  { id: 5,  name: "MoodBoard",                       logo: "/clubs/moodboard-logo.png" },
+  { id: 6,  name: "Trading And Investment Club",     logo: "/clubs/appc-logo.png" },
+  { id: 7,  name: "Tinkerers' Lab",                  logo: "/clubs/tinklarer-logo.png" },
+  { id: 8,  name: "Rocketry And Aviation",           logo: "/clubs/rnaa-logo.png" },
+  { id: 9,  name: "Quantum Technology Club",         logo: "/clubs/qtc-logo.png" },
+  { id: 10, name: "Sparkonics",                      logo: "/clubs/sparconics-logo.png" },
+  { id: 11, name: "Astronomy And Particle Physics Club", logo: "/clubs/appc-logo.png" },
+  { id: 12, name: "ChESSx",                          logo: "/clubs/chessx-logo.png" },
+  { id: 13, name: "ACE",                             logo: "/clubs/ace-logo.png" },
+  { id: 14, name: "MATES",                           logo: "/clubs/mate-logo.png" },
+  { id: 15, name: "SCME",                            logo: "/clubs/scmee-logo.png" },
+  { id: 16, name: "Motorsports Club",                logo: "/clubs/optimax-logo.png" },
+  { id: 17, name: "Optimatx",                        logo: "/clubs/optimax-logo.png" },
+  { id: 18, name: "Do Well, Do Good",                logo: "/clubs/dwdg-logo.png" },
 ];
 
 const DOUBLED = [...CLUBS, ...CLUBS];
@@ -69,8 +71,6 @@ export default function StudentClubsSection() {
         onMouseEnter={() => { pausedRef.current = true; }}
         onMouseLeave={() => { pausedRef.current = false; }}
       >
-
-
         <div ref={trackRef} className="flex items-start gap-10 will-change-transform w-max">
           {DOUBLED.map((club, i) => (
             <ClubCard key={`${club.id}-${i}`} club={club} />
@@ -82,7 +82,7 @@ export default function StudentClubsSection() {
 }
 
 interface ClubCardProps {
-  club: { id: number; name: string };
+  club: { id: number; name: string; logo: string };
 }
 
 function ClubCard({ club }: ClubCardProps) {
@@ -94,18 +94,14 @@ function ClubCard({ club }: ClubCardProps) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="relative w-40 h-40 rounded-full border border-slate-700 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-slate-400 group-hover:shadow-[0_0_30px_rgba(148,163,184,0.12)]">
-        <svg
-          className={`w-8 h-8 transition-opacity duration-300 ${hovered ? "opacity-40" : "opacity-20"}`}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#94a3b8"
-          strokeWidth="1"
-        >
-          <rect x="3" y="3" width="18" height="18" rx="2" />
-          <circle cx="8.5" cy="8.5" r="1.5" />
-          <path d="M21 15l-5-5L5 21" />
-        </svg>
+      <div className="relative w-40 h-40 rounded-full border border-slate-700 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-slate-400">
+        <Image
+          src={club.logo}
+          alt={`${club.name} logo`}
+          fill
+          className="object-cover transition-opacity duration-300"
+          sizes="160px"
+        />
 
         {hovered && (
           <div className="absolute inset-0 rounded-full border border-slate-400 opacity-30 animate-ping" />
