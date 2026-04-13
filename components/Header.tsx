@@ -55,7 +55,7 @@ export default function Header() {
               </li>
 
               <li className="relative group">
-                <button className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
+                <button className={`cursor-pointer relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}>
                   <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                     FLAGSHIP EVENTS
                   </span>
@@ -136,7 +136,7 @@ export default function Header() {
               <div className="w-max">
                 <button
                   onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
-                  className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}
+                  className={`cursor-pointer relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? 'text-[#6BFB9A]' : 'text-[#94A3B8]'}`}
                 >
                   <span className="inline-flex items-center gap-2 transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                     FLAGSHIP EVENTS

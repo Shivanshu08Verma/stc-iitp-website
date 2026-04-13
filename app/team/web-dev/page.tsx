@@ -17,7 +17,6 @@ const minasans = localFont({
 
 interface TeamMember {
   name: string;
-  role: string;
   image: string;
   github?: string;
   linkedin?: string;
@@ -26,30 +25,21 @@ interface TeamMember {
 
 const ADVISORY: TeamMember[] = [
   {
-    name: "Paarth Mandelia",
-    role: "Web Dev Lead",
-    image: "/team/web-dev/paarth_mandelia.jpg",
-    github: "https://github.com/paarthM007",
-    linkedin: "#",
+    name: "Shivank Goyal",
+    image: "/team/web-dev/Shivank_Goyal_-_Technical_Secretary_Junior_Year.jpeg",
+    github: "https://github.com/avianbob/",
+    linkedin: "https://www.linkedin.com/in/shivankgoyal23",
   },
   {
-    name: "Advisory 2",
-    role: "Advisory Member",
-    image: "/team/web-dev/lead2.jpg",
+    name: "Akhand Pratap Singh",
+    image: "/team/web-dev/Akhand_Pratap_Narayan_Singh_-_General_Secretary_Technical_Affairs.jpeg",
     github: "#",
     linkedin: "#",
   },
+  
   {
-    name: "Advisory 3",
-    role: "Advisory Member",
-    image: "/team/web-dev/advisory3.jpg",
-    github: "#",
-    linkedin: "#",
-  },
-  {
-    name: "Advisory 4",
-    role: "Advisory Member",
-    image: "/team/web-dev/advisory4.jpg",
+    name: "Aditya Aggrawal",
+    image: "/team/web-dev/aditya_agrawal.jpeg",
     github: "#",
     linkedin: "#",
   },
@@ -57,46 +47,46 @@ const ADVISORY: TeamMember[] = [
 
 const TEAM: TeamMember[] = [
   {
-    name: "Sub Coord 1",
-    role: "Full-stack Developer",
-    image: "/team/web-dev/sub1.jpg",
-    github: "#",
-    linkedin: "#",
+    name: "Paarth Mandelia",
+    image: "/team/web-dev/paarth_mandelia.jpeg",
+    github: "https://github.com/paarthM007",
+    linkedin: "https://www.linkedin.com/in/paarth-mandelia-178236319",
   },
   {
-    name: "Sub Coord 2",
-    role: "Full-stack Developer",
-    image: "/team/web-dev/sub2.jpg",
-    github: "#",
-    linkedin: "#",
+    name: "Hardik Batwal",
+    image: "/team/web-dev/hardik.jpeg",
+    github: "https://github.com/riseuppant",
+    linkedin: "https://www.linkedin.com/in/hardik-batwal-a534a231a/",
   },
   {
-    name: "Sub Coord 3",
-    role: "Front-end Developer",
-    image: "/team/web-dev/sub3.jpg",
-    github: "#",
-    linkedin: "#",
+    name: "Aanushka Saha",
+    image: "/team/web-dev/aanushka.jpeg",
+    github: "https://github.com/aanushkasaha",
+    linkedin: "https://www.linkedin.com/in/aanushka-saha/",
   },
   {
-    name: "Sub Coord 4",
-    role: "Back-end Developer",
-    image: "/team/web-dev/sub4.jpg",
-    github: "#",
-    linkedin: "#",
+    name: "Rameshwar Dudhate",
+    image: "/team/web-dev/rameshwar.jpeg",
+    github: "https://github.com/Rameshwar1302",
+    linkedin: "https://www.linkedin.com/in/rameshwar-dudhate-334650315",
   },
   {
-    name: "Sub Coord 5",
-    role: "Developer",
-    image: "/team/web-dev/sub5.jpg",
-    github: "#",
-    linkedin: "#",
+    name: "Shivanshu Verma",
+    image: "/team/web-dev/shivanshu.jpeg",
+    github: "https://github.com/Shivanshu08Verma",
+    linkedin: "https://www.linkedin.com/in/shivanshu-verma-899575321",
   },
   {
-    name: "Sub Coord 6",
-    role: "Developer",
-    image: "/team/web-dev/sub6.jpg",
-    github: "#",
-    linkedin: "#",
+    name: "Anshu Kumar",
+    image: "/team/web-dev/anshu.jpeg",
+    github: "https://github.com/Anshu781",
+    linkedin: "https://www.linkedin.com/in/anshu-kumar-83bb463a6",
+  },
+  {
+    name: "Rohan Bhandari",
+    image: "/team/web-dev/rohan.jpeg",
+    github: "https://github.com/Rohan-Bhandari162",
+    linkedin: "https://www.linkedin.com/in/rohan-bhandari-5bb745319",
   },
 ];
 
@@ -129,7 +119,7 @@ export default function WebDevTeamPage() {
               People
             </h1>
             <p className="text-[#94A3B8] text-2xl md:text-3xl mt-10 max-w-sm mx-auto lg:mx-0 leading-tight font-light tracking-tight">
-              The great minds behind our digital experience.
+              The great minds behind the digital experience.
             </p>
           </div>
 
@@ -160,13 +150,18 @@ function TeamGroup({
         {title}
       </h2>
       <div className="bg-[#1a1a1a]/40 backdrop-blur-3xl border border-white/5 rounded-[56px] p-12 md:p-20">
-        <div className={`grid gap-x-12 gap-y-20 ${
-          isLeadGroup 
-            ? "grid-cols-1 sm:grid-cols-2" 
-            : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-        }`}>
+        <div className="flex flex-wrap justify-center gap-x-16 gap-y-20">
           {members.map((member) => (
-            <MemberCard key={member.name} member={member} isLead={isLeadGroup} />
+            <div 
+              key={member.name} 
+              className={`${
+                isLeadGroup 
+                  ? "w-full sm:w-[calc(45%)] lg:w-[calc(40%)]" 
+                  : "w-full sm:w-[calc(45%)] lg:w-[calc(28%)]"
+              } flex justify-center`}
+            >
+              <MemberCard member={member} isLead={isLeadGroup} />
+            </div>
           ))}
         </div>
       </div>
@@ -176,8 +171,8 @@ function TeamGroup({
 
 /* ─── Member Card Component ─── */
 function MemberCard({ member, isLead }: { member: TeamMember; isLead?: boolean }) {
-  const imageSize = isLead 
-    ? "w-44 h-44 md:w-52 md:h-52" 
+  const imageSize = isLead
+    ? "w-44 h-44 md:w-52 md:h-52"
     : "w-36 h-36 md:w-44 md:h-44";
 
   return (
@@ -191,7 +186,7 @@ function MemberCard({ member, isLead }: { member: TeamMember; isLead?: boolean }
         <div className="absolute inset-0 rounded-full border border-white/10 group-hover:border-[#6BFB9A]/30 transition-all duration-700 z-10" />
 
         {/* Profile Image */}
-        <div className="relative w-full h-full rounded-full overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000 ease-in-out">
+        <div className="relative w-full h-full rounded-full overflow-hidden transition-all duration-1000 ease-in-out">
           <div className="absolute inset-0 bg-[#0F172A] flex items-center justify-center text-[#6BFB9A]/10">
             <svg className="w-1/2 h-1/2" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
@@ -204,19 +199,18 @@ function MemberCard({ member, isLead }: { member: TeamMember; isLead?: boolean }
             fill
             className="object-cover transition-transform duration-1000 group-hover:scale-110"
             style={{ objectPosition: member.objectPosition || "center" }}
-            sizes={isLead ? "224px" : "160px"}
+            sizes={isLead ? "400px" : "300px"}
+            unoptimized
+            priority
           />
         </div>
       </div>
 
       {/* Info Section */}
       <div className="flex flex-col items-center">
-        <h3 className={`${isLead ? 'text-2xl' : 'text-xl'} font-bold text-white group-hover:text-[#6BFB9A] transition-colors duration-300 tracking-tight`}>
+        <h3 className={`${isLead ? 'text-2xl' : 'text-xl'} font-bold text-white group-hover:text-[#6BFB9A] transition-colors duration-300 tracking-tight whitespace-nowrap`}>
           {member.name}
         </h3>
-        <p className="text-sm text-[#94A3B8] mt-2 font-medium leading-tight max-w-[160px]">
-          {member.role}
-        </p>
 
         {/* Social Link Row */}
         {(member.github || member.linkedin) && (
