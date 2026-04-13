@@ -24,7 +24,7 @@ interface TeamMember {
   objectPosition?: string;
 }
 
-const LEADS: TeamMember[] = [
+const ADVISORY: TeamMember[] = [
   {
     name: "Paarth Mandelia",
     role: "Web Dev Lead",
@@ -33,15 +33,29 @@ const LEADS: TeamMember[] = [
     linkedin: "#",
   },
   {
-    name: "Lead Name 2",
-    role: "Web Dev Lead",
+    name: "Advisory 2",
+    role: "Advisory Member",
     image: "/team/web-dev/lead2.jpg",
+    github: "#",
+    linkedin: "#",
+  },
+  {
+    name: "Advisory 3",
+    role: "Advisory Member",
+    image: "/team/web-dev/advisory3.jpg",
+    github: "#",
+    linkedin: "#",
+  },
+  {
+    name: "Advisory 4",
+    role: "Advisory Member",
+    image: "/team/web-dev/advisory4.jpg",
     github: "#",
     linkedin: "#",
   },
 ];
 
-const CODERS: TeamMember[] = [
+const TEAM: TeamMember[] = [
   {
     name: "Sub Coord 1",
     role: "Full-stack Developer",
@@ -67,6 +81,20 @@ const CODERS: TeamMember[] = [
     name: "Sub Coord 4",
     role: "Back-end Developer",
     image: "/team/web-dev/sub4.jpg",
+    github: "#",
+    linkedin: "#",
+  },
+  {
+    name: "Sub Coord 5",
+    role: "Developer",
+    image: "/team/web-dev/sub5.jpg",
+    github: "#",
+    linkedin: "#",
+  },
+  {
+    name: "Sub Coord 6",
+    role: "Developer",
+    image: "/team/web-dev/sub6.jpg",
     github: "#",
     linkedin: "#",
   },
@@ -107,8 +135,8 @@ export default function WebDevTeamPage() {
 
           {/* Right Column: Member Groups */}
           <div className="w-full lg:w-[65%] flex flex-col gap-32">
-            <TeamGroup title="Leads" members={LEADS} isLeadGroup />
-            <TeamGroup title="Coders" members={CODERS} />
+            <TeamGroup title="Advisory" members={ADVISORY} isLeadGroup />
+            <TeamGroup title="Team" members={TEAM} />
           </div>
         </div>
       </div>
