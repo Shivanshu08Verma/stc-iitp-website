@@ -40,8 +40,7 @@ export default function ClubsPage() {
 
           <p className="mt-4 text-blue-200/70 text-base md:text-lg max-w-xl mx-auto font-light text-center">
              Discover the technical and creative clubs that power innovation at
-             <br />
-             <span className="text-blue-400 font-medium">IIT Patna</span>
+             <span className="text-blue-400 font-medium"> IIT Patna</span>
            </p>
 
           {/* Stats bar */}

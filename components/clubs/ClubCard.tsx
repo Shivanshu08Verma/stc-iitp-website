@@ -185,7 +185,7 @@ export default function ClubCard({ club, index , expanded, onToggle }: ClubCardP
             {isOverflowing && (
               <button
                 onClick={onToggle}
-                className="mt-2 text-blue-400 text-sm font-medium hover:text-blue-300 transition"
+                className="cursor-pointer mt-2 text-blue-400 text-sm font-medium hover:text-blue-300 transition"
               >
                 {expanded ? "Read Less" : "Read More"}
               </button>
@@ -194,7 +194,7 @@ export default function ClubCard({ club, index , expanded, onToggle }: ClubCardP
 
           <button
             onClick={() => setGalleryOpen(true)}
-            className="self-start mt-1 flex items-center gap-2 px-5 py-2 rounded-lg bg-blue-600/20 border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-600/40 hover:border-blue-400 hover:text-white transition-all duration-200 active:scale-95"
+            className="cursor-pointer self-start mt-1 flex items-center gap-2 px-5 py-2 rounded-lg bg-blue-600/20 border border-blue-500/30 text-blue-300 text-sm font-medium hover:bg-blue-600/40 hover:border-blue-400 hover:text-white transition-all duration-200 active:scale-95"
             aria-label={`View photos for ${club.name}`}
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
