@@ -39,9 +39,9 @@ const ADVISORY: TeamMember[] = [
   
   {
     name: "Aditya Aggrawal",
-    image: "/team/web-dev/aditya_agrawal.jpeg",
-    github: "#",
-    linkedin: "#",
+    image: "/team/web-dev/aditya.jpeg",
+    github: "https://github.com/ProLimitHyperCodeNovaCreator",
+    linkedin: "https://www.linkedin.com/in/adityaag2005",
   },
 ];
 
