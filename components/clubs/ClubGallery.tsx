@@ -68,7 +68,7 @@ export default function ClubGallery({ clubName, photos, onClose }: ClubGalleryPr
           {/* Header */}
           <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-blue-500/20 flex-shrink-0">
             <h3 className="text-white font-semibold text-base sm:text-lg tracking-wide truncate pr-4">
-              {clubName} — Gallery
+              {clubName}  Gallery
             </h3>
             <button
               onClick={onClose}
