@@ -33,8 +33,8 @@ const ADVISORY: TeamMember[] = [
   {
     name: "Akhand Pratap Singh",
     image: "/team/web-dev/Akhand_Pratap_Narayan_Singh_-_General_Secretary_Technical_Affairs.jpeg",
-    github: "#",
-    linkedin: "#",
+    github: "https://github.com/akhandsinghjr",
+    linkedin: "https://www.linkedin.com/in/asjx/",
   },
   
   {
@@ -63,6 +63,7 @@ const TEAM: TeamMember[] = [
     image: "/team/web-dev/aanushka.jpeg",
     github: "https://github.com/aanushkasaha",
     linkedin: "https://www.linkedin.com/in/aanushka-saha/",
+    
   },
   {
     name: "Rameshwar Dudhate",
@@ -78,17 +79,18 @@ const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/shivanshu-verma-899575321",
   },
   {
-    name: "Anshu Kumar",
-    image: "/team/web-dev/anshu.jpeg",
-    github: "https://github.com/Anshu781",
-    linkedin: "https://www.linkedin.com/in/anshu-kumar-83bb463a6",
-  },
-  {
     name: "Rohan Bhandari",
     image: "/team/web-dev/rohan.jpeg",
     github: "https://github.com/Rohan-Bhandari162",
     linkedin: "https://www.linkedin.com/in/rohan-bhandari-5bb745319",
+    objectPosition: "center 5%"
   },
+  {
+    name: "Anshu Kumar",
+    image: "/team/web-dev/anshu.jpeg",
+    github: "https://github.com/Anshu781",
+    linkedin: "https://www.linkedin.com/in/anshu-kumar-83bb463a6",
+  }  
 ];
 
 export default function WebDevTeamPage() {
