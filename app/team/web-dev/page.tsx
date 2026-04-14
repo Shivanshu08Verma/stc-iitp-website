@@ -90,7 +90,17 @@ const TEAM: TeamMember[] = [
     image: "/team/web-dev/anshu.jpeg",
     github: "https://github.com/Anshu781",
     linkedin: "https://www.linkedin.com/in/anshu-kumar-83bb463a6",
-  }  
+  },
+  {
+    name: "Ramavath Jagadeesh",
+    image: "/team/web-dev/Ramavath.jpeg",
+    linkedin: "https://www.linkedin.com/in/ramavath-jagadeesh",
+  },
+  {
+    name : "Anshika Singh",
+    image: "/team/web-dev/anshika.jpeg",
+    linkedin : "https://www.linkedin.com/in/anshika-singh-764830365/" 
+  }
 ];
 
 export default function WebDevTeamPage() {
