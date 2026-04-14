@@ -63,7 +63,7 @@ export default function ClubCard({ club, index , expanded, onToggle }: ClubCardP
       <article
         className={`group relative flex flex-col md:flex-row ${
           isEven ? "md:flex-row" : "md:flex-row-reverse"
-        } gap-6 md:gap-10 items-start bg-gradient-to-br from-[#0d1640]/80 to-[#0a0f2e]/80 border border-blue-500/15 rounded-2xl p-6 md:p-8 hover:border-blue-400/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.08)]`}
+        } gap-6 md:gap-10 items-start bg-gradient-to-br from-[#123498]/80 to-[#0a0f2e]/80 border border-blue-500/15 rounded-2xl p-6 md:p-8  transition-all duration-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.08)]`}
       >
         {/* Accent line */}
         <div className="absolute left-0 top-6 bottom-6 w-0.5 rounded-full bg-gradient-to-b from-transparent via-blue-500/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -202,7 +202,7 @@ export default function ClubCard({ club, index , expanded, onToggle }: ClubCardP
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             View Photos
-            <span className="text-xs text-blue-400/60">({club.photos.length})</span>
+           
           </button>
         </div>
       </article>
