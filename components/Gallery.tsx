@@ -1,67 +1,116 @@
 "use client";
 
 import { useState } from "react";
-
-const slides = [
-  { src: "/events.WEBP", caption: "Summer Sprint Events" },
-  { src: "/first.png",caption: "Summer Sprint Events" },
-  { src: "/seond.png",caption: "Summer Sprint Events" },
-];
-
-const ArrowIcon = ({ size = 42 }) => (
-  <svg width={size} height={size} viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18.0493 10.2584L34.1878 26.6559C34.5417 27.0137 34.7403 27.4967 34.7403 27.9999C34.7403 28.5032 34.5417 28.9862 34.1878 29.3439L18.0528 45.7414C17.699 46.1014 17.5008 46.586 17.5008 47.0907C17.5008 47.5954 17.699 48.0799 18.0528 48.4399C18.2256 48.6172 18.4322 48.7581 18.6603 48.8543C18.8884 48.9505 19.1335 49 19.381 49C19.6286 49 19.8737 48.9505 20.1018 48.8543C20.3299 48.7581 20.5365 48.6172 20.7093 48.4399L36.8443 32.0459C37.9045 30.9661 38.4985 29.5133 38.4985 27.9999C38.4985 26.4866 37.9045 25.0338 36.8443 23.9539L20.7093 7.55994C20.5364 7.38213 20.3296 7.2408 20.1012 7.14428C19.8727 7.04777 19.6273 6.99805 19.3793 6.99805C19.1313 6.99805 18.8858 7.04777 18.6574 7.14428C18.4289 7.2408 18.2221 7.38213 18.0493 7.55994C17.6955 7.91993 17.4973 8.40447 17.4973 8.90919C17.4973 9.41391 17.6955 9.89845 18.0493 10.2584Z" fill="white"/>
-  </svg>
-);
+import { slides } from "@/data/galleryDataSS";
 
 export default function Gallery() {
-  const [current, setCurrent] = useState(0);
-  const slide  = slides[current];
-  const isFirst = current === 0;
-  const isLast  = current === slides.length - 1;
+	const [current, setCurrent] = useState(0);
+	const isFirst = current === 0;
+	const isLast = current === slides.length - 1;
 
-  return (
-    <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "12px", paddingBottom: "80px", alignItems: "center" }}>
+	return (
+		<div className="w-full flex flex-col gap-6 items-center">
+			<div className="flex items-center justify-between w-full gap-3 md:gap-8 group">
+				{/* PREV BUTTON */}
+				<button
+					onClick={() => setCurrent((c) => c - 1)}
+					aria-label="Previous"
+					disabled={isFirst}
+					className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 shrink-0 transition-all duration-300 rounded-full ${
+						isFirst
+							? "text-gray-700 opacity-50 cursor-not-allowed"
+							: "text-gray-400 hover:text-white cursor-pointer hover:scale-110"
+					}`}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth={2.5}
+						stroke="currentColor"
+						className="w-6 h-6 md:w-8 md:h-8"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M15.75 19.5L8.25 12l7.5-7.5"
+						/>
+					</svg>
+				</button>
 
-      {/* IMAGE + ARROWS */}
-      <div style={{ width: "100%", maxWidth: "900px", height: "499px", display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+				{/* IMAGE CONTAINER */}
+				<div className="relative w-full h-[350px] sm:h-[450px] md:h-[600px] bg-[#0B1120] rounded-[24px] overflow-hidden shadow-2xl border border-gray-800/50">
+					{slides.map((slide, index) => (
+						<div
+							key={index}
+							className={`absolute inset-0 w-full h-full transition-all duration-700 ease-out flex items-center justify-center ${
+								index === current
+									? "opacity-100 translate-y-0 scale-100 z-10"
+									: "opacity-0 translate-y-12 scale-95 z-0"
+							}`}
+						>
+							{slide.src ? (
+								/* eslint-disable-next-line @next/next/no-img-element */
+								<img
+									src={slide.src}
+									alt={slide.caption}
+									className="w-full h-full object-cover"
+								/>
+							) : (
+								<div className="w-full h-full flex flex-col items-center justify-center gap-3 text-white/30 text-base font-roboto bg-gradient-to-br from-[#0d1a2b] to-[#1a2d47]">
+									<div className="w-14 h-14 border-2 border-dashed border-white/20 rounded-xl flex items-center justify-center text-2xl">
+										🖼️
+									</div>
+									<span>Add event photos in /public folder</span>
+								</div>
+							)}
+						</div>
+					))}
+				</div>
 
-        <button onClick={() => setCurrent((c) => c - 1)} aria-label="Previous"
-          style={{ position: "absolute", left: 0, width: "56px", height: "56px", background: "transparent", border: "none", cursor: isFirst ? "default" : "pointer", padding: 0, display: "flex", alignItems: "center", justifyContent: "center", transform: "rotate(180deg)", opacity: isFirst ? 0 : 1, pointerEvents: isFirst ? "none" : "auto", transition: "opacity 0.2s" }}>
-          <ArrowIcon />
-        </button>
+				{/* NEXT BUTTON */}
+				<button
+					onClick={() => setCurrent((c) => c + 1)}
+					aria-label="Next"
+					disabled={isLast}
+					className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 shrink-0 transition-all duration-300 rounded-full ${
+						isLast
+							? "text-gray-700 opacity-50 cursor-not-allowed"
+							: "text-gray-400 hover:text-white cursor-pointer hover:scale-110"
+					}`}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth={2.5}
+						stroke="currentColor"
+						className="w-6 h-6 md:w-8 md:h-8"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M8.25 4.5l7.5 7.5-7.5 7.5"
+						/>
+					</svg>
+				</button>
+			</div>
 
-        {slide.src ? (
-          <img src={slide.src} alt={slide.caption} style={{ width: "100%", height: "100%", borderRadius: "20px", objectFit: "cover" }} />
-        ) : (
-          <div style={{ width: "100%", height: "100%", borderRadius: "20px", background: "linear-gradient(135deg, #0d1a2b, #1a2d47)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "12px", color: "rgba(255,255,255,0.3)", fontSize: "16px", fontFamily: "'Roboto', sans-serif" }}>
-            <div style={{ width: "56px", height: "56px", border: "2px dashed rgba(255,255,255,0.2)", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px" }}>🖼️</div>
-            <span>Add event photos in /public folder</span>
-          </div>
-        )}
-
-        <button onClick={() => setCurrent((c) => c + 1)} aria-label="Next"
-          style={{ position: "absolute", right: 0, width: "56px", height: "56px", background: "transparent", border: "none", cursor: isLast ? "default" : "pointer", padding: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: isLast ? 0 : 1, pointerEvents: isLast ? "none" : "auto", transition: "opacity 0.2s" }}>
-          <ArrowIcon />
-        </button>
-      </div>
-
-      {/* CAPTION */}
-      <p key={current} className="text-center text-[18px] md:text-[20px] font-bold text-white tracking-wide animate-[fadeInUp_0.6s_cubic-bezier(0.22,1,0.36,1)_forwards]">
-        {slide.caption}
-      </p>
-
-      {/* BLUE DOTS — same as ICTC EventCarousel */}
-      <div className="flex gap-[12px] mt-[8px]">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrent(index)}
-            className={`h-[8px] rounded-full transition-all duration-500 ${index === current ? "w-[32px] bg-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.5)]" : "w-[8px] bg-gray-600 hover:bg-gray-400"}`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
+			{/* GREEN DOTS */}
+			<div className="flex gap-3 mt-1">
+				{slides.map((_, index) => (
+					<button
+						key={index}
+						onClick={() => setCurrent(index)}
+						className={`h-2 rounded-full transition-all duration-500 ${
+							index === current
+								? "w-8 bg-[#6bfb9a] shadow-[0_0_10px_rgba(107,251,154,0.5)]"
+								: "w-2 bg-gray-600 hover:bg-gray-400"
+						}`}
+						aria-label={`Go to slide ${index + 1}`}
+					/>
+				))}
+			</div>
+		</div>
+	);
 }

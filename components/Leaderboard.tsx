@@ -21,10 +21,11 @@ export default function Leaderboard() {
 					Leaderboard
 				</h2>
 
+				{/* Updated Dropdown to match the sleek button style */}
 				<select
 					value={selectedYear}
 					onChange={handleYearChange}
-					className="bg-transparent border border-gray-600 text-white text-[14px] md:text-[16px] rounded-md px-4 py-2 outline-none cursor-pointer hover:border-gray-400 transition-colors w-full sm:w-auto"
+					className="bg-transparent border border-white/20 text-[#F6F6F6] font-semibold text-[14px] md:text-[16px] rounded-xl px-5 py-2.5 outline-none cursor-pointer hover:bg-white/5 transition-colors w-full sm:w-auto"
 				>
 					{Object.keys(leaderboardData)
 						.sort((a, b) => Number(b) - Number(a))
@@ -32,7 +33,7 @@ export default function Leaderboard() {
 							<option
 								key={year}
 								value={year}
-								className="bg-[#050914] text-white"
+								className="bg-[#0a1628] text-white"
 							>
 								{year}
 							</option>
@@ -42,30 +43,36 @@ export default function Leaderboard() {
 
 			<div className="w-full overflow-x-auto pb-4 no-scrollbar">
 				<div className="min-w-150 md:min-w-full flex flex-col">
-					{/* UPDATED HEADER: Light background (#E8EAF6), black text, sharp square corners (removed rounded classes) */}
-					<div className="grid grid-cols-3 bg-[#E8EAF6] text-black font-extrabold text-[12px] tracking-widest uppercase h-12 items-center text-center">
-						<div>POSITION</div>
-						<div>TEAM</div>
-						<div>TOTAL SCORE</div>
+					{/* UPDATED HEADER: Dark background, slate text, rounded top corners */}
+					<div className="grid grid-cols-3 items-center bg-black/40 border-b border-white/10 rounded-t-[20px] h-[53px]">
+						{["POSITION", "TEAM", "TOTAL SCORE"].map((h) => (
+							<div
+								key={h}
+								className="flex items-center justify-center font-bold text-[13px] md:text-[15px] tracking-[0.15em] text-[#94A3B8] uppercase text-center"
+							>
+								{h}
+							</div>
+						))}
 					</div>
 
-					{/* ROWS: Dark background, thin borders, matching the screenshot */}
+					{/* ROWS: Subtle border-white/5, dark hover state */}
 					{currentData?.map((row, index) => (
 						<div
 							key={`${selectedYear}-${index}`}
-							className="border-b border-white/10 last:border-b-0 opacity-0 animate-slide-in-right"
+							className="border-b border-white/5 last:border-b-0 opacity-0 animate-slide-in-right hover:bg-white/5 transition-colors"
 							style={{ animationDelay: `${index * 100}ms` }}
 						>
-							<div className="grid grid-cols-3 text-[14px] md:text-[16px] h-14 items-center text-center text-gray-300 hover:bg-white/5 transition-colors">
-								<div className="font-medium text-white">{row.position}</div>
-								<div>{row.team}</div>
-								<div className="font-medium text-[#3b82f6]">{row.score}</div>
+							<div className="grid grid-cols-3 text-[14px] md:text-[16px] h-16 items-center text-center">
+								<div className="font-bold text-white">{row.position}</div>
+								<div className="font-normal text-white/70">{row.team}</div>
+								{/* Keeping the neon blue for the scores! */}
+								<div className="font-semibold text-[#3b82f6]">{row.score}</div>
 							</div>
 						</div>
 					))}
 
 					{!currentData && (
-						<div className="text-center py-10 text-gray-500 text-[14px] border-t border-white/10">
+						<div className="text-center py-16 text-white/30 text-[16px] border-b border-white/15">
 							No data available for {selectedYear}
 						</div>
 					)}
