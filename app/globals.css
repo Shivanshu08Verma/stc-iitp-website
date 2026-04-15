@@ -3,8 +3,8 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --accent-green: #6BFB9A;
-  --accent-green-muted: #86D898;
+  --accent-green: #6bfb9a;
+  --accent-green-muted: #86d898;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +18,10 @@ body {
   background: linear-gradient(
     180deg,
     #000000 0%,
-    #00051A 20%,
-    #00072D 40%,
-    #000A26 60%,
-    #00051A 80%,
+    #00051a 20%,
+    #00072d 40%,
+    #000a26 60%,
+    #00051a 80%,
     #000000 100%
   );
   background-attachment: fixed;
@@ -30,27 +30,122 @@ body {
   min-height: 100vh;
 }
 
-.font-manrope { font-family: var(--font-manrope); }
-.font-roboto  { font-family: var(--font-roboto); }
+.font-manrope {
+  font-family: var(--font-manrope);
+}
+.font-roboto {
+  font-family: var(--font-roboto);
+}
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideInRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to   { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes titleReveal {
-  from { opacity: 0; transform: scale(0.85); filter: blur(12px); }
-  to   { opacity: 1; transform: scale(1);    filter: blur(0); }
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
 }
 
-.animate-fade-in-up     { animation: fadeInUp     2s   cubic-bezier(0.22,1,0.36,1) forwards; }
-.animate-slide-in-right { animation: slideInRight 2s   cubic-bezier(0.22,1,0.36,1) forwards; }
-.animate-title-reveal   { animation: titleReveal  2.5s cubic-bezier(0.22,1,0.36,1) forwards; }
+.animate-fade-in-up {
+  animation: fadeInUp 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.animate-slide-in-right {
+  animation: slideInRight 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.animate-title-reveal {
+  animation: titleReveal 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
 
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes dropFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-drop-fade {
+  animation: dropFade 0.2s ease forwards;
+}
+
+.reveal-hidden-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-transition {
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-delay-sm {
+  transition-delay: 0.15s;
+}
+
+.row-hidden {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.row-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.row-transition {
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.15s;
+}
+
+.dropdown-bg-open {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dropdown-bg-closed {
+  background: transparent;
+}

@@ -23,12 +23,12 @@ export default function EventCarousel() {
 	};
 
 	return (
-		<section className="mb-[120px] flex flex-col items-center w-full px-4">
-			<div className="flex items-center justify-center w-full max-w-[1304px] gap-4 md:gap-[40px] group">
+		<section className="mb-30 flex flex-col items-center w-full px-4">
+			<div className="flex items-center justify-center w-full max-w-326 gap-4 md:gap-10 group">
 				<button
 					onClick={handlePrev}
 					disabled={isFirstSlide}
-					className={`flex items-center justify-center w-[40px] h-[40px] md:w-[56px] md:h-[56px] z-20 flex-shrink-0 transition-all duration-300 rounded-full ${
+					className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 z-20 shrink-0 transition-all duration-300 rounded-full ${
 						isFirstSlide
 							? "text-gray-700 opacity-50 cursor-not-allowed"
 							: "text-gray-400 hover:text-white cursor-pointer hover:scale-110"
@@ -41,7 +41,7 @@ export default function EventCarousel() {
 						viewBox="0 0 24 24"
 						strokeWidth={2.5}
 						stroke="currentColor"
-						className="w-[24px] h-[24px] md:w-[32px] md:h-[32px]"
+						className="w-6 h-6 md:w-8 md:h-8"
 					>
 						<path
 							strokeLinecap="round"
@@ -51,14 +51,14 @@ export default function EventCarousel() {
 					</svg>
 				</button>
 
-				<div className="relative w-full max-w-[1071px] h-[250px] md:h-[499px] bg-[#0B1120] rounded-[20px] overflow-hidden shadow-2xl border border-gray-800/50">
+				<div className="relative w-full max-w-267.75 h-62.5 md:h-124.75 bg-[#0B1120] rounded-[20px] overflow-hidden shadow-2xl border border-gray-800/50">
 					{events.map((event, index) => (
 						<div
 							key={event.id}
 							className={`absolute inset-0 w-full h-full transition-all duration-700 ease-out flex items-center justify-center ${
 								index === currentIndex
 									? "opacity-100 translate-y-0 scale-100 z-10"
-									: "opacity-0 translate-y-[48px] scale-95 z-0"
+									: "opacity-0 translate-y-12 scale-95 z-0"
 							}`}
 						>
 							<Image
@@ -76,7 +76,7 @@ export default function EventCarousel() {
 				<button
 					onClick={handleNext}
 					disabled={isLastSlide}
-					className={`flex items-center justify-center w-[40px] h-[40px] md:w-[56px] md:h-[56px] z-20 flex-shrink-0 transition-all duration-300 rounded-full ${
+					className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 z-20 shrink-0 transition-all duration-300 rounded-full ${
 						isLastSlide
 							? "text-gray-700 opacity-50 cursor-not-allowed"
 							: "text-gray-400 hover:text-white cursor-pointer hover:scale-110"
@@ -89,7 +89,7 @@ export default function EventCarousel() {
 						viewBox="0 0 24 24"
 						strokeWidth={2.5}
 						stroke="currentColor"
-						className="w-[24px] h-[24px] md:w-[32px] md:h-[32px]"
+						className="w-6 h-6 md:w-8 md:h-8"
 					>
 						<path
 							strokeLinecap="round"
@@ -100,23 +100,16 @@ export default function EventCarousel() {
 				</button>
 			</div>
 
-			<div className="mt-[32px] flex flex-col items-center">
-				<p
-					key={currentIndex}
-					className="text-center text-[20px] md:text-[24px] font-bold text-white tracking-wide animate-fade-in-up"
-				>
-					{events[currentIndex].name}
-				</p>
-
-				<div className="flex gap-[12px] mt-[16px]">
+			<div className="mt-8 flex flex-col items-center">
+				<div className="flex gap-3 mt-4">
 					{events.map((_, index) => (
 						<button
 							key={index}
 							onClick={() => setCurrentIndex(index)}
-							className={`h-[8px] rounded-full transition-all duration-500 ${
+							className={`h-2 rounded-full transition-all duration-500 ${
 								index === currentIndex
-									? "w-[32px] bg-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-									: "w-[8px] bg-gray-600 hover:bg-gray-400"
+									? "w-8 bg-[#6bfb9a] shadow-[0_0_10px_rgba(107,251,154,0.5)]"
+									: "w-2 bg-gray-600 hover:bg-gray-400"
 							}`}
 							aria-label={`Go to slide ${index + 1}`}
 						/>
