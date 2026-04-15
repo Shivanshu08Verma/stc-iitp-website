@@ -183,7 +183,7 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
     ],
     students: [
       {
-        name: "Akhand Pratap Narayan Singh",
+        name: "Akhand Singh",
         role: "General Secretary, Technical Affairs",
         image: "/team/2025-26/Akhand_Pratap_Narayan_Singh_-_General_Secretary_Technical_Affairs.jpeg",
       },
@@ -301,7 +301,7 @@ export default function TeamPage() {
 
       {/* Team Sections with reduced gap */}
       <div className="flex flex-col gap-8 relative z-10">
-        <TeamSection title="Faculty Advisor" members={currentTeam.faculty} center />
+        <TeamSection title="Professor in Charge" members={currentTeam.faculty} center />
         <TeamSection title="Student Team" members={currentTeam.students} />
       </div>
 

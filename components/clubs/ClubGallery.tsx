@@ -149,7 +149,7 @@ export default function ClubGallery({ clubName, photos, onClose }: ClubGalleryPr
           {/* Close button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 z-10 active:scale-90"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 z-10 active:scale-90 cursor-pointer"
             aria-label="Close lightbox"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,7 +165,7 @@ export default function ClubGallery({ clubName, photos, onClose }: ClubGalleryPr
           {/* Prev button */}
           <button
             onClick={(e) => { e.stopPropagation(); showPrev(); }}
-            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10 z-10 active:scale-90"
+            className="absolute left-1 sm:left-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10 z-10 active:scale-90 cursor-pointer"
             aria-label="Previous photo"
           >
             <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,7 +193,7 @@ export default function ClubGallery({ clubName, photos, onClose }: ClubGalleryPr
           {/* Next button */}
           <button
             onClick={(e) => { e.stopPropagation(); showNext(); }}
-            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10 z-10 active:scale-90"
+            className="absolute right-1 sm:right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-white transition-colors p-2 sm:p-3 rounded-full hover:bg-white/10 z-10 active:scale-90 cursor-pointer"
             aria-label="Next photo"
           >
             <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">

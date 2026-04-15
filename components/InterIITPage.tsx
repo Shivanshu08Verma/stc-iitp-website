@@ -6,106 +6,30 @@ import Image from "next/image";
 interface Performance {
   id: string;
   problemStatement: string;
-  category: "HIGH PREP" | "MID PREP" | "LOW PREP" | "INFO PREP";
+  category: "HIGH PREP" | "MID PREP" | "LOW PREP" | "NO PREP" | "RESEARCH AND INNOVATION";
   rank: number;
 }
 
 const performancesByYear: Record<string, Performance[]> = {
   "2025": [
-    {
-      id: "PS-01",
-      problemStatement: "Ebullient Securities",
-      category: "HIGH PREP",
-      rank: 9,
-    },
-    {
-      id: "PS-02",
-      problemStatement: "Arista Networks",
-      category: "HIGH PREP",
-      rank: 9,
-    },
-    {
-      id: "PS-03",
-      problemStatement: "LAT Aerospace",
-      category: "HIGH PREP",
-      rank: 2,
-    },
-    {
-      id: "PS-04",
-      problemStatement: "Pathway",
-      category: "HIGH PREP",
-      rank: 2,
-    },
-    {
-      id: "PS-05",
-      problemStatement: "Eternal",
-      category: "HIGH PREP",
-      rank: 14,
-    },
-    { id: "PS-06", problemStatement: "Adobe", category: "HIGH PREP", rank: 8 },
-    {
-      id: "PS-07",
-      problemStatement: "ISRO Geospatial",
-      category: "HIGH PREP",
-      rank: 15,
-    },
-    {
-      id: "PS-08",
-      problemStatement: "ISRO VLSI",
-      category: "HIGH PREP",
-      rank: 10,
-    },
-    {
-      id: "PS-09",
-      problemStatement: "Observe.AI",
-      category: "HIGH PREP",
-      rank: 18,
-    },
-    {
-      id: "PS-10",
-      problemStatement: "Qtrino Labs",
-      category: "HIGH PREP",
-      rank: 17,
-    },
-    {
-      id: "PS-11",
-      problemStatement: "Drona Aviation",
-      category: "HIGH PREP",
-      rank: 7,
-    },
-    {
-      id: "PS-12",
-      problemStatement: "Game Connect (GDAI)",
-      category: "HIGH PREP",
-      rank: 7,
-    },
-    {
-      id: "PS-13",
-      problemStatement: "STEMvibe",
-      category: "HIGH PREP",
-      rank: 6,
-    },
-    {
-      id: "PS-14",
-      problemStatement: "GenuityIO",
-      category: "HIGH PREP",
-      rank: 7,
-    },
-    {
-      id: "PS-15",
-      problemStatement: "Jilo Health",
-      category: "HIGH PREP",
-      rank: 7,
-    },
-    { id: "PS-16", problemStatement: "SAC", category: "HIGH PREP", rank: 2 },
-    { id: "PS-17", problemStatement: "EC", category: "HIGH PREP", rank: 9 },
-    {
-      id: "PS-18",
-      problemStatement: "Mapping",
-      category: "HIGH PREP",
-      rank: 2,
-    },
-  ],
+  { "id": "PS-03", "problemStatement": "LAT Aerospace", "category": "HIGH PREP", "rank": 2 },
+  { "id": "PS-04", "problemStatement": "Pathway", "category": "HIGH PREP", "rank": 2 },
+  { "id": "PS-16", "problemStatement": "SAC", "category": "RESEARCH AND INNOVATION", "rank": 2 },
+  { "id": "PS-13", "problemStatement": "STEMvibe", "category": "NO PREP", "rank": 6 },
+  { "id": "PS-11", "problemStatement": "Drona Aviation", "category": "LOW PREP", "rank": 7 },
+  { "id": "PS-12", "problemStatement": "Game Connect (GDAI)", "category": "LOW PREP", "rank": 7 },
+  { "id": "PS-14", "problemStatement": "GenuityIO", "category": "NO PREP", "rank": 7 },
+  { "id": "PS-15", "problemStatement": "Jilo Health", "category": "NO PREP", "rank": 7 },
+  { "id": "PS-06", "problemStatement": "Adobe", "category": "MID PREP", "rank": 8 },
+  { "id": "PS-01", "problemStatement": "Ebullient Securities", "category": "HIGH PREP", "rank": 9 },
+  { "id": "PS-02", "problemStatement": "Arista Networks", "category": "HIGH PREP", "rank": 9 },
+  { "id": "PS-17", "problemStatement": "EC", "category": "RESEARCH AND INNOVATION", "rank": 9 },
+  { "id": "PS-08", "problemStatement": "ISRO VLSI", "category": "MID PREP", "rank": 10 },
+  { "id": "PS-05", "problemStatement": "Eternal", "category": "MID PREP", "rank": 14 },
+  { "id": "PS-07", "problemStatement": "ISRO Geospatial", "category": "MID PREP", "rank": 15 },
+  { "id": "PS-10", "problemStatement": "Qtrino Labs", "category": "LOW PREP", "rank": 17 },
+  { "id": "PS-09", "problemStatement": "Observe.AI", "category": "MID PREP", "rank": 18 }
+]
 };
 
 const visualArchiveImages = [
@@ -370,7 +294,7 @@ export default function InterIITPage() {
         </div>
       </section>
 
-      <section className="w-full px-6 sm:px-10 md:px-16 py-16 lg:pb-20">
+      <section id="archive" className="w-full px-6 sm:px-10 md:px-16 py-16 lg:pb-20">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 border-b border-white/10 pb-6 gap-4">
           <div>
             <p className="font-mono text-[9px] tracking-[0.25em] text-[#21ED58]/80 uppercase mb-2">
@@ -465,7 +389,6 @@ export default function InterIITPage() {
       </section>
 
       <section
-        id="archive"
         className="w-full px-6 sm:px-10 md:px-16 pb-24 scroll-mt-10"
       >
         <div className="mb-8">

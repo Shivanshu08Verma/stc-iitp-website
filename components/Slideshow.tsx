@@ -31,13 +31,13 @@ const Slideshow = ({ images }: SlideshowProps) => {
       </div>
       <button
         onClick={goPrev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/50 text-white text-xl flex items-center justify-center hover:bg-[#2448E3] hover:border-[#2448E3] transition-all duration-300"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/50 text-white text-xl flex items-center justify-center hover:bg-[#2448E3] hover:border-[#2448E3] transition-all duration-300 cursor-pointer"
       >
         ‹
       </button>
       <button
         onClick={goNext}
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/50 text-white text-xl flex items-center justify-center hover:bg-[#2448E3] hover:border-[#2448E3] transition-all duration-300"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/50 text-white text-xl flex items-center justify-center hover:bg-[#2448E3] hover:border-[#2448E3] transition-all duration-300 cursor-pointer"
       >
         ›
       </button>

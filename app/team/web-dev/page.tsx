@@ -53,12 +53,6 @@ const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/paarth-mandelia-178236319",
   },
   {
-    name: "Hardik Batwal",
-    image: "/team/web-dev/hardik.jpeg",
-    github: "https://github.com/riseuppant",
-    linkedin: "https://www.linkedin.com/in/hardik-batwal-a534a231a/",
-  },
-  {
     name: "Aanushka Saha",
     image: "/team/web-dev/aanushka.jpeg",
     github: "https://github.com/aanushkasaha",
@@ -85,11 +79,11 @@ const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/rohan-bhandari-5bb745319",
     objectPosition: "center 5%"
   },
-  {
-    name: "Anshu Kumar",
-    image: "/team/web-dev/anshu.jpeg",
-    github: "https://github.com/Anshu781",
-    linkedin: "https://www.linkedin.com/in/anshu-kumar-83bb463a6",
+    {
+    name: "Hardik Batwal",
+    image: "/team/web-dev/hardik.jpeg",
+    github: "https://github.com/riseuppant",
+    linkedin: "https://www.linkedin.com/in/hardik-batwal-a534a231a/",
   },
   {
     name: "Ramavath Jagadeesh",
