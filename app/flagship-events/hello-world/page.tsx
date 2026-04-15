@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   m,
@@ -21,47 +21,93 @@ interface LeaderboardRow {
   totalScore: number;
 }
 
-const YEARS = ["2024", "2023", "2022"];
+const YEARS = ["2025", "2024", "2023"];
 
 const timelineData: Record<string, TimelineRow[]> = {
-  "2024": [
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-    { club: "Mates", dates: "14th June – 14th July" },
-  ],
   "2023": [
-    { club: "Robotics Club", dates: "1st June – 30th June" },
-    { club: "Coding Club", dates: "5th July – 20th July" },
+    { club: "Robocon",                             dates: "Sat 26th Aug, 05:00–06:30 PM" },
+    { club: "Tinkerer's Lab",                      dates: "Sat 26th Aug, 06:30–08:00 PM" },
+    { club: "Mitacs and Other Fellowships",       dates: "Sun 27th Aug, 03:00–04:00 PM" },
+    { club: "APC Orientation",                    dates: "Sun 27th Aug, 06:00–07:30 PM" },
+    { club: "SCME Orientation",                   dates: "Fri 1st Sep, 05:00–06:30 PM" },
+    { club: "Moodboard Orientation",              dates: "Sat 2nd Sep, 05:00–05:30 PM" },
+    { club: "Finance Club Orientation",           dates: "Sat 2nd Sep, 06:00–08:00 PM" },
+    { club: "RnA Orientation",                    dates: "Sun 3rd Sep, 10:00–11:00 AM" },
+    { club: "NJACK Orientation",                  dates: "Sun 3rd Sep, 11:00 AM–01:00 PM" },
+    { club: "CHESSx",                             dates: "Sun 3rd Sep, 02:30–04:00 PM" },
+    { club: "Sparkonics Orientation",             dates: "Sun 3rd Sep, 04:00–05:30 PM" },
+    { club: "MATES Workshop",                     dates: "Sun 3rd Sep, 05:30–07:00 PM" },
+    { club: "APC Orientation",                    dates: "Sun 3rd Sep, 07:00–08:30 PM" },
   ],
-  "2022": [{ club: "AI/ML Club", dates: "10th May – 10th June" }],
+
+  "2024": [
+    { club: "Ecell Kickoff Session",                              dates: "Sat 31st Aug, 11:00 AM–12:00 PM" },
+    { club: "ChessX Introductory Session",                        dates: "Sat 31st Aug, 05:00–06:00 PM" },
+    { club: "NJACK Onboarding Session",                           dates: "Sat 31st Aug, 06:00–07:30 PM" },
+    { club: "Moodboard Onboarding Session",                       dates: "Sun 1st Sep, 06:00–08:00 PM" },
+    { club: "Astronomy and Particle Physics Club Kickoff",        dates: "Sun 1st Sep, 04:30–05:30 PM" },
+    { club: "Trading & Investment / Finance Club / DWDG",         dates: "Sun 1st Sep, 10:30 AM–01:00 PM" },
+    { club: "Research Community Kickoff Session",                 dates: "Fri 6th Sep, 08:00–09:00 PM" },
+    { club: "SCME Introductory Session",                          dates: "Fri 6th Sep, 07:00–08:00 PM" },
+    { club: "Tinkerers Lab / Robocon / Robotics & Aviation Club", dates: "Sat 7th Sep, 06:00–08:00 PM" },
+    { club: "Sparkonics Introductory Session",                    dates: "Sat 7th Sep, 04:00–05:00 PM" },
+    { club: "ACE Introductory Session",                           dates: "Sat 7th Sep, 05:00–06:00 PM" },
+    { club: "MatEX",                                              dates: "Sun 8th Sep, 04:00–05:00 PM" },
+    { club: "Quantum Technology Club Introductory Session",       dates: "Sun 8th Sep, 06:00–07:00 PM" },
+  ],
+
+  "2025": [
+    { club: "DWDG",              dates: "15th Aug, 02:00–03:00 PM" },
+    { club: "Team Phoenix & TL", dates: "15th Aug, 03:00–05:00 PM" },
+    { club: "MoodBoard",         dates: "15th Aug, 05:00–07:00 PM" },
+    { club: "MATES",             dates: "15th Aug, 05:00–07:00 PM" },
+    { club: "NJack",             dates: "15th Aug, 07:00–09:00 PM" },
+    { club: "RNA (Physical Demonstration)", dates: "16th Aug, 10:00–11:00 AM" },
+    { club: "ECell",             dates: "16th Aug, 02:00–04:00 PM" },
+    { club: "Finance Club",      dates: "16th Aug, 04:00–06:00 PM" },
+    { club: "RNA",               dates: "16th Aug, 06:00–08:00 PM" },
+    { club: "Optimax",           dates: "16th Aug, 08:00–09:00 PM" },
+    { club: "QTC",               dates: "17th Aug, 02:00–04:00 PM" },
+    { club: "SCME",              dates: "17th Aug, 04:00–06:00 PM" },
+    { club: "Sparkonics",        dates: "17th Aug, 04:00–06:00 PM" },
+    { club: "ChESSx",            dates: "17th Aug, 04:00–06:00 PM" },
+    { club: "ACE",               dates: "17th Aug, 04:00–06:00 PM" },
+    { club: "TIC",               dates: "17th Aug, 06:00–07:00 PM" },
+    { club: "Astronomy Club",    dates: "17th Aug, 07:00–09:00 PM" },
+    { club: "Exhibition (Celesta)", dates: "17th Aug, 04:00–09:00 PM" },
+  ],
 };
 
 const leaderboardData: Record<string, LeaderboardRow[]> = {
-  "2024": Array.from({ length: 16 }, () => ({
-    position: 1,
-    rollNumber: "2301EC41",
-    name: "Aravind",
-    totalScore: 150,
-  })),
-  "2023": [
-    { position: 1, rollNumber: "2201CS01", name: "Riya", totalScore: 200 },
-    { position: 2, rollNumber: "2201CS02", name: "Arjun", totalScore: 180 },
-  ],
-  "2022": [
-    { position: 1, rollNumber: "2101ME01", name: "Priya", totalScore: 220 },
+  "2025": [
+    { position: 1,  rollNumber: "2501MC37", name: "Prabhudutta Prusti",       totalScore: 107 },
+    { position: 2,  rollNumber: "2501ME63", name: "Anirban Dutta",            totalScore: 79  },
+    { position: 3,  rollNumber: "2501EC17", name: "Garvit Sharma",            totalScore: 57  },
+    { position: 4,  rollNumber: "2501AI02", name: "Bhavesh Lokesh Agarwal",   totalScore: 55  },
+    { position: 5,  rollNumber: "2501CB35", name: "S Aditya",                 totalScore: 52  },
+    { position: 6,  rollNumber: "2501CE03", name: "Mehul Tushar Parmar",      totalScore: 50  },
+    { position: 7,  rollNumber: "2501EC03", name: "Shivansh Kumar Bhakt",     totalScore: 49  },
+    { position: 8,  rollNumber: "2502VL10", name: "Ambidi Ramachandra Pranil",totalScore: 45  },
+    { position: 9,  rollNumber: "2501CS19", name: "Aditya Kumar",             totalScore: 42  },
+    { position: 10, rollNumber: "2501ME26", name: "Deepanshu Dash",           totalScore: 41  },
   ],
 };
 
 const carouselSlides = [
-  { src: "/stclogo.png", caption: "Club / Event Name" },
-  { src: "/stclogo.png", caption: "Club / Event Name" },
-  { src: "/stclogo.png", caption: "Club / Event Name" },
+  { src: "/helloworld/helloworld1.JPG" },
+  { src: "/helloworld/helloworld2.jpg" },
+  { src: "/helloworld/helloworld3.jpeg" },
+  { src: "/helloworld/helloworld4.jpeg" },
+  { src: "/helloworld/helloworld5.JPG" },
+  { src: "/helloworld/helloworld6.jpg" },
+  { src: "/helloworld/helloworld7.jpg" },
+  { src: "/helloworld/helloworld8.JPG" },
+  { src: "/helloworld/helloworld9.jpeg" },
+  { src: "/helloworld/helloworld10.jpg" },
+  { src: "/helloworld/helloworld11.jpg" },
+  { src: "/helloworld/helloworld12.jpg" },
+  { src: "/helloworld/helloworld13.jpeg" },
+  { src: "/helloworld/helloworld14.jpeg" },
 ];
 
 function YearSelector({
@@ -92,6 +138,49 @@ function YearSelector({
   );
 }
 
+function AnimatedTableRow({
+  children,
+  index,
+  className,
+}: {
+  children: React.ReactNode;
+  index: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLTableRowElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const delay = `${Math.min(index * 0.045, 0.4)}s`;
+
+  return (
+    <tr
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateX(0px)" : "translateX(40px)",
+        transition: `background-color 0.15s ease, opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}`,
+      }}
+    >
+      {children}
+    </tr>
+  );
+}
+
 const fadeUpVariants: Variants = {
   hidden: { opacity: 0, y: 100 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
@@ -108,26 +197,17 @@ const heroHeadingVariants: Variants = {
     scale: 1,
     filter: "blur(0px)",
     transition: {
-      delay: 0.08, // The 80ms animation delay
+      delay: 0.08, 
       duration: 2.5,
-      ease: [0.22, 1, 0.36, 1], // Your cubic-bezier values
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
-const tableBodyVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-};
-
-const tableRowVariants: Variants = {
-  hidden: { opacity: 0, x: -15 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
-};
 
 export default function HelloWorldPage() {
-  const [timelineYear, setTimelineYear] = useState("2024");
-  const [leaderboardYear, setLeaderboardYear] = useState("2024");
+  const [timelineYear, setTimelineYear] = useState("2025");
+  const [leaderboardYear, setLeaderboardYear] = useState("2025");
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () =>
@@ -171,7 +251,7 @@ export default function HelloWorldPage() {
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
             culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            dolir sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -207,18 +287,12 @@ export default function HelloWorldPage() {
                   </th>
                 </tr>
               </thead>
-              <m.tbody
-                key={timelineYear}
-                variants={tableBodyVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
+              <tbody key={timelineYear}>
                 {(timelineData[timelineYear] ?? []).map((row, i) => (
-                  <m.tr
+                  <AnimatedTableRow
                     key={i}
-                    variants={tableRowVariants}
-                    className="bg-[#080D22] border-b border-white/15 cursor-pointer transition-all duration-300 hover:bg-[#0d1435] hover:shadow-[0_4px_15px_rgba(107,251,154,0.05)] hover:scale-[1.005]"
+                    index={i}
+                    className="bg-[#080D22] border-b border-white/15 hover:bg-[#0d1435]"
                   >
                     <td className="w-1/2 py-3.25 px-4 sm:px-8 text-center text-[#94A3B8] text-xs sm:text-sm lg:text-base">
                       {row.club}
@@ -226,9 +300,9 @@ export default function HelloWorldPage() {
                     <td className="w-1/2 py-3.25 px-4 sm:px-8 text-center text-[#94A3B8] text-xs sm:text-sm lg:text-base">
                       {row.dates}
                     </td>
-                  </m.tr>
+                  </AnimatedTableRow>
                 ))}
-              </m.tbody>
+              </tbody>
             </table>
           </div>
         </m.section>
@@ -268,18 +342,12 @@ export default function HelloWorldPage() {
                   </th>
                 </tr>
               </thead>
-              <m.tbody
-                key={leaderboardYear}
-                variants={tableBodyVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
+              <tbody key={leaderboardYear}>
                 {(leaderboardData[leaderboardYear] ?? []).map((row, i) => (
-                  <m.tr
+                  <AnimatedTableRow
                     key={i}
-                    variants={tableRowVariants}
-                    className="bg-[#080D22] border-b border-white/15 cursor-pointer transition-all duration-300 hover:bg-[#0d1435] hover:shadow-[0_4px_15px_rgba(107,251,154,0.05)] hover:scale-[1.005]"
+                    index={i}
+                    className="bg-[#080D22] border-b border-white/15 hover:bg-[#0d1435]"
                   >
                     <td className="py-3.25 px-2 sm:px-4 text-center text-[#94A3B8] text-xs sm:text-sm lg:text-base">
                       {row.position}
@@ -293,9 +361,9 @@ export default function HelloWorldPage() {
                     <td className="py-3.25 px-2 sm:px-4 text-center text-[#94A3B8] text-xs sm:text-sm lg:text-base">
                       {row.totalScore}
                     </td>
-                  </m.tr>
+                  </AnimatedTableRow>
                 ))}
-              </m.tbody>
+              </tbody>
             </table>
           </div>
         </m.section>
@@ -312,7 +380,7 @@ export default function HelloWorldPage() {
               onClick={prevSlide}
               whileHover={{ color: "#6BFB9A", x: -5 }}
               whileTap={{ scale: 0.8 }}
-              className="shrink-0 text-white transition-colors select-none leading-none"
+              className="shrink-0 text-white transition-colors select-none leading-none cursor-pointer"
               style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300 }}
             >
               ‹
@@ -335,7 +403,7 @@ export default function HelloWorldPage() {
                 >
                   <Image
                     src={carouselSlides[currentSlide].src}
-                    alt={carouselSlides[currentSlide].caption}
+                    alt={`Exhibition Slide ${currentSlide + 1}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 75vw, 1024px"
@@ -349,30 +417,21 @@ export default function HelloWorldPage() {
               onClick={nextSlide}
               whileHover={{ color: "#6BFB9A", x: 5 }}
               whileTap={{ scale: 0.8 }}
-              className="shrink-0 text-white transition-colors select-none leading-none"
+              className="shrink-0 text-white transition-colors select-none leading-none cursor-pointer"
               style={{ fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 300 }}
             >
               ›
             </m.button>
           </div>
 
-          <m.p
-            key={`caption-${currentSlide}`}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-roboto text-center text-white mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg"
-          >
-            {carouselSlides[currentSlide].caption}
-          </m.p>
-
-          <div className="flex justify-center gap-2 mt-2 sm:mt-3">
+          <div className="flex justify-center gap-2 mt-6 sm:mt-8">
             {carouselSlides.map((_, i) => (
               <m.button
                 key={i}
                 onClick={() => setCurrentSlide(i)}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.8 }}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   i === currentSlide
                     ? "bg-[#6BFB9A] w-8 shadow-[0_0_8px_#6BFB9A]"
                     : "bg-[#2a3050] w-2 hover:bg-[#3a4060]"
