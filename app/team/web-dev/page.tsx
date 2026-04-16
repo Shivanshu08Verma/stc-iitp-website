@@ -25,20 +25,19 @@ interface TeamMember {
 
 const ADVISORY: TeamMember[] = [
   {
+    name: "Akhand Pratap Singh",
+    image: "/team/web-dev/Akhand_Pratap_Narayan_Singh_-_General_Secretary_Technical_Affairs.jpeg",
+    github: "https://github.com/akhandsinghjr",
+    linkedin: "https://www.linkedin.com/in/asjx/",
+  },
+  {
     name: "Shivank Goyal",
     image: "/team/web-dev/Shivank_Goyal_-_Technical_Secretary_Junior_Year.jpeg",
     github: "https://github.com/avianbob/",
     linkedin: "https://www.linkedin.com/in/shivankgoyal23",
   },
   {
-    name: "Akhand Pratap Singh",
-    image: "/team/web-dev/Akhand_Pratap_Narayan_Singh_-_General_Secretary_Technical_Affairs.jpeg",
-    github: "https://github.com/akhandsinghjr",
-    linkedin: "https://www.linkedin.com/in/asjx/",
-  },
-  
-  {
-    name: "Aditya Aggrawal",
+    name: "Aditya Agarwal",
     image: "/team/web-dev/aditya.jpeg",
     github: "https://github.com/ProLimitHyperCodeNovaCreator",
     linkedin: "https://www.linkedin.com/in/adityaag2005",
