@@ -3,12 +3,6 @@
 import Image from "next/image";
 import { Manrope } from "next/font/google";
 import localFont from "next/font/local";
-import {
-  m,
-  LazyMotion,
-  domAnimation,
-  Variants,
-} from "framer-motion";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -42,7 +36,7 @@ const ADVISORY: TeamMember[] = [
     github: "https://github.com/akhandsinghjr",
     linkedin: "https://www.linkedin.com/in/asjx/",
   },
-  
+
   {
     name: "Aditya Aggrawal",
     image: "/team/web-dev/aditya.jpeg",
@@ -63,7 +57,7 @@ const TEAM: TeamMember[] = [
     image: "/team/web-dev/aanushka.jpeg",
     github: "https://github.com/aanushkasaha",
     linkedin: "https://www.linkedin.com/in/aanushka-saha/",
-    
+
   },
   {
     name: "Rameshwar Dudhate",
@@ -85,7 +79,7 @@ const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/rohan-bhandari-5bb745319",
     objectPosition: "center 5%"
   },
-    {
+  {
     name: "Hardik Batwal",
     image: "/team/web-dev/hardik.jpeg",
     github: "https://github.com/riseuppant",
@@ -97,76 +91,53 @@ const TEAM: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/ramavath-jagadeesh",
   },
   {
-    name : "Anshika Singh",
+    name: "Anshika Singh",
     image: "/team/web-dev/anshika.jpeg",
-    linkedin : "https://www.linkedin.com/in/anshika-singh-764830365/" 
+    linkedin: "https://www.linkedin.com/in/anshika-singh-764830365/"
   }
 ];
 
-const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
-};
-
-const staggerContainer: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 export default function WebDevTeamPage() {
   return (
-    <LazyMotion features={domAnimation}>
-      <div
-        className={`min-h-screen text-white pb-32 ${manrope.className} ${minasans.variable}`}
-        style={{
-          background: "linear-gradient(48.65deg, #00072D 8.63%, #353131 103.98%)",
-        }}
-      >
-        {/* Decorative Background Elements */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-5%] left-[-5%] w-[50%] h-[50%] bg-[#6BFB9A] opacity-[0.03] blur-[150px] rounded-full" />
-          <div className="absolute bottom-[-5%] right-[-5%] w-[50%] h-[50%] bg-blue-500 opacity-[0.03] blur-[150px] rounded-full" />
-        </div>
+    <div
+      className={`min-h-screen text-white pb-32 ${manrope.className} ${minasans.variable}`}
+      style={{
+        background: "linear-gradient(48.65deg, #00072D 8.63%, #353131 103.98%)",
+      }}
+    >
+      {/* Decorative Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-5%] left-[-5%] w-[50%] h-[50%] bg-[#6BFB9A] opacity-[0.03] blur-[150px] rounded-full" />
+        <div className="absolute bottom-[-5%] right-[-5%] w-[50%] h-[50%] bg-blue-500 opacity-[0.03] blur-[150px] rounded-full" />
+      </div>
 
-        <div className="container mx-auto px-6 pt-40 relative z-10">
-          <div className="flex flex-col lg:flex-row gap-20">
-            {/* Left Column: Title & Subtitle */}
-            <m.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeInUp}
-              className="w-full lg:w-[35%] lg:sticky lg:top-40 h-fit flex flex-col items-center lg:items-start text-center lg:text-left"
+      <div className="container mx-auto px-6 pt-40 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-20">
+          {/* Left Column: Title & Subtitle */}
+          <div className="w-full lg:w-[35%] lg:sticky lg:top-40 h-fit flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h1
+              className="tracking-tighter w-full"
+              style={{
+                fontWeight: 700,
+                fontSize: "min(120px, 9vw)",
+                lineHeight: "1.0",
+              }}
             >
-              <h1
-                className="tracking-tighter w-full"
-                style={{
-                  fontWeight: 700,
-                  fontSize: "min(120px, 9vw)",
-                  lineHeight: "1.0",
-                }}
-              >
-                People
-              </h1>
-              <p className="text-[#94A3B8] text-2xl md:text-3xl mt-10 max-w-sm mx-auto lg:mx-0 leading-tight font-light tracking-tight">
-                The great minds behind the digital experience.
-              </p>
-            </m.div>
+              People
+            </h1>
+            <p className="text-[#94A3B8] text-2xl md:text-3xl mt-10 max-w-sm mx-auto lg:mx-0 leading-tight font-light tracking-tight">
+              The great minds behind the digital experience.
+            </p>
+          </div>
 
-            {/* Right Column: Member Groups */}
-            <div className="w-full lg:w-[65%] flex flex-col gap-32">
-              <TeamGroup title="Advisory" members={ADVISORY} isLeadGroup />
-              <TeamGroup title="Team" members={TEAM} />
-            </div>
+          {/* Right Column: Member Groups */}
+          <div className="w-full lg:w-[65%] flex flex-col gap-32">
+            <TeamGroup title="Advisory" members={ADVISORY} isLeadGroup />
+            <TeamGroup title="Team" members={TEAM} />
           </div>
         </div>
       </div>
-    </LazyMotion>
+    </div>
   );
 }
 
@@ -181,37 +152,26 @@ function TeamGroup({
   isLeadGroup?: boolean;
 }) {
   return (
-    <m.div 
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      variants={fadeInUp}
-      className="flex flex-col gap-8"
-    >
+    <div className="flex flex-col gap-8">
       <h2 className="text-white text-base font-bold lg:ml-4 uppercase tracking-[0.3em] text-center lg:text-left w-full">
         {title}
       </h2>
       <div className="bg-[#1a1a1a]/40 backdrop-blur-3xl border border-white/5 rounded-[56px] p-12 md:p-20">
-        <m.div 
-          variants={staggerContainer}
-          className="flex flex-wrap justify-center gap-x-16 gap-y-20"
-        >
+        <div className="flex flex-wrap justify-center gap-x-16 gap-y-20">
           {members.map((member) => (
-            <m.div 
-              variants={fadeInUp}
-              key={member.name} 
-              className={`${
-                isLeadGroup 
-                  ? "w-full sm:w-[calc(45%)] lg:w-[calc(40%)]" 
+            <div
+              key={member.name}
+              className={`${isLeadGroup
+                  ? "w-full sm:w-[calc(45%)] lg:w-[calc(40%)]"
                   : "w-full sm:w-[calc(45%)] lg:w-[calc(28%)]"
-              } flex justify-center`}
+                } flex justify-center`}
             >
               <MemberCard member={member} isLead={isLeadGroup} />
-            </m.div>
+            </div>
           ))}
-        </m.div>
+        </div>
       </div>
-    </m.div>
+    </div>
   );
 }
 
@@ -222,10 +182,7 @@ function MemberCard({ member, isLead }: { member: TeamMember; isLead?: boolean }
     : "w-36 h-36 md:w-44 md:h-44";
 
   return (
-    <m.div 
-      whileHover={{ y: -10 }}
-      className="group flex flex-col items-center text-center"
-    >
+    <div className="group flex flex-col items-center text-center">
       {/* Avatar Container */}
       <div className={`relative ${imageSize} mb-8`}>
         {/* Glow effect */}
@@ -256,14 +213,14 @@ function MemberCard({ member, isLead }: { member: TeamMember; isLead?: boolean }
       </div>
 
       {/* Info Section */}
-      <div className="flex flex-col items-center overflow-visible">
+      <div className="flex flex-col items-center">
         <h3 className={`${isLead ? 'text-2xl' : 'text-xl'} font-bold text-white group-hover:text-[#6BFB9A] transition-colors duration-300 tracking-tight whitespace-nowrap`}>
           {member.name}
         </h3>
 
-        {/* Social Link Row - Fixed for Mobile visibility */}
+        {/* Social Link Row */}
         {(member.github || member.linkedin) && (
-          <div className="flex gap-4 mt-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 transform translate-y-0 md:translate-y-2 md:group-hover:translate-y-0">
+          <div className="flex gap-4 mt-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
             {member.github && (
               <a
                 href={member.github}
@@ -291,6 +248,6 @@ function MemberCard({ member, isLead }: { member: TeamMember; isLead?: boolean }
           </div>
         )}
       </div>
-    </m.div>
+    </div>
   );
 }
