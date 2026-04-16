@@ -57,6 +57,7 @@ function ArchiveImage({
       src={imgSrc}
       alt={alt}
       fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
       className={`object-cover ${className}`}
       onError={() => {
         setImgSrc("/stclogo.png");
@@ -288,6 +289,7 @@ export default function InterIITPage() {
               src="/technical-schematic.png"
               alt="Technical schematic graphic"
               fill
+              sizes="(max-width: 768px) 100vw, 428px"
               style={{ objectFit: "contain" }}
             />
           </div>
