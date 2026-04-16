@@ -5,6 +5,12 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
+import {
+  m,
+  LazyMotion,
+  domAnimation,
+  Variants,
+} from "framer-motion";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -206,6 +212,21 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
   },
 };
 
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 export default function TeamPage() {
   const [selectedYear, setSelectedYear] = useState("2025-26");
   const [isOpen, setIsOpen] = useState(false);
@@ -225,112 +246,138 @@ export default function TeamPage() {
   }, []);
 
   return (
-    <div
-      className={`min-h-screen text-white pb-12 ${spaceGrotesk.className} ${minasans.variable}`}
-      style={{ background: 'linear-gradient(48.65deg, #00072D 8.63%, #353131 103.98%)' }}
-    >
-      {/* Hero Section */}
-      <section className="relative py-12 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#6BFB9A] opacity-5 blur-[120px] rounded-full"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500 opacity-5 blur-[120px] rounded-full"></div>
-        </div>
+    <LazyMotion features={domAnimation}>
+      <div
+        className={`min-h-screen text-white pb-12 ${spaceGrotesk.className} ${minasans.variable}`}
+        style={{ background: 'linear-gradient(48.65deg, #00072D 8.63%, #353131 103.98%)' }}
+      >
+        {/* Hero Section */}
+        <section className="relative py-12 overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#6BFB9A] opacity-5 blur-[120px] rounded-full"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500 opacity-5 blur-[120px] rounded-full"></div>
+          </div>
 
-        <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[30vh]">
-          <h1
-            className={`uppercase ${minasans.className}`}
-            style={{
-              fontWeight: 500,
-              fontSize: 'min(333px, 20vw)',
-              lineHeight: '100%',
-              letterSpacing: '0%',
-              textAlign: 'center'
-            }}
-          >
-            TEAM
-          </h1>
-        </div>
-      </section>
-
-      {/* Modern Year Dropdown with fixed z-index for header compatibility */}
-      <div className="container mx-auto px-4 flex justify-end items-center mt-1 mb-6 relative z-40">
-        <div className="flex items-center gap-4">
-          <span className="text-white/40 uppercase tracking-[0.2em] text-xs font-bold hidden sm:block">Select Year:</span>
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center gap-3 px-6 py-3.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl min-w-[180px] justify-between group transition-all duration-300 hover:border-[#6BFB9A]/40 hover:bg-white/10 cursor-pointer"
+          <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[30vh]">
+            <m.h1
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className={`uppercase ${minasans.className}`}
+              style={{
+                fontWeight: 500,
+                fontSize: 'min(333px, 20vw)',
+                lineHeight: '100%',
+                letterSpacing: '0%',
+                textAlign: 'center'
+              }}
             >
-              <span className="text-sm font-bold uppercase tracking-widest text-[#6BFB9A]">{selectedYear}</span>
-              <svg 
-                className={`w-4 h-4 text-white/40 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
+              TEAM
+            </m.h1>
+          </div>
+        </section>
+
+        {/* Modern Year Dropdown */}
+        <m.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="container mx-auto px-4 flex justify-end items-center mt-1 mb-6 relative z-40"
+        >
+          <div className="flex items-center gap-4">
+            <span className="text-white/40 uppercase tracking-[0.2em] text-xs font-bold hidden sm:block">Select Year:</span>
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex items-center gap-3 px-6 py-3.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl min-w-[180px] justify-between group transition-all duration-300 hover:border-[#6BFB9A]/40 hover:bg-white/10 cursor-pointer"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {/* Dropdown Menu */}
-            <div 
-              className={`absolute right-0 mt-3 w-full bg-[#0F172A]/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 origin-top shadow-2xl ${
-                isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
-              }`}
-            >
-              {years.map((year) => (
-                <button
-                  key={year}
-                  onClick={() => {
-                    setSelectedYear(year);
-                    setIsOpen(false);
-                  }}
-                  className={`w-full px-6 py-4 text-left text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 border-b border-white/5 last:border-0 cursor-pointer ${
-                    selectedYear === year 
-                      ? "bg-[#6BFB9A] text-[#00072D]" 
-                      : "text-white/60 hover:text-[#6BFB9A] hover:bg-white/5"
-                  }`}
+                <span className="text-sm font-bold uppercase tracking-widest text-[#6BFB9A]">{selectedYear}</span>
+                <svg 
+                  className={`w-4 h-4 text-white/40 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
                 >
-                  {year}
-                </button>
-              ))}
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              <div 
+                className={`absolute right-0 mt-3 w-full bg-[#0F172A]/95 backdrop-blur-2xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 origin-top shadow-2xl ${
+                  isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
+                }`}
+              >
+                {years.map((year) => (
+                  <button
+                    key={year}
+                    onClick={() => {
+                      setSelectedYear(year);
+                      setIsOpen(false);
+                    }}
+                    className={`w-full px-6 py-4 text-left text-xs sm:text-sm font-bold uppercase tracking-widest transition-all duration-300 border-b border-white/5 last:border-0 cursor-pointer ${
+                      selectedYear === year 
+                        ? "bg-[#6BFB9A] text-[#00072D]" 
+                        : "text-white/60 hover:text-[#6BFB9A] hover:bg-white/5"
+                    }`}
+                  >
+                    {year}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
+        </m.div>
+
+        {/* Team Sections */}
+        <div key={selectedYear} className="flex flex-col gap-8 relative z-10">
+          <TeamSection title="Professor in Charge" members={currentTeam.faculty} center />
+          <TeamSection title="Student Team" members={currentTeam.students} />
         </div>
-      </div>
 
-      {/* Team Sections with reduced gap */}
-      <div className="flex flex-col gap-8 relative z-10">
-        <TeamSection title="Professor in Charge" members={currentTeam.faculty} center />
-        <TeamSection title="Student Team" members={currentTeam.students} />
       </div>
-
-    </div>
+    </LazyMotion>
   );
 }
 
 function TeamSection({ title, members, center }: { title: string; members: TeamMember[]; center?: boolean }) {
   return (
-    <section className="container mx-auto px-4 py-6">
+    <m.section 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={fadeInUp}
+      className="container mx-auto px-4 py-6"
+    >
       <div className="flex items-center gap-4 mb-10">
         <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">{title}</h2>
         <div className="h-px flex-grow bg-gradient-to-r from-[#6BFB9A] to-transparent opacity-30"></div>
       </div>
 
-      <div className={center ? "flex justify-center" : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 sm:gap-8"}>
+      <m.div 
+        variants={staggerContainer}
+        className={center ? "flex justify-center" : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 sm:gap-8"}
+      >
         {members.map((member, index) => (
-          <div key={`${member.name}-${index}`} className="w-full flex justify-center">
+          <m.div 
+            variants={fadeInUp}
+            key={`${member.name}-${index}`} 
+            className="w-full flex justify-center"
+          >
             <TeamCard member={member} />
-          </div>
+          </m.div>
         ))}
-      </div>
-    </section>
+      </m.div>
+    </m.section>
   );
 }
 
 function TeamCard({ member }: { member: TeamMember }) {
   return (
-    <div className="group relative w-full max-w-[320px] bg-[#1E293B]/50 backdrop-blur-sm border border-white/5 rounded-2xl p-4 transition-all duration-500 hover:border-[#6BFB9A]/30 hover:shadow-[0_0_30px_rgba(107,251,154,0.1)] hover:-translate-y-2">
+    <m.div 
+      whileHover={{ y: -10 }}
+      className="group relative w-full max-w-[320px] bg-[#1E293B]/50 backdrop-blur-sm border border-white/5 rounded-2xl p-4 transition-all duration-500 hover:border-[#6BFB9A]/30 hover:shadow-[0_0_30px_rgba(107,251,154,0.1)]"
+    >
       <div className="relative aspect-square overflow-hidden rounded-xl mb-6 bg-[#0F172A]">
         {/* Placeholder image logic */}
         <div className="absolute inset-0 flex items-center justify-center text-[#6BFB9A]/20">
@@ -365,7 +412,8 @@ function TeamCard({ member }: { member: TeamMember }) {
           ))}
         </div>
 
-        <div className="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {/* Social Link Row - Fixed for Mobile visibility */}
+        <div className="flex justify-center gap-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-2 md:group-hover:translate-y-0">
           {member.linkedin && (
             <Link href={member.linkedin} target="_blank" className="p-2 bg-white/5 rounded-full hover:bg-[#6BFB9A] hover:text-[#1A2238] transition-all duration-300">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -382,6 +430,6 @@ function TeamCard({ member }: { member: TeamMember }) {
           )}
         </div>
       </div>
-    </div>
+    </m.div>
   );
 }
