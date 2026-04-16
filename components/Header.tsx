@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -11,9 +11,29 @@ export default function Header() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+        setIsMobileDropdownOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#00051A] backdrop-blur-md">
+    <header ref={headerRef} className="sticky top-0 z-50 w-full bg-[#00051A] backdrop-blur-md">
       {/* w-full and justify-between guarantee STC is on the far left 
         and the tabs are on the far right. 
       */}
@@ -28,8 +48,9 @@ export default function Header() {
                 alt="STC IITP Logo"
                 fill
                 className="object-contain"
-                sizes="56px"
+                sizes="(max-width: 768px) 56px, 120px"
                 priority
+                loading="eager"
               />
             </div>
             <span className="text-5xl font-bold tracking-tight text-white w-max">
