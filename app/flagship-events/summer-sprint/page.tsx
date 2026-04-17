@@ -3,7 +3,7 @@
 import HeroSection from "@/components/HeroSectionSS";
 import AboutSection from "@/components/AboutSectionSS";
 import EventTable from "@/components/EventTableSS";
-import Gallery from "@/components/Gallery";
+import GallerySS from "@/components/GallerySS";
 
 export default function SummerSprintPage() {
 	return (
@@ -19,7 +19,7 @@ export default function SummerSprintPage() {
 				</div>
 
 				<div className="w-full">
-					<Gallery />
+					<GallerySS />
 				</div>
 			</div>
 		</main>
