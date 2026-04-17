@@ -1,70 +1,48 @@
+"use client";
 import { clubs } from "./data/clubs";
 import ClubList from "@/components/clubs/ClubList";
-import Image from "next/image";
-
-export const metadata = {
-  title: "Clubs — STC IIT Patna",
-  description:
-    "Explore the technical and creative clubs under the Student Technical Council at IIT Patna.",
-};
+import { motion, Transition } from "framer-motion";
+import AnimatedLogo from "@/components/clubs/animatedLogo";
 
 export default function ClubsPage() {
+  const transition: Transition = { duration: 1, ease: [0.25, 0.1, 0.25, 1] };
+  const variants = {
+    hidden: { filter: "blur(10px)", transform: "translateY(20%)", opacity: 0 },
+    visible: { filter: "blur(0)", transform: "translateY(0)", opacity: 1},
+  };
+
   return (
-    <main className="min-h-screen bg-[#070c22] text-white">
-      {/* Hero */}
+    <main className="min-h-screen bg-[#0006629] text-white">
+      {/* Hero — full width, dome lives here */}
       <section className="relative overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 via-[#0a1035] to-[#070c22] pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-          
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 text-center">
-          {/* <h1
-            className="font-black text-[clamp(4rem,12vw,9rem)] leading-none tracking-tight uppercase select-none"
-            style={{
-              background: "linear-gradient(135deg, #ffffff 30%, #3b82f6 70%, #1e40af 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 top-[-10%] bg-[#123498] w-[105%]"
+          style={{ height: "100%", borderRadius: "0 0 50% 50%" }}
+          initial={{ opacity: 0, y: "-50%" }}
+          animate={{ opacity: 1, y: "0%" }}
+          transition={{ duration: 1, type: "tween"}}
+        />
+
+        {/* CLuBS + subtitle both inside the dome */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-24 sm:pb-32 md:pb-40 text-center">
+          <AnimatedLogo className="w-full max-w-xl mx-auto" />
+
+          {/* Subtitle inside the dome */}
+          <motion.p
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            transition={transition}
+            className="mt-4 sm:mt-6 text-white/80 text-sm sm:text-base md:text-lg max-w-xs sm:max-w-xl mx-auto font-light leading-relaxed"
           >
-            CLüBS
-          </h1> */}
-          <Image
-            src="/clubs_font.png"
-            alt="Clubs Hero Image"
-            width={600}
-            height={150}
-            className="mx-auto mb-6"
-            loading="eager"
-          />  
-
-          <p className="mt-4 text-blue-200/70 text-base md:text-lg max-w-xl mx-auto font-light text-center">
-             Discover the technical and creative clubs that power innovation at
-             <br />
-             <span className="text-blue-400 font-medium">IIT Patna</span>
-           </p>
-
-          {/* Stats bar */}
-          {/* <div className="mt-8 inline-flex items-center gap-6 px-6 py-3 rounded-full bg-blue-900/20 border border-blue-500/20 text-sm text-blue-300">
-            <span>
-              <strong className="text-white text-base">{clubs.length}</strong> Clubs
-            </span>
-            <span className="w-px h-4 bg-blue-500/30" />
-            <span>
-              <strong className="text-white text-base">
-                {clubs.reduce((acc, c) => acc + c.photos.length, 0)}
-              </strong>{" "}
-              Photos
-            </span>
-          </div> */}
+            Discover the technical and creative clubs that power innovation at{" "}
+            <span className="text-white font-semibold">IIT Patna</span>
+          </motion.p>
         </div>
-          {/* --------------------------------------------------------------- */}
-
-{/* --------------------------------------------------------------- */}
       </section>
 
-      {/* Club list */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      {/* Club list — starts right after the dome */}
+      <section className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 pt-10 sm:pt-14 pb-16 sm:pb-24">
         <ClubList clubs={clubs} />
       </section>
     </main>

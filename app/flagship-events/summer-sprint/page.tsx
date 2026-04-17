@@ -1,9 +1,11 @@
 "use client";
 
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSectionSS";
 import AboutSection from "@/components/AboutSectionSS";
 import EventTable from "@/components/EventTableSS";
-import GallerySS from "@/components/GallerySS";
+import Gallery from "@/components/Gallery";
 
 export default function SummerSprintPage() {
 	return (
@@ -19,7 +21,7 @@ export default function SummerSprintPage() {
 				</div>
 
 				<div className="w-full">
-					<GallerySS />
+					<Gallery />
 				</div>
 			</div>
 		</main>

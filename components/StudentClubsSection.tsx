@@ -15,7 +15,7 @@ const CLUBS: { id: number; name: string; logo: string }[] = [
   { id: 10, name: "Astronomy And Particle Physics Club", logo: "/clubs/appc-logo.png" },
   { id: 11, name: "ChESSx",                          logo: "/clubs/chessx-logo.png" },
   { id: 12, name: "ACE",                             logo: "/clubs/ace-logo.png" },
-  { id: 13, name: "MATES",                           logo: "/clubs/mate-logo.png" },
+  { id: 13, name: "MaTES",                           logo: "/clubs/mate-logo.png" },
   { id: 14, name: "SCME",                            logo: "/clubs/scmee-logo.png" },
   { id: 15, name: "Optimatx",                        logo: "/clubs/optimax-logo.png" },
   { id: 16, name: "Do Well, Do Good",                logo: "/clubs/dwdg-logo.png" },
@@ -88,7 +88,7 @@ function ClubCard({ club }: ClubCardProps) {
 
   return (
     <div
-      className="flex flex-col items-center gap-5 cursor-pointer group w-[160px] shrink-0"
+      className="flex flex-col items-center gap-5 group w-[160px] shrink-0"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
