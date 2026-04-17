@@ -73,7 +73,7 @@ export default function EventTable() {
 					<div ref={wrapperRef} className="relative z-40">
 						<button
 							onClick={() => setOpen((o) => !o)}
-							className="w-[140px] h-[44px] flex items-center justify-between px-5 rounded-xl border border-[#3a4060] transition-colors"
+							className="w-[140px] h-[44px] flex items-center justify-between px-5 rounded-xl border border-[#3a4060] transition-colors cursor-pointer"
 							style={{
 								background: open ? "rgba(255,255,255,0.05)" : "transparent",
 							}}
@@ -119,7 +119,7 @@ export default function EventTable() {
 						<div
 							ref={headerRef}
 							// 1. Changed back to dark background, added the subtle bottom border, and rounded corners
-							className="grid grid-cols-3 items-center bg-black/40 border-b border-white/10 rounded-t-[20px]"
+							className="grid grid-cols-3 items-center bg-white/80 border-b border-white/10 rounded-t-[20px]"
 							style={{
 								opacity: headerVisible ? 1 : 0,
 								transform: headerVisible
@@ -133,7 +133,7 @@ export default function EventTable() {
 								<div
 									key={h}
 									// 2. Changed text color back to the muted gray/blue (#94A3B8)
-									className="h-[48px] sm:h-[53px] flex items-center justify-center font-bold tracking-[0.15em] text-[#94A3B8] uppercase text-[11px] sm:text-xs text-center"
+									className="h-[48px] sm:h-[53px] flex items-center justify-center font-extrabold text-[#00051A] uppercase text-[13px] md:text-[15px] tracking-[0.15em] text-center"
 								>
 									{h}
 								</div>
