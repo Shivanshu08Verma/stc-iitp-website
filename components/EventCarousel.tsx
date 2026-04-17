@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface CarouselImage {
@@ -15,8 +15,8 @@ interface EventCarouselProps {
 
 export default function EventCarousel({ images }: EventCarouselProps) {
 	const [currentIndex, setCurrentIndex] = useState(0);
-
-	if (!images || images.length === 0) return null;
+	const [isPaused, setIsPaused] = useState(false);
+	const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
 	const handleNext = () => {
 		setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -26,8 +26,25 @@ export default function EventCarousel({ images }: EventCarouselProps) {
 		setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
 	};
 
+	useEffect(() => {
+		if (!isPaused) {
+			intervalRef.current = setInterval(() => {
+				handleNext();
+			}, 4000);
+		}
+		return () => {
+			if (intervalRef.current) clearInterval(intervalRef.current);
+		};
+	}, [isPaused, images.length]);
+
+	if (!images || images.length === 0) return null;
+
 	return (
-		<section className="mb-30 flex flex-col items-center w-full px-4">
+		<section 
+			className="mb-30 flex flex-col items-center w-full px-4"
+			onMouseEnter={() => setIsPaused(true)}
+			onMouseLeave={() => setIsPaused(false)}
+		>
 			<div className="flex items-center justify-center w-full max-w-326 gap-4 md:gap-10 group">
 				<button
 					onClick={handlePrev}
