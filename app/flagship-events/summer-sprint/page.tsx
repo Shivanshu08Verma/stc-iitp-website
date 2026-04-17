@@ -1,17 +1,24 @@
 "use client";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSectionSS";
 import AboutSection from "@/components/AboutSectionSS";
 import EventTable from "@/components/EventTableSS";
-import Gallery from "@/components/Gallery";
+import EventCarousel from "@/components/EventCarousel";
+import { slides } from "@/data/galleryDataSS";
 
 export default function SummerSprintPage() {
+	const summerSprintImages = slides.map((slide, index) => ({
+		id: index,
+		src: slide.src,
+		name: slide.caption,
+	}));
+
 	return (
-		<main className="w-full min-h-screen flex flex-col font-roboto overflow-x-hidden">
-			<div className="flex-grow w-full max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center pt-[80px] pb-[100px] gap-20">
-				<div className="w-full flex flex-col items-center gap-[60px]">
+		// 1. Applied ICTC Outer Main Dimensions
+		<main className="min-h-screen flex flex-col items-center font-roboto overflow-x-hidden">
+			{/* 2. Applied ICTC Inner max-w-6xl and px-6 md:px-12 */}
+			<div className="w-full max-w-6xl px-6 md:px-12 flex flex-col pt-[80px] pb-[100px] gap-20">
+				<div className="w-full flex flex-col gap-[60px]">
 					<HeroSection />
 					<AboutSection />
 				</div>
@@ -21,7 +28,7 @@ export default function SummerSprintPage() {
 				</div>
 
 				<div className="w-full">
-					<Gallery />
+					<EventCarousel images={summerSprintImages} />
 				</div>
 			</div>
 		</main>

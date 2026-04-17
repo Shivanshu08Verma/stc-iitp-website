@@ -5,22 +5,19 @@ import { slides } from "@/data/galleryDataSS";
 
 export default function Gallery() {
 	const [current, setCurrent] = useState(0);
-	const isFirst = current === 0;
-	const isLast = current === slides.length - 1;
 
 	return (
-		<div className="w-full flex flex-col gap-6 items-center">
+		// 1. ADDED mt-16 md:mt-24 here to create that big gap below the Event Table!
+		<div className="w-full flex flex-col gap-6 pb-20 items-center mt-16 md:mt-24">
+			{/* WRAPPER: Changed to justify-between and removed max-w restriction so it spans fully */}
 			<div className="flex items-center justify-between w-full gap-3 md:gap-8 group">
-				{/* PREV BUTTON */}
+				{/* PREV BUTTON - Updated to loop to the end */}
 				<button
-					onClick={() => setCurrent((c) => c - 1)}
+					onClick={() =>
+						setCurrent((c) => (c === 0 ? slides.length - 1 : c - 1))
+					}
 					aria-label="Previous"
-					disabled={isFirst}
-					className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 shrink-0 transition-all duration-300 rounded-full ${
-						isFirst
-							? "text-gray-700 opacity-50 cursor-not-allowed"
-							: "text-gray-400 hover:text-white cursor-pointer hover:scale-110"
-					}`}
+					className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 shrink-0 transition-all duration-300 rounded-full text-gray-400 hover:text-white cursor-pointer hover:scale-110"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +36,7 @@ export default function Gallery() {
 				</button>
 
 				{/* IMAGE CONTAINER */}
-				<div className="relative w-full h-[350px] sm:h-[450px] md:h-[600px] bg-[#0B1120] rounded-[24px] overflow-hidden shadow-2xl border border-gray-800/50">
+				<div className="relative w-full max-w-267.75 h-62.5 md:h-124.75 bg-[#0B1120] rounded-[20px] overflow-hidden shadow-2xl border border-gray-800/50">
 					{slides.map((slide, index) => (
 						<div
 							key={index}
@@ -68,16 +65,13 @@ export default function Gallery() {
 					))}
 				</div>
 
-				{/* NEXT BUTTON */}
+				{/* NEXT BUTTON - Updated to loop to the beginning */}
 				<button
-					onClick={() => setCurrent((c) => c + 1)}
+					onClick={() =>
+						setCurrent((c) => (c === slides.length - 1 ? 0 : c + 1))
+					}
 					aria-label="Next"
-					disabled={isLast}
-					className={`flex items-center justify-center w-10 h-10 md:w-14 md:h-14 shrink-0 transition-all duration-300 rounded-full ${
-						isLast
-							? "text-gray-700 opacity-50 cursor-not-allowed"
-							: "text-gray-400 hover:text-white cursor-pointer hover:scale-110"
-					}`}
+					className="flex items-center justify-center w-10 h-10 md:w-14 md:h-14 shrink-0 transition-all duration-300 rounded-full text-gray-400 hover:text-white cursor-pointer hover:scale-110"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -95,6 +89,14 @@ export default function Gallery() {
 					</svg>
 				</button>
 			</div>
+
+			{/* CAPTION */}
+			<p
+				key={current}
+				className="text-center text-[18px] md:text-[20px] font-bold text-white tracking-wide animate-fade-in-up mt-4"
+			>
+				{slides[current]?.caption}
+			</p>
 
 			{/* GREEN DOTS */}
 			<div className="flex gap-3 mt-1">

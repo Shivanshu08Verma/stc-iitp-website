@@ -1,7 +1,9 @@
 import { Slide } from "@/types/eventSS";
 
 export const slides: Slide[] = [
-  { src: "/summerSprint/event1.png", caption: "Summer Sprint Events" },
-  { src: "/summerSprint/event2.png", caption: "Summer Sprint Events" },
-  { src: "/summerSprint/event3.png", caption: "Summer Sprint Events" },
+  { src: "/summerSprint/img1.png", caption: "Summer Sprint Events" },
+  { src: "/summerSprint/img3.png", caption: "Summer Sprint Events" },
+  { src: "/summerSprint/img4.png", caption: "Summer Sprint Events" },
+  { src: "/summerSprint/img5.png", caption: "Summer Sprint Events" },
+  { src: "/summerSprint/img6.png", caption: "Summer Sprint Events" },
 ];

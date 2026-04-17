@@ -1,0 +1,88 @@
+import { TimelineRow, LeaderboardRow, CarouselSlide } from "@/types/helloworld";
+
+export const YEARS = ["2025", "2024", "2023"];
+
+export const timelineData: Record<string, TimelineRow[]> = {
+//   "2023": [
+//     { club: "Robocon", dates: "Sat 26th Aug, 05:00–06:30 PM" },
+//     { club: "Tinkerer's Lab", dates: "Sat 26th Aug, 06:30–08:00 PM" },
+//     { club: "Mitacs and Other Fellowships", dates: "Sun 27th Aug, 03:00–04:00 PM" },
+//     { club: "APC Orientation", dates: "Sun 27th Aug, 06:00–07:30 PM" },
+//     { club: "SCME Orientation", dates: "Fri 1st Sep, 05:00–06:30 PM" },
+//     { club: "Moodboard Orientation", dates: "Sat 2nd Sep, 05:00–05:30 PM" },
+//     { club: "Finance Club Orientation", dates: "Sat 2nd Sep, 06:00–08:00 PM" },
+//     { club: "RnA Orientation", dates: "Sun 3rd Sep, 10:00–11:00 AM" },
+//     { club: "NJACK Orientation", dates: "Sun 3rd Sep, 11:00 AM–01:00 PM" },
+//     { club: "CHESSx", dates: "Sun 3rd Sep, 02:30–04:00 PM" },
+//     { club: "Sparkonics Orientation", dates: "Sun 3rd Sep, 04:00–05:30 PM" },
+//     { club: "MATES Workshop", dates: "Sun 3rd Sep, 05:30–07:00 PM" },
+//     { club: "APC Orientation", dates: "Sun 3rd Sep, 07:00–08:30 PM" },
+//   ],
+//   "2024": [
+//     { club: "Ecell Kickoff Session", dates: "Sat 31st Aug, 11:00 AM–12:00 PM" },
+//     { club: "ChessX Introductory Session", dates: "Sat 31st Aug, 05:00–06:00 PM" },
+//     { club: "NJACK Onboarding Session", dates: "Sat 31st Aug, 06:00–07:30 PM" },
+//     { club: "Moodboard Onboarding Session", dates: "Sun 1st Sep, 06:00–08:00 PM" },
+//     { club: "Astronomy and Particle Physics Club Kickoff", dates: "Sun 1st Sep, 04:30–05:30 PM" },
+//     { club: "Trading & Investment / Finance Club / DWDG", dates: "Sun 1st Sep, 10:30 AM–01:00 PM" },
+//     { club: "Research Community Kickoff Session", dates: "Fri 6th Sep, 08:00–09:00 PM" },
+//     { club: "SCME Introductory Session", dates: "Fri 6th Sep, 07:00–08:00 PM" },
+//     { club: "Tinkerers Lab / Robocon / Robotics & Aviation Club", dates: "Sat 7th Sep, 06:00–08:00 PM" },
+//     { club: "Sparkonics Introductory Session", dates: "Sat 7th Sep, 04:00–05:00 PM" },
+//     { club: "ACE Introductory Session", dates: "Sat 7th Sep, 05:00–06:00 PM" },
+//     { club: "MatEX", dates: "Sun 8th Sep, 04:00–05:00 PM" },
+//     { club: "Quantum Technology Club Introductory Session", dates: "Sun 8th Sep, 06:00–07:00 PM" },
+//   ],
+  "2025": [
+    { club: "DWDG", dates: "15th Aug" },
+    { club: "Team Phoenix & TL", dates: "15th Aug" },
+    { club: "MoodBoard", dates: "15th Aug" },
+    { club: "MATES", dates: "15th Aug" },
+    { club: "NJack", dates: "15th Aug" },
+    { club: "RNA (Physical Demonstration)", dates: "16th Aug" },
+    { club: "ECell", dates: "16th Aug" },
+    { club: "Finance Club", dates: "16th Aug" },
+    { club: "RNA", dates: "16th Aug" },
+    { club: "Optimax", dates: "16th Aug" },
+    { club: "QTC", dates: "17th Aug" },
+    { club: "SCME", dates: "17th Aug" },
+    { club: "Sparkonics", dates: "17th Aug" },
+    { club: "ChESSx", dates: "17th Aug" },
+    { club: "ACE", dates: "17th Aug" },
+    { club: "TIC", dates: "17th Aug" },
+    { club: "Astronomy Club", dates: "17th Aug" },
+    { club: "Exhibition (Celesta)", dates: "17th Aug" },
+  ],
+};
+
+export const leaderboardData: Record<string, LeaderboardRow[]> = {
+  "2025": [
+    { position: 1, rollNumber: "2501MC37", name: "Prabhudutta Prusti", totalScore: 107 },
+    { position: 2, rollNumber: "2501ME63", name: "Anirban Dutta", totalScore: 79 },
+    { position: 3, rollNumber: "2501EC17", name: "Garvit Sharma", totalScore: 57 },
+    { position: 4, rollNumber: "2501AI02", name: "Bhavesh Lokesh Agarwal", totalScore: 55 },
+    { position: 5, rollNumber: "2501CB35", name: "S Aditya", totalScore: 52 },
+    { position: 6, rollNumber: "2501CE03", name: "Mehul Tushar Parmar", totalScore: 50 },
+    { position: 7, rollNumber: "2501EC03", name: "Shivansh Kumar Bhakt", totalScore: 49 },
+    { position: 8, rollNumber: "2502VL10", name: "Ambidi Ramachandra Pranil", totalScore: 45 },
+    { position: 9, rollNumber: "2501CS19", name: "Aditya Kumar", totalScore: 42 },
+    { position: 10, rollNumber: "2501ME26", name: "Deepanshu Dash", totalScore: 41 },
+  ],
+};
+
+export const carouselSlides: CarouselSlide[] = [
+  { src: "/helloworld/helloworld1.JPG" },
+  { src: "/helloworld/helloworld2.jpg" },
+  { src: "/helloworld/helloworld3.jpeg" },
+  { src: "/helloworld/helloworld4.jpeg" },
+  { src: "/helloworld/helloworld5.JPG" },
+  { src: "/helloworld/helloworld6.jpg" },
+  { src: "/helloworld/helloworld7.jpg" },
+  { src: "/helloworld/helloworld8.JPG" },
+  { src: "/helloworld/helloworld9.jpeg" },
+  { src: "/helloworld/helloworld10.jpg" },
+  { src: "/helloworld/helloworld11.jpg" },
+  { src: "/helloworld/helloworld12.jpg" },
+  { src: "/helloworld/helloworld13.jpeg" },
+  { src: "/helloworld/helloworld14.jpeg" },
+];

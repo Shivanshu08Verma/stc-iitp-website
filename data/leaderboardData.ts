@@ -13,9 +13,9 @@ export const leaderboardData: LeaderboardDataType = {
         { position: 2, team: "Pegasus", score: 2748 },
         { position: 3, team: "Cassiopeia", score: 1803 },
     ],
-    "2024": [
-        { position: 1, team: "Draco", score: 1519 },
-        { position: 2, team: "Pegasus", score: 1398 },
-        { position: 3, team: "Cassiopeia", score: 1036 },
-    ],
+    // "2024": [
+    //     { position: 1, team: "Draco", score: 1519 },
+    //     { position: 2, team: "Pegasus", score: 1398 },
+    //     { position: 3, team: "Cassiopeia", score: 1036 },
+    // ],
 };

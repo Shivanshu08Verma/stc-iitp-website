@@ -23,7 +23,9 @@ export default function EventCarousel({ images }: EventCarouselProps) {
 	};
 
 	const handlePrev = () => {
-		setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+		setCurrentIndex(
+			(prevIndex) => (prevIndex - 1 + images.length) % images.length,
+		);
 	};
 
 	return (
@@ -54,10 +56,11 @@ export default function EventCarousel({ images }: EventCarouselProps) {
 					{images.map((img, index) => (
 						<div
 							key={img.id}
-							className={`absolute inset-0 w-full h-full transition-all duration-700 ease-out flex items-center justify-center ${index === currentIndex
+							className={`absolute inset-0 w-full h-full transition-all duration-700 ease-out flex items-center justify-center ${
+								index === currentIndex
 									? "opacity-100 translate-y-0 scale-100 z-10"
 									: "opacity-0 translate-y-12 scale-95 z-0"
-								}`}
+							}`}
 						>
 							<Image
 								src={img.src}
@@ -99,10 +102,11 @@ export default function EventCarousel({ images }: EventCarouselProps) {
 						<button
 							key={index}
 							onClick={() => setCurrentIndex(index)}
-							className={`h-2 rounded-full transition-all duration-500 ${index === currentIndex
+							className={`h-2 rounded-full transition-all duration-500 ${
+								index === currentIndex
 									? "w-8 bg-[#6bfb9a] shadow-[0_0_10px_rgba(107,251,154,0.5)]"
 									: "w-2 bg-gray-600 hover:bg-gray-400"
-								}`}
+							}`}
 							aria-label={`Go to slide ${index + 1}`}
 						/>
 					))}

@@ -149,3 +149,18 @@ body {
 .dropdown-bg-closed {
   background: transparent;
 }
+
+/* Hello World Specific Table Classes */
+.hw-table-header {
+  background-color: #DDE2F6;
+}
+.hw-table-header-text {
+  color: #0A0F2E;
+}
+.hw-table-row {
+  background-color: #080D22;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.hw-table-row:hover {
+  background-color: #0d1435;
+}

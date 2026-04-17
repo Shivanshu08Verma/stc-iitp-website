@@ -53,7 +53,8 @@ export default function EventTable() {
         }
       `}</style>
 
-			<div className="w-full flex flex-col overflow-x-auto">
+			<div className="w-full flex flex-col">
+				{/* 1. Header & Dropdown (No overflow here!) */}
 				<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
 					<h2
 						ref={titleRef}
@@ -72,12 +73,12 @@ export default function EventTable() {
 					<div ref={wrapperRef} className="relative z-40">
 						<button
 							onClick={() => setOpen((o) => !o)}
-							className="w-[140px] h-[44px] flex items-center justify-between px-5 rounded-xl border border-white/20 transition-colors"
+							className="w-[140px] h-[44px] flex items-center justify-between px-5 rounded-xl border border-[#3a4060] transition-colors"
 							style={{
 								background: open ? "rgba(255,255,255,0.05)" : "transparent",
 							}}
 						>
-							<span className="font-semibold text-base text-[#F6F6F6]">
+							<span className="font-semibold text-sm sm:text-base text-[#F6F6F6]">
 								{selectedYear}
 							</span>
 							<div
@@ -88,7 +89,7 @@ export default function EventTable() {
 						</button>
 
 						{open && (
-							<div className="absolute top-[calc(100%+6px)] right-0 w-[140px] bg-[#0a1628] border border-white/10 rounded-xl overflow-hidden z-40 shadow-2xl animate-[dropFade_0.2s_ease_forwards]">
+							<div className="absolute top-[calc(100%+6px)] right-0 w-[140px] bg-[#080D22] border border-[#3a4060] rounded-xl overflow-hidden z-40 shadow-2xl animate-[dropFade_0.2s_ease_forwards]">
 								{years.map((yr, i) => (
 									<div
 										key={yr}
@@ -96,7 +97,7 @@ export default function EventTable() {
 											setSelectedYear(yr);
 											setOpen(false);
 										}}
-										className={`px-5 py-3 cursor-pointer text-base font-semibold transition-all hover:bg-white/10 hover:text-white ${yr === selectedYear ? "bg-white/10 text-white" : "text-white/50"}`}
+										className={`px-5 py-3 cursor-pointer text-sm sm:text-base font-semibold transition-all hover:bg-[#0d1435] hover:text-white ${yr === selectedYear ? "bg-white/10 text-white" : "text-white/50"}`}
 										style={{
 											borderBottom:
 												i < years.length - 1
@@ -110,37 +111,45 @@ export default function EventTable() {
 							</div>
 						)}
 					</div>
-				</div>{" "}
-				<div className="min-w-[600px] md:min-w-full">
-					<div
-						ref={headerRef}
-						className="grid grid-cols-3 items-center bg-black/40 border-b border-white/10 rounded-t-[20px]"
-						style={{
-							opacity: headerVisible ? 1 : 0,
-							transform: headerVisible ? "translateX(0px)" : "translateX(40px)",
-							transition:
-								"opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
-						}}
-					>
-						{["EVENT", "CLUB", "DATES"].map((h) => (
-							<div
-								key={h}
-								className="h-[53px] flex items-center justify-center font-bold text-[13px] md:text-[15px] tracking-[0.15em] text-[#94A3B8] uppercase"
-							>
-								{h}
-							</div>
-						))}
-					</div>
+				</div>
 
-					{events.length > 0 ? (
-						events.map((ev, i) => (
-							<AnimatedRow key={ev.name} ev={ev} index={i} />
-						))
-					) : (
-						<div className="w-full py-16 flex items-center justify-center border-b border-white/15 text-white/30 text-base">
-							No events announced for {selectedYear} yet
+				{/* 2. Table Wrapper (Added overflow-x-auto and no-scrollbar here!) */}
+				<div className="w-full overflow-x-auto pb-4 no-scrollbar">
+					<div className="min-w-[600px] md:min-w-full flex flex-col">
+						<div
+							ref={headerRef}
+							// 1. Changed back to dark background, added the subtle bottom border, and rounded corners
+							className="grid grid-cols-3 items-center bg-black/40 border-b border-white/10 rounded-t-[20px]"
+							style={{
+								opacity: headerVisible ? 1 : 0,
+								transform: headerVisible
+									? "translateX(0px)"
+									: "translateX(40px)",
+								transition:
+									"opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
+							}}
+						>
+							{["EVENT", "CLUB", "DATES"].map((h) => (
+								<div
+									key={h}
+									// 2. Changed text color back to the muted gray/blue (#94A3B8)
+									className="h-[48px] sm:h-[53px] flex items-center justify-center font-bold tracking-[0.15em] text-[#94A3B8] uppercase text-[11px] sm:text-xs text-center"
+								>
+									{h}
+								</div>
+							))}
 						</div>
-					)}
+
+						{events.length > 0 ? (
+							events.map((ev, i) => (
+								<AnimatedRow key={ev.name} ev={ev} index={i} />
+							))
+						) : (
+							<div className="w-full py-16 flex items-center justify-center bg-[#080D22] border-b border-white/15 text-[#94A3B8] text-xs sm:text-sm">
+								No events announced for {selectedYear} yet
+							</div>
+						)}
+					</div>
 				</div>
 			</div>
 		</>
