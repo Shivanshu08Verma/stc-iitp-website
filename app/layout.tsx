@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${manrope.variable} ${roboto.variable} ${spaceGrotesk.className} flex min-h-screen flex-col text-white`}
+        className={`${manrope.variable} ${roboto.variable} ${spaceGrotesk.className} flex min-h-screen flex-col text-white selection:bg-[#00051A] selection:text-[#6BFB9A]`}
       >
         <Header />
 

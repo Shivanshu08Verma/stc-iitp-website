@@ -2,9 +2,9 @@ import Slideshow from "@/components/Slideshow";
 import ExploreButton from "@/components/ExploreButton";
 
 const COLLABNEST_IMAGES = [
-  "/COLLABNEST/IMG-1.png",
-  "/COLLABNEST/IMG-2.png",
-  "/COLLABNEST/IMG-3.png",
+  "/COLLABNEST/IMG-1.jpeg",
+  "/COLLABNEST/IMG-2.jpeg",
+  "/COLLABNEST/IMG-3.jpeg",
 ];
 
 const CollabNest = () => {

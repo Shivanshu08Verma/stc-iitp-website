@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const ScrollReveal = ({ children }: { children: React.ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setReady(true);
     const el = ref.current;
     if (!el) return;
 
@@ -29,9 +27,9 @@ const ScrollReveal = ({ children }: { children: React.ReactNode }) => {
     <div
       ref={ref}
       style={{
-        opacity: ready ? 0 : 1,
-        transform: ready ? "translateY(40px)" : "translateY(0)",
-        transition: ready ? "opacity 0.7s ease, transform 0.7s ease" : "none",
+        opacity: 0,
+        transform: "translateY(40px)",
+        transition: "opacity 0.7s ease, transform 0.7s ease",
       }}
     >
       {children}

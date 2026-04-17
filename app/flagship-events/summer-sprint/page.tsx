@@ -1,7 +1,13 @@
 import EventTable from "@/components/EventTable";
-import Gallery from "@/components/Gallery";
+import EventCarousel from "@/components/EventCarousel";
 
 export default function SummerSprintPage() {
+  const summerSprintImages = [
+    { id: 1, src: "/events.WEBP", name: "Summer Sprint Events" },
+    { id: 2, src: "/first.png", name: "Summer Sprint Events" },
+    { id: 3, src: "/seond.png", name: "Summer Sprint Events" },
+  ];
+
   return (
     <>
       <main
@@ -49,7 +55,7 @@ export default function SummerSprintPage() {
         {/* TABLE + GALLERY */}
         <div className="w-full max-w-6xl mx-auto px-4 md:px-6 flex flex-col gap-10 pb-10">
           <EventTable />
-          <Gallery />
+          <EventCarousel images={summerSprintImages} />
         </div>
       </main>
     </>

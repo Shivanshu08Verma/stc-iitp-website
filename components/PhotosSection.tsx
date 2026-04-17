@@ -4,17 +4,18 @@ import Image from "next/image";
 import Slideshow from "@/components/Slideshow";
 
 const carouselImages = [
-  "https://picsum.photos/seed/stc1/800/600",
-  "https://picsum.photos/seed/stc2/800/600",
-  "https://picsum.photos/seed/stc3/800/600",
-  "https://picsum.photos/seed/stc4/800/600",
+  "/event_photo/group1.png",
+  "/event_photo/robo2.png",
+  "/event_photo/session1.png",
+  "/event_photo/robo1.png",
+  "/event_photo/sparna1.png",
 ];
 
 const staticPhotos = [
-  "https://picsum.photos/400/300?random=1",
-  "https://picsum.photos/400/300?random=2",
-  "https://picsum.photos/400/300?random=3",
-  "https://picsum.photos/400/300?random=4",
+  "/event_photo/group1.png",
+  "/event_photo/robo2.png",
+  "/event_photo/session1.png",
+  "/event_photo/sparna1.png",
 ];
 
 const PhotosSection = () => {
@@ -24,30 +25,29 @@ const PhotosSection = () => {
         PHOTOS
       </h2>
 
-      {/* Outer grid — align-items stretch so both columns are equal height */}
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-3 items-stretch">
-        
+
         {/* Left: carousel */}
-        <div className="relative aspect-[16/9]">
+        <div className="relative aspect-video">
           <Slideshow images={carouselImages} />
         </div>
 
-        {/* Right: thumbnail grid — fills exact same height as carousel via CSS grid rows */}
-        <div className="grid grid-cols-2 gap-1.5 grid-rows-[1fr_1fr]">
+        {/* Right: 2×2 thumbnail grid */}
+        <div className="grid grid-cols-2 gap-1.5">
           {staticPhotos.map((src, i) => (
-            // No aspect ratio — the row height comes from the parent grid
-            <div key={i} className="relative overflow-hidden rounded-sm aspect-[4/3] lg:aspect-auto">
+            <div key={i} className="relative overflow-hidden rounded-sm aspect-4/3">
               <Image
                 src={src}
                 alt={`Event photo ${i + 1}`}
                 fill
-                sizes="15vw"
+                sizes="(max-width: 1024px) 45vw, 15vw"
                 className="object-cover"
                 priority
               />
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

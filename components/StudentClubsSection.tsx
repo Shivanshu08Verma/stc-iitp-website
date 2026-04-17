@@ -8,19 +8,17 @@ const CLUBS: { id: number; name: string; logo: string }[] = [
   { id: 3,  name: "Finance Club",                    logo: "/clubs/finance-logo.png" },
   { id: 4,  name: "Team Phoenix",                    logo: "/clubs/phonix-logo.png" },
   { id: 5,  name: "MoodBoard",                       logo: "/clubs/moodboard-logo.png" },
-  { id: 6,  name: "Trading And Investment Club",     logo: "/clubs/appc-logo.png" },
-  { id: 7,  name: "Tinkerers' Lab",                  logo: "/clubs/tinklarer-logo.png" },
-  { id: 8,  name: "Rocketry And Aviation",           logo: "/clubs/rnaa-logo.png" },
-  { id: 9,  name: "Quantum Technology Club",         logo: "/clubs/qtc-logo.png" },
-  { id: 10, name: "Sparkonics",                      logo: "/clubs/sparconics-logo.png" },
-  { id: 11, name: "Astronomy And Particle Physics Club", logo: "/clubs/appc-logo.png" },
-  { id: 12, name: "ChESSx",                          logo: "/clubs/chessx-logo.png" },
-  { id: 13, name: "ACE",                             logo: "/clubs/ace-logo.png" },
-  { id: 14, name: "MATES",                           logo: "/clubs/mate-logo.png" },
-  { id: 15, name: "SCME",                            logo: "/clubs/scmee-logo.png" },
-  { id: 16, name: "Motorsports Club",                logo: "/clubs/optimax-logo.png" },
-  { id: 17, name: "Optimatx",                        logo: "/clubs/optimax-logo.png" },
-  { id: 18, name: "Do Well, Do Good",                logo: "/clubs/dwdg-logo.png" },
+  { id: 6,  name: "Tinkerers' Lab",                  logo: "/clubs/tinklarer-logo.png" },
+  { id: 7,  name: "Rocketry And Aviation",           logo: "/clubs/rnaa-logo.png" },
+  { id: 8,  name: "Quantum Technology Club",         logo: "/clubs/qtc-logo.png" },
+  { id: 9, name: "Sparkonics",                      logo: "/clubs/sparconics-logo.png" },
+  { id: 10, name: "Astronomy And Particle Physics Club", logo: "/clubs/appc-logo.png" },
+  { id: 11, name: "ChESSx",                          logo: "/clubs/chessx-logo.png" },
+  { id: 12, name: "ACE",                             logo: "/clubs/ace-logo.png" },
+  { id: 13, name: "MaTES",                           logo: "/clubs/mate-logo.png" },
+  { id: 14, name: "SCME",                            logo: "/clubs/scmee-logo.png" },
+  { id: 15, name: "Optimatx",                        logo: "/clubs/optimax-logo.png" },
+  { id: 16, name: "Do Well, Do Good",                logo: "/clubs/dwdg-logo.png" },
 ];
 
 const DOUBLED = [...CLUBS, ...CLUBS];
@@ -90,7 +88,7 @@ function ClubCard({ club }: ClubCardProps) {
 
   return (
     <div
-      className="flex flex-col items-center gap-5 cursor-pointer group w-[160px] shrink-0"
+      className="flex flex-col items-center gap-5 group w-[160px] shrink-0"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
