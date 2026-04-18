@@ -4,18 +4,22 @@ import Image from "next/image";
 import Slideshow from "@/components/Slideshow";
 
 const carouselImages = [
-  "/event_photo/group1.png",
-  "/event_photo/robo2.png",
-  "/event_photo/session1.png",
-  "/event_photo/robo1.png",
-  "/event_photo/sparna1.png",
+  "/PHOTOSECTION/3.jpg",
+  "/PHOTOSECTION/2.JPG",
+  "/PHOTOSECTION/12.jpg",
+  "/PHOTOSECTION/14.jpeg",
+  "/PHOTOSECTION/15.JPG",
+  "/PHOTOSECTION/7.jpeg",
+  "/PHOTOSECTION/13.jpeg"
 ];
 
 const staticPhotos = [
-  "/event_photo/group1.png",
-  "/event_photo/robo2.png",
-  "/event_photo/session1.png",
-  "/event_photo/sparna1.png",
+  "/PHOTOSECTION/4.jpg",
+  "/PHOTOSECTION/5.jpg",
+  "/PHOTOSECTION/6.jpeg",
+  "/PHOTOSECTION/1.jpg",
+  "/PHOTOSECTION/9.jpg",
+  "/PHOTOSECTION/8.jpeg"
 ];
 
 const PhotosSection = () => {
