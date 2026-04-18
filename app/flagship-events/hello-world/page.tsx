@@ -94,7 +94,11 @@ export default function HelloWorldPage() {
               <h2 className="text-white font-extrabold text-3xl md:text-4xl">
                 Event Time Line
               </h2>
-              <YearSelector availableYears={Object.keys(timelineData)} year={timelineYear} onChange={setTimelineYear} />
+              <YearSelector
+                availableYears={Object.keys(timelineData)}
+                year={timelineYear}
+                onChange={setTimelineYear}
+              />
             </div>
 
             <div className="w-full overflow-x-auto pb-4 no-scrollbar mt-6">
@@ -122,7 +126,7 @@ export default function HelloWorldPage() {
                 </div>
 
                 {(timelineData[timelineYear] ?? []).map((row, i) => (
-                  <AnimatedRowHW key={i} index={i}>
+                  <AnimatedRowHW key={`${timelineYear}-${i}`} index={i}>
                     <div className="grid grid-cols-2 text-[14px] md:text-[16px] h-16 items-center text-center">
                       <div className="font-bold text-white">{row.club}</div>
                       <div className="font-normal text-white/70">
@@ -151,7 +155,7 @@ export default function HelloWorldPage() {
               {/* Only show the selector if there's more than one year of data available */}
               {Object.keys(leaderboardData).length > 1 && (
                 <YearSelector
-				  availableYears={Object.keys(leaderboardData)}
+                  availableYears={Object.keys(leaderboardData)}
                   year={leaderboardYear}
                   onChange={setLeaderboardYear}
                 />
@@ -190,7 +194,7 @@ export default function HelloWorldPage() {
                   leaderboardData["2025"] ||
                   []
                 ).map((row, i) => (
-                  <AnimatedRowHW key={i} index={i}>
+                  <AnimatedRowHW key={`${leaderboardYear}-${i}`} index={i}>
                     <div className="grid grid-cols-4 text-[13px] md:text-[15px] h-16 items-center text-center">
                       <div className="font-bold text-white">{row.position}</div>
                       <div className="font-bold text-white">{row.name}</div>
