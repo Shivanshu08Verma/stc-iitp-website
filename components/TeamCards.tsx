@@ -14,7 +14,7 @@ export default function TeamCards() {
 						className="opacity-0 animate-fade-in-up w-full"
 						style={{ animationDelay: `${index * 200 + 200}ms` }}
 					>
-						<div className="bg-[#0d1424] border border-[#1e293b] rounded-[20px] p-8 md:p-10 w-full h-full transition-all duration-300 ease-out hover:-translate-y-2 cursor-pointer flex flex-col items-center">
+						<div className="bg-[#0d1424] border border-[#1e293b] rounded-[20px] p-8 md:p-10 w-full h-full transition-all duration-300 ease-out hover:-translate-y-2 flex flex-col items-center">
 							<h3 className="text-center font-bold mb-2 text-white text-[24px] md:text-[28px] leading-9.5">
 								{team.name}
 							</h3>

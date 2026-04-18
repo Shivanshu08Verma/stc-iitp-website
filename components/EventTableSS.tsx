@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { leaderboardData, LeaderboardEntry } from "@/data/leaderboardData";
+import { allEvents, years } from "@/data/eventDataSS";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import AnimatedRow from "@/components/AnimatedRowSS";
 
 const DropdownArrow = () => (
 	<svg
@@ -19,49 +20,23 @@ const DropdownArrow = () => (
 	</svg>
 );
 
-const AnimatedLeaderboardRow = ({
-	row,
-	index,
-}: {
-	row: LeaderboardEntry;
-	index: number;
-}) => {
-	const [ref, isVisible] = useScrollReveal<HTMLDivElement>(0.1);
-	return (
-		<div
-			ref={ref}
-			className="border-b border-white/5 last:border-b-0 hover:bg-white/5 transition-colors font-roboto"
-			style={{
-				opacity: isVisible ? 1 : 0,
-				transform: isVisible ? "translateX(0px)" : "translateX(40px)",
-				transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s, background-color 0.15s`,
-			}}
-		>
-			<div className="grid grid-cols-3 text-[14px] md:text-[16px] h-16 items-center text-center">
-				<div className="font-bold text-white">{row.position}</div>
-				<div className="font-bold text-white">{row.team}</div>
-				<div className="font-semibold text-[#3b82f6]">{row.score}</div>
-			</div>
-		</div>
-	);
-};
-
-export default function Leaderboard() {
-	const [selectedYear, setSelectedYear] = useState<string>("2025");
+export default function EventTable() {
+	const [selectedYear, setSelectedYear] = useState(2025);
 	const [open, setOpen] = useState(false);
 	const wrapperRef = useRef<HTMLDivElement | null>(null);
-
-	const currentData = leaderboardData[selectedYear];
-	const years = Object.keys(leaderboardData).sort((a, b) => Number(b) - Number(a));
 
 	const [titleRef, titleVisible] = useScrollReveal<HTMLHeadingElement>(0.1);
 	const [headerRef, headerVisible] = useScrollReveal<HTMLDivElement>(0.1);
 
-	// Handle clicking outside to close the custom dropdown
+	const events = allEvents[selectedYear] || [];
+
 	useEffect(() => {
 		if (!open) return;
 		const handler = (e: MouseEvent) => {
-			if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+			if (
+				wrapperRef.current &&
+				!wrapperRef.current.contains(e.target as Node)
+			) {
 				setOpen(false);
 			}
 		};
@@ -72,14 +47,14 @@ export default function Leaderboard() {
 	return (
 		<>
 			<style>{`
-				@keyframes dropFade {
-					from { opacity: 0; transform: translateY(-8px); }
-					to   { opacity: 1; transform: translateY(0); }
-				}
-			`}</style>
+        @keyframes dropFade {
+          from { opacity: 0; transform: translateY(-8px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
 
-			<section className="mb-16 w-full max-w-6xl mx-auto px-6 md:px-12">
-				{/* Header & Custom Dropdown Container */}
+			<div className="w-full flex flex-col">
+				{/* 1. Header & Dropdown (No overflow here!) */}
 				<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
 					<h2
 						ref={titleRef}
@@ -88,13 +63,13 @@ export default function Leaderboard() {
 							fontFamily: "'Roboto', sans-serif",
 							opacity: titleVisible ? 1 : 0,
 							transform: titleVisible ? "translateX(0px)" : "translateX(40px)",
-							transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+							transition:
+								"opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
 						}}
 					>
-						Leaderboard
+						Event Time Line
 					</h2>
 
-					{/* Custom Dropdown UI to match EventTableSS */}
 					<div ref={wrapperRef} className="relative z-40">
 						<button
 							onClick={() => setOpen((o) => !o)}
@@ -106,7 +81,9 @@ export default function Leaderboard() {
 							<span className="font-semibold text-sm sm:text-base text-[#F6F6F6]">
 								{selectedYear}
 							</span>
-							<div className={`transition-transform duration-250 ${open ? "rotate-180" : "rotate-0"}`}>
+							<div
+								className={`transition-transform duration-250 ${open ? "rotate-180" : "rotate-0"}`}
+							>
 								<DropdownArrow />
 							</div>
 						</button>
@@ -122,7 +99,10 @@ export default function Leaderboard() {
 										}}
 										className={`px-5 py-3 cursor-pointer text-sm sm:text-base font-semibold transition-all hover:bg-[#0d1435] hover:text-white ${yr === selectedYear ? "bg-white/10 text-white" : "text-white/50"}`}
 										style={{
-											borderBottom: i < years.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+											borderBottom:
+												i < years.length - 1
+													? "1px solid rgba(255,255,255,0.05)"
+													: "none",
 										}}
 									>
 										{yr}
@@ -133,44 +113,45 @@ export default function Leaderboard() {
 					</div>
 				</div>
 
-				{/* Leaderboard Table */}
+				{/* 2. Table Wrapper (Added overflow-x-auto and no-scrollbar here!) */}
 				<div className="w-full overflow-x-auto pb-4 no-scrollbar">
 					<div className="min-w-[600px] md:min-w-full flex flex-col">
 						<div
 							ref={headerRef}
+							// 1. Changed back to dark background, added the subtle bottom border, and rounded corners
 							className="grid grid-cols-3 items-center bg-white/80 border-b border-white/10 rounded-t-[20px]"
 							style={{
 								opacity: headerVisible ? 1 : 0,
-								transform: headerVisible ? "translateX(0px)" : "translateX(40px)",
-								transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
+								transform: headerVisible
+									? "translateX(0px)"
+									: "translateX(40px)",
+								transition:
+									"opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
 							}}
 						>
-							{["POSITION", "TEAM", "TOTAL SCORE"].map((h) => (
+							{["EVENT", "CLUB", "DATES"].map((h) => (
 								<div
 									key={h}
-									className="h-[48px] sm:h-[53px] flex items-center justify-center font-extrabold text-[#00051A] uppercase text-[13px] md:text-[15px] tracking-[0.15em] text-center font-roboto"
+									// 2. Changed text color back to the muted gray/blue (#94A3B8)
+									className="h-[48px] sm:h-[53px] flex items-center justify-center font-extrabold text-[#00051A] uppercase text-[13px] md:text-[15px] tracking-[0.15em] text-center"
 								>
 									{h}
 								</div>
 							))}
 						</div>
 
-						{currentData ? (
-							currentData.map((row, index) => (
-								<AnimatedLeaderboardRow
-									key={`${selectedYear}-${index}`}
-									row={row}
-									index={index}
-								/>
+						{events.length > 0 ? (
+							events.map((ev, i) => (
+								<AnimatedRow key={ev.name} ev={ev} index={i} />
 							))
 						) : (
 							<div className="w-full py-16 flex items-center justify-center bg-[#080D22] border-b border-white/15 text-[#94A3B8] text-xs sm:text-sm">
-								No data available for {selectedYear}
+								No events announced for {selectedYear} yet
 							</div>
 						)}
 					</div>
 				</div>
-			</section>
+			</div>
 		</>
 	);
 }

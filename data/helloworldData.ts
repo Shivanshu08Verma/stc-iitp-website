@@ -1,0 +1,136 @@
+import { TimelineRow, LeaderboardRow, CarouselSlide } from "@/types/helloworld";
+
+export const YEARS = ["2025", "2024", "2023"];
+
+export const timelineData: Record<string, TimelineRow[]> = {
+  "2023": [
+    { club: "Robocon", dates: "26th Aug" },
+    { club: "Tinkerer's Lab", dates: "26th Aug" },
+    { club: "Mitacs and Other Fellowships", dates: "27th Aug" },
+    { club: "APC Orientation", dates: "27th Aug" },
+    { club: "SCME Orientation", dates: "1st Sep" },
+    { club: "Moodboard Orientation", dates: "2nd Sep" },
+    { club: "Finance Club Orientation", dates: "2nd Sep" },
+    { club: "RnA Orientation", dates: "3rd Sep" },
+    { club: "NJACK Orientation", dates: "3rd Sep" },
+    { club: "CHESSx", dates: "3rd Sep" },
+    { club: "Sparkonics Orientation", dates: "3rd Sep" },
+    { club: "MATES Workshop", dates: "3rd Sep" },
+    { club: "APC Orientation", dates: "3rd Sep" },
+  ],
+  "2024": [
+    { club: "Ecell Kickoff Session", dates: "31st Aug" },
+    { club: "ChessX Introductory Session", dates: "31st Aug" },
+    { club: "NJACK Onboarding Session", dates: "31st Aug" },
+    { club: "Moodboard Onboarding Session", dates: "1st Sep" },
+    { club: "Astronomy and Particle Physics Club Kickoff", dates: "1st Sep" },
+    { club: "Trading & Investment / Finance Club / DWDG", dates: "1st Sep" },
+    { club: "Research Community Kickoff Session", dates: "6th Sep" },
+    { club: "SCME Introductory Session", dates: "6th Sep" },
+    {
+      club: "Tinkerers Lab / Robocon / Robotics & Aviation Club",
+      dates: "7th Sep",
+    },
+    { club: "Sparkonics Introductory Session", dates: "7th Sep" },
+    { club: "ACE Introductory Session", dates: "7th Sep" },
+    { club: "MatEX", dates: "8th Sep" },
+    { club: "Quantum Technology Club Introductory Session", dates: "8th Sep" },
+  ],
+  "2025": [
+    { club: "DWDG", dates: "15th Aug" },
+    { club: "Team Phoenix & TL", dates: "15th Aug" },
+    { club: "MoodBoard", dates: "15th Aug" },
+    { club: "MATES", dates: "15th Aug" },
+    { club: "NJack", dates: "15th Aug" },
+    { club: "RNA (Physical Demonstration)", dates: "16th Aug" },
+    { club: "ECell", dates: "16th Aug" },
+    { club: "Finance Club", dates: "16th Aug" },
+    { club: "RNA", dates: "16th Aug" },
+    { club: "Optimax", dates: "16th Aug" },
+    { club: "QTC", dates: "17th Aug" },
+    { club: "SCME", dates: "17th Aug" },
+    { club: "Sparkonics", dates: "17th Aug" },
+    { club: "ChESSx", dates: "17th Aug" },
+    { club: "ACE", dates: "17th Aug" },
+    { club: "TIC", dates: "17th Aug" },
+    { club: "Astronomy Club", dates: "17th Aug" },
+    { club: "Exhibition (Celesta)", dates: "17th Aug" },
+  ],
+};
+
+export const leaderboardData: Record<string, LeaderboardRow[]> = {
+  "2025": [
+    {
+      position: 1,
+      rollNumber: "2501MC37",
+      name: "Prabhudutta Prusti",
+      totalScore: 107,
+    },
+    {
+      position: 2,
+      rollNumber: "2501ME63",
+      name: "Anirban Dutta",
+      totalScore: 79,
+    },
+    {
+      position: 3,
+      rollNumber: "2501EC17",
+      name: "Garvit Sharma",
+      totalScore: 57,
+    },
+    {
+      position: 4,
+      rollNumber: "2501AI02",
+      name: "Bhavesh Lokesh Agarwal",
+      totalScore: 55,
+    },
+    { position: 5, rollNumber: "2501CB35", name: "S Aditya", totalScore: 52 },
+    {
+      position: 6,
+      rollNumber: "2501CE03",
+      name: "Mehul Tushar Parmar",
+      totalScore: 50,
+    },
+    {
+      position: 7,
+      rollNumber: "2501EC03",
+      name: "Shivansh Kumar Bhakt",
+      totalScore: 49,
+    },
+    {
+      position: 8,
+      rollNumber: "2502VL10",
+      name: "Ambidi Ramachandra Pranil",
+      totalScore: 45,
+    },
+    {
+      position: 9,
+      rollNumber: "2501CS19",
+      name: "Aditya Kumar",
+      totalScore: 42,
+    },
+    {
+      position: 10,
+      rollNumber: "2501ME26",
+      name: "Deepanshu Dash",
+      totalScore: 41,
+    },
+  ],
+};
+
+export const carouselSlides: CarouselSlide[] = [
+  { src: "/helloworld/helloworld1.JPG" },
+  { src: "/helloworld/helloworld2.jpg" },
+  { src: "/helloworld/helloworld3.jpeg" },
+  { src: "/helloworld/helloworld4.jpeg" },
+  { src: "/helloworld/helloworld5.JPG" },
+  { src: "/helloworld/helloworld6.jpg" },
+  { src: "/helloworld/helloworld7.jpg" },
+  { src: "/helloworld/helloworld8.JPG" },
+  { src: "/helloworld/helloworld9.jpeg" },
+  { src: "/helloworld/helloworld10.jpg" },
+  { src: "/helloworld/helloworld11.jpg" },
+  { src: "/helloworld/helloworld12.jpg" },
+  { src: "/helloworld/helloworld13.jpeg" },
+  { src: "/helloworld/helloworld14.jpeg" },
+];

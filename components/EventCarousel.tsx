@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 interface CarouselImage {
@@ -15,19 +15,38 @@ interface EventCarouselProps {
 
 export default function EventCarousel({ images }: EventCarouselProps) {
 	const [currentIndex, setCurrentIndex] = useState(0);
-
-	if (!images || images.length === 0) return null;
+	const [isPaused, setIsPaused] = useState(false);
+	const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
 	const handleNext = () => {
 		setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
 	};
 
 	const handlePrev = () => {
-		setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+		setCurrentIndex(
+			(prevIndex) => (prevIndex - 1 + images.length) % images.length,
+		);
 	};
 
+	useEffect(() => {
+		if (!isPaused) {
+			intervalRef.current = setInterval(() => {
+				handleNext();
+			}, 4000);
+		}
+		return () => {
+			if (intervalRef.current) clearInterval(intervalRef.current);
+		};
+	}, [isPaused, images.length]);
+
+	if (!images || images.length === 0) return null;
+
 	return (
-		<section className="mb-30 flex flex-col items-center w-full px-4">
+		<section 
+			className="mb-30 flex flex-col items-center w-full px-4"
+			onMouseEnter={() => setIsPaused(true)}
+			onMouseLeave={() => setIsPaused(false)}
+		>
 			<div className="flex items-center justify-center w-full max-w-326 gap-4 md:gap-10 group">
 				<button
 					onClick={handlePrev}
@@ -54,10 +73,11 @@ export default function EventCarousel({ images }: EventCarouselProps) {
 					{images.map((img, index) => (
 						<div
 							key={img.id}
-							className={`absolute inset-0 w-full h-full transition-all duration-700 ease-out flex items-center justify-center ${index === currentIndex
+							className={`absolute inset-0 w-full h-full transition-all duration-700 ease-out flex items-center justify-center ${
+								index === currentIndex
 									? "opacity-100 translate-y-0 scale-100 z-10"
 									: "opacity-0 translate-y-12 scale-95 z-0"
-								}`}
+							}`}
 						>
 							<Image
 								src={img.src}
@@ -99,10 +119,11 @@ export default function EventCarousel({ images }: EventCarouselProps) {
 						<button
 							key={index}
 							onClick={() => setCurrentIndex(index)}
-							className={`h-2 rounded-full transition-all duration-500 ${index === currentIndex
+							className={`h-2 rounded-full transition-all duration-500 ${
+								index === currentIndex
 									? "w-8 bg-[#6bfb9a] shadow-[0_0_10px_rgba(107,251,154,0.5)]"
 									: "w-2 bg-gray-600 hover:bg-gray-400"
-								}`}
+							}`}
 							aria-label={`Go to slide ${index + 1}`}
 						/>
 					))}

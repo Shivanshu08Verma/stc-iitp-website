@@ -443,7 +443,7 @@ export default function InterIITPage() {
                   {["PROBLEM STATEMENT", "CATEGORY", "RANK"].map((h) => (
                     <th
                       key={h}
-                      className="pb-4 font-mono text-[9px] tracking-[0.2em] text-[#94A3B8] uppercase pr-4 md:pr-6 whitespace-nowrap"
+                      className="pb-4 font-mono text-[13px] sm:text-[15px] tracking-[0.2em] text-[#94A3B8] uppercase pr-4 md:pr-6 whitespace-nowrap"
                     >
                       {h}
                     </th>
@@ -466,7 +466,7 @@ export default function InterIITPage() {
                     <td className="py-5 pr-4 md:pr-6 text-[14px] text-white">
                       {p.problemStatement}
                     </td>
-                    <td className="py-5 pr-4 md:pr-6 font-mono text-[11px] tracking-[0.1em] text-white whitespace-nowrap">
+                    <td className="py-5 pr-4 md:pr-6 font-mono text-[12px] tracking-[0.1em] text-white whitespace-nowrap">
                       {p.category}
                     </td>
                     <td className="py-5 font-mono text-[11px] text-[#94A3B8]">

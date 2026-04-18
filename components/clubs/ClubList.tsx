@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Club } from "@/types/club";
 import ClubCard, { SkeletonCard } from "./ClubCard";
+import { motion } from "framer-motion";
 
 interface ClubListProps {
   clubs: Club[];
@@ -13,7 +14,6 @@ export default function ClubList({ clubs }: ClubListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulate a brief loading state for UX polish
     const timer = setTimeout(() => setLoading(false), 600);
     return () => clearTimeout(timer);
   }, []);
@@ -41,21 +41,26 @@ export default function ClubList({ clubs }: ClubListProps) {
     );
   }
 
-  
-
   return (
     <div className="flex flex-col gap-8">
       {clubs.map((club, index) => (
-         <ClubCard
-           key={club.id}
-           club={club}
-           index={index}
-           expanded={expandedId === club.id}
-           onToggle={() =>
-             setExpandedId(expandedId === club.id ? null : club.id)
-           }
-         />
-       ))}
+        <motion.div
+          key={club.id}
+          initial={{ opacity: 0, y: 40 }}       
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <ClubCard
+            club={club}
+            index={index}
+            expanded={expandedId === club.id}
+            onToggle={() =>
+              setExpandedId(expandedId === club.id ? null : club.id)
+            }
+          />
+        </motion.div>
+      ))}
     </div>
   );
 }
